@@ -169,6 +169,11 @@ if (strlen($response) == 71) {
          $datecheck = date('Y-m-d', $quotient);
          }
     }
+
+    //check if rows exists or not
+
+    //insert datas
+    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`, `leader`, `check`) VALUES (".$name.", ".$description.", ".$teamleader.", ".$datacheck")");
    }
 }
 HTML::closeForm();
