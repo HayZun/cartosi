@@ -65,7 +65,8 @@ function plugin_cartosi_install() {
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
                   `check` date,
-                PRIMARY KEY (`id`)
+                PRIMARY KEY (`id`),
+                PRIMARY KEY (`name`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
       $DB->query($query) or die("error glpi_plugin_cartosi_app ". $DB->error());
