@@ -180,11 +180,17 @@ if (strlen($response) == 71) {
       //insert datas
       $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
     } else {
-      $bool = false;
+      $bool = true;
       $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
-      var_dump($req);
       foreach($req as $row) {
-         echo $row["Name"];
+         //if name_app !p glpiname, insert data
+         if $row["Name"] == $name {
+            $bool = false;
+         }
+      }
+
+      if($bool == true) {
+         $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
       }
     } 
    }
