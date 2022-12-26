@@ -44,9 +44,9 @@ function plugin_cartosi_install() {
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
-   if (!$DB->tableExists("glpi_plugin_paulo_credentials")) {
-      // create tab glpi_plugin_paulo_credentials
-      $query = "CREATE TABLE `glpi_plugin_paulo_credentials` (
+   if (!$DB->tableExists("glpi_plugin_cartosi_credentials")) {
+      // create tab glpi_plugin_cartosi_credentials
+      $query = "CREATE TABLE `glpi_plugin_cartosi_credentials` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `token` TEXT NOT NULL,
                   `tenant` INT NOT NULL,
@@ -56,9 +56,9 @@ function plugin_cartosi_install() {
       $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
    }
 
-   if (!$DB->tableExists("glpi_plugin_paulo_cartosi_app")) {
-      // create tab glpi_plugin_paulo_credentials
-      $query = "CREATE TABLE `glpi_plugin_paulo_cartosi_app` (
+   if (!$DB->tableExists("glpi_plugin_cartosi_cartosi_app")) {
+      // create tab glpi_plugin_cartosi_credentials
+      $query = "CREATE TABLE `glpi_plugin_cartosi_cartosi_app` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` TEXT NOT NULL,
                   `description` TEXT NOT NULL,
@@ -68,7 +68,7 @@ function plugin_cartosi_install() {
                 PRIMARY KEY (`id`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
-      $DB->query($query) or die("error glpi_plugin_paulo_cartosi_app ". $DB->error());
+      $DB->query($query) or die("error glpi_plugin_cartosi_cartosi_app ". $DB->error());
    }
 
    // CronTask::Register('cartosi', 'SynchroGlpiCartoSi', DAY_TIMESTAMP, ['param' => 50]);
@@ -86,14 +86,14 @@ function plugin_cartosi_uninstall()
     global $DB;
 
     // Current version tables
-   if ($DB->tableExists("glpi_plugin_paulo_credentials")) {
-    $query = "DROP TABLE `glpi_plugin_paulo_credentials`";
-    $DB->query($query) or die("error deleting glpi_plugin_paulo_credentials");
+   if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
+    $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
+    $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
     }
 
-   if ($DB->tableExists("glpi_plugin_paulo_cartosi_app")) {
-      $query = "DROP TABLE `glpi_plugin_paulo_cartosi_app`";
-      $DB->query($query) or die("error deleting glpi_plugin_paulo_cartosi_app");
+   if ($DB->tableExists("glpi_plugin_cartosi_cartosi_app")) {
+      $query = "DROP TABLE `glpi_plugin_cartosi_cartosi_app`";
+      $DB->query($query) or die("error deleting glpi_plugin_cartosi_cartosi_app");
    }
    
     return true;
