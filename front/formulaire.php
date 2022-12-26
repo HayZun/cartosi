@@ -172,7 +172,6 @@ if (strlen($response) == 71) {
 
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
-    var_dump($req);
     foreach($req as $row) {
      $count = $row["COUNT(*)"];
     }
@@ -183,12 +182,11 @@ if (strlen($response) == 71) {
       $bool = true;
       $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
       foreach($req as $row) {
-         //if name_app !p glpiname, insert data
+         //if name_app == glpiname, insert data
          if ($row["Name"] == $name) {
             $bool = false;
          }
       }
-
       if($bool == true) {
          $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
       }
