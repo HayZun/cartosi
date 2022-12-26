@@ -138,12 +138,10 @@ if (strlen($response) == 71) {
     curl_close($curl);
     echo "<br>";
     $data = json_decode($response, true);
-    //var_dump($data);
+    //retrievas datas (name,description,domain,leader and check)
     foreach( $data as $key => $value )
     {
-       echo $key . ': <br />';
        foreach( $value as $valeur => $value1 ) {
-          echo '  ' . $valeur . '<br />';
           if (strpos($valeur, "description") !== false) {
                 $description = $value1;
 	  }
@@ -171,11 +169,6 @@ if (strlen($response) == 71) {
          $datecheck = date('Y-m-d', $quotient);
          }
     }
-    echo $name;
-    echo $description;
-    echo $domain;
-    echo $teamleader;
-    echo $datecheck;
    }
 }
 HTML::closeForm();
