@@ -175,8 +175,7 @@ if (strlen($response) == 71) {
     //insert datas
     //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
     //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`, `domain`,`leader`, `check`) VALUES (".$name.", ".$description.", ".$domain.",".$teamleader.", ".$datacheck.")");
-    echo $datacheck;
-    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datacheck')");
+    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
    }
 }
 
