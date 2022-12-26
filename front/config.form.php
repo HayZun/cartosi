@@ -42,7 +42,7 @@ include ("../../../inc/includes.php");
 Session::checkRight("config", UPDATE);
 
 // To be available when plugin in not activated
-Plugin::load('pluginpaulo');
+Plugin::load('plugincartosi');
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 

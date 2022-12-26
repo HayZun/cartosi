@@ -1,6 +1,6 @@
 <?php
 
-class pluginpaulo extends CommonDBTM {
+class cartosi extends CommonDBTM {
 
    // Should return the localized name of the type
    static function getTypeName($nb = 0) {
@@ -18,7 +18,7 @@ class pluginpaulo extends CommonDBTM {
 
       switch ($name) {
          case 'SynchroGlpiCartoSi' :
-            return ['description' => __('Paulo description for example', 'pluginpaulo')];
+            return ['description' => __('Paulo description for example', 'cartosi')];
       }
       return [];
    }
@@ -33,9 +33,9 @@ class pluginpaulo extends CommonDBTM {
     *    <0 : to be run again (not finished)
     *     0 : nothing to do
     */
-   static function cronpluginpaulo($task) {
+   static function croncartosi($task) {
 
-      $task->log("Example log message from class", 'pluginpaulo');
+      $task->log("Example log message from class", 'cartosi');
       usleep(1000000+$r*1000);
       return 1;
    }

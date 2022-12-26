@@ -34,9 +34,9 @@ if (!defined('GLPI_ROOT')) {
     die("Sorry. You can't access directly to this file");
 }
 
-class PluginPauloConfig extends CommonDBTM {
+class cartosiConfig extends CommonDBTM {
 
-   static $rightname = 'plugin_paulo_config'
+   static $rightname = 'plugin_cartosi_config'
 
    function showForm($ID, array $options = []) {
     echo "test"
@@ -44,7 +44,7 @@ class PluginPauloConfig extends CommonDBTM {
     Session::checkRight("config", UPDATE);
 
     // To be available when plugin in not activated
-    Plugin::load('pluginpaulo');
+    Plugin::load('cartosi');
 
     Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 

@@ -44,7 +44,7 @@ include ("../../../inc/includes.php");
 Session::checkRight("config", UPDATE);
 
 // To be available when plugin in not activated
-Plugin::load('pluginpaulo');
+Plugin::load('plugincartosi');
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
@@ -55,27 +55,27 @@ $tenant = intval( $_POST['tenant']);
 //si c'est à 0, on register la data
 //si c'est à 1, on suppr la data et on register la data
 //remove datas
-$req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_paulo_credentials');
+$req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
 if (0 == $count) {
-   $req = $DB->query("INSERT INTO `glpi_plugin_paulo_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
+   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
 }
 
 if (1 == $count) {
-   //retrieves data from table glpi_plugin_paulo_credentials
-   $req = $DB->query('SELECT * FROM glpi_plugin_paulo_credentials');
+   //retrieves data from table glpi_plugin_cartosi_credentials
+   $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
    foreach($req as $row) {
      $tokenglpi = $row["token"];
      $tenantglpi = $row["tenant"];
    }
    if( ($tokenglpi != $token) || ($tenantglpi != $tenant) ) {
  	//delete datas from database
-   	$req = $DB->query("DELETE FROM glpi_plugin_paulo_credentials WHERE id=1");
+   	$req = $DB->query("DELETE FROM glpi_plugin_cartosi_credentials WHERE id=1");
 
 	//insert datas
-        $req = $DB->query("INSERT INTO `glpi_plugin_paulo_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
+        $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
    }
 }
 

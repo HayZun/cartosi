@@ -2,8 +2,8 @@
 
 /**
  * -------------------------------------------------------------------------
- * pluginpaulo plugin for GLPI
- * Copyright (C) 2022 by the pluginpaulo Development Team.
+ * cartosi plugin for GLPI
+ * Copyright (C) 2022 by the cartosi Development Team.
  * -------------------------------------------------------------------------
  *
  * MIT License
@@ -28,7 +28,7 @@
  *
  * --------------------------------------------------------------------------
  */
-use GlpiPlugin\pluginpaulo\pluginpaulo;
+use GlpiPlugin\cartosi\cartosi;
 
 
 
@@ -37,7 +37,7 @@ use GlpiPlugin\pluginpaulo\pluginpaulo;
  *
  * @return boolean
  */
-function plugin_pluginpaulo_install() {
+function plugin_cartosi_install() {
    global $DB;
 
    $default_charset = DBConnection::getDefaultCharset();
@@ -71,7 +71,7 @@ function plugin_pluginpaulo_install() {
       $DB->query($query) or die("error glpi_plugin_paulo_cartosi_app ". $DB->error());
    }
 
-   // CronTask::Register('pluginpaulo', 'SynchroGlpiCartoSi', DAY_TIMESTAMP, ['param' => 50]);
+   // CronTask::Register('cartosi', 'SynchroGlpiCartoSi', DAY_TIMESTAMP, ['param' => 50]);
 
    return true;
 }
@@ -81,7 +81,7 @@ function plugin_pluginpaulo_install() {
  *
  * @return boolean
  */
-function plugin_pluginpaulo_uninstall()
+function plugin_cartosi_uninstall()
 {
     global $DB;
 

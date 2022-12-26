@@ -2,8 +2,8 @@
 
 /**
  * -------------------------------------------------------------------------
- * pluginpaulo plugin for GLPI
- * Copyright (C) 2022 by the pluginpaulo Development Team.
+ * cartosi plugin for GLPI
+ * Copyright (C) 2022 by the cartosi Development Team.
  * -------------------------------------------------------------------------
  *
  * MIT License
@@ -31,12 +31,12 @@
 
 use GlpiPlugin\Example\Example;
 
-define('PLUGIN_PLUGINPAULO_VERSION', '0.0.1');
+define('PLUGIN_cartosi_VERSION', '0.0.1');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_PLUGINPAULO_MIN_GLPI_VERSION", "10.0.0");
+define("PLUGIN_cartosi_MIN_GLPI_VERSION", "10.0.0");
 // Maximum GLPI version, exclusive
-define("PLUGIN_PLUGINPAULO_MAX_GLPI_VERSION", "10.0.99");
+define("PLUGIN_cartosi_MAX_GLPI_VERSION", "10.0.99");
 
 /**
  * Init hooks of the plugin.
@@ -44,16 +44,16 @@ define("PLUGIN_PLUGINPAULO_MAX_GLPI_VERSION", "10.0.99");
  *
  * @return void
  */
-function plugin_init_pluginpaulo()
+function plugin_init_cartosi()
 {
     global $PLUGIN_HOOKS;
 
     // Config page
     if (Session::haveRight('config', UPDATE)) {
-        $PLUGIN_HOOKS['config_page']['pluginpaulo'] = 'front/config.form.php';
+        $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.form.php';
     }
 
-    $PLUGIN_HOOKS['csrf_compliant']['pluginpaulo'] = true;
+    $PLUGIN_HOOKS['csrf_compliant']['cartosi'] = true;
 }
 
 
@@ -63,18 +63,18 @@ function plugin_init_pluginpaulo()
  *
  * @return array
  */
-function plugin_version_pluginpaulo()
+function plugin_version_cartosi()
 {
     return [
-        'name'           => 'pluginpaulo',
-        'version'        => PLUGIN_PLUGINPAULO_VERSION,
+        'name'           => 'cartosi',
+        'version'        => PLUGIN_cartosi_VERSION,
         'author'         => 'Polo',
         'license'        => '',
         'homepage'       => '',
         'requirements'   => [
             'glpi' => [
-                'min' => PLUGIN_PLUGINPAULO_MIN_GLPI_VERSION,
-                'max' => PLUGIN_PLUGINPAULO_MAX_GLPI_VERSION,
+                'min' => PLUGIN_cartosi_MIN_GLPI_VERSION,
+                'max' => PLUGIN_cartosi_MAX_GLPI_VERSION,
             ]
         ]
     ];
@@ -86,7 +86,7 @@ function plugin_version_pluginpaulo()
  *
  * @return boolean
  */
-function plugin_pluginpaulo_check_prerequisites()
+function plugin_cartosi_check_prerequisites()
 {
     return true;
 }
@@ -98,14 +98,14 @@ function plugin_pluginpaulo_check_prerequisites()
  *
  * @return boolean
  */
-function plugin_pluginpaulo_check_config($verbose = false)
+function plugin_cartosi_check_config($verbose = false)
 {
     if (true) { // Your configuration check
         return true;
     }
 
     if ($verbose) {
-        echo __('Installed / not configured', 'pluginpaulo');
+        echo __('Installed / not configured', 'cartosi');
     }
     return false;
 }
