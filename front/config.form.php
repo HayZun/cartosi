@@ -46,17 +46,37 @@ Plugin::load('plugincartosi');
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
-echo '<form method="post" action="formulaire.php">';
+$req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+foreach($req as $row) {
+     $count = $row["COUNT(*)"];
+}
 
-echo 'Token API : ';
-echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
+if (0 == $count) {
+    echo '<form method="post" action="formulaire.php">';
+    echo 'Token API : ';
+    echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
+    echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
+    echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" size="50">';
+    echo "</tr>";
+    echo "<br>";
+    echo "<br>";
+}
 
-echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
-echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" size="50">';
-echo "</tr>";
-
-echo "<br>";
-echo "<br>";
+if (1 == $count) {
+    $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
+   foreach($req as $row) {
+     $token = $row["token"];
+     $tenant = $row["tenant"];
+   }
+   echo '<form method="post" action="formulaire.php">';
+    echo 'Token API : ';
+    echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
+    echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
+    echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" value="'.$tenant.'" size="50">';
+    echo "</tr>";
+    echo "<br>";
+    echo "<br>";
+}
 
 echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 HTML::closeForm();
