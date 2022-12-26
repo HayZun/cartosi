@@ -180,10 +180,10 @@ if (strlen($response) == 71) {
       $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
     } else {
       $bool = false;
-      echo "test";
       $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
       foreach($req as $row){
          echo "test1";
+         echo "<br>";
          echo $row["Name"] + "<br>";
       }
     } 
