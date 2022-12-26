@@ -112,8 +112,8 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo "<br><br>Connexion between GLPI and Carto SI ";
 if (strlen($response) == 71) {
-   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 	echo "failed";
+   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 } else {
 	echo "sucess";
 	//retrieve application result
