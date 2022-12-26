@@ -90,8 +90,6 @@ echo "</tr>";
 echo "<br>";
 echo "<br>";
 
-echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
-
 //test connection cartosi
 $curl = curl_init();
 
@@ -115,6 +113,7 @@ curl_close($curl);
 echo "<br><br>Connexion between GLPI and Carto SI ";
 if (strlen($response) == 71) {
 	echo "failed";
+   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 } else {
 	echo "sucess";
 	//retrieve application result
