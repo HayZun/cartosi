@@ -181,10 +181,11 @@ if (strlen($response) == 71) {
     } else {
       $bool = false;
       $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
-      foreach($req as $row){
+      foreach($req as $row) {
          echo "test1";
          echo "<br>";
-         echo $row["Name"] + "<br>";
+         $glpiname = $row["Name"]
+         echo $glpiname;
       }
     } 
    }
