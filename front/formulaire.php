@@ -174,10 +174,8 @@ if (strlen($response) == 71) {
 
     //insert datas
     //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
-    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`, `domain`,`leader`, `check`) VALUES (".$name.", ".$description.", ".$domain.",".$teamleader.", ".$datacheck.")");
-    echo $req;
-    foreach($req as $row) {
-      echo $row;
+    //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`, `domain`,`leader`, `check`) VALUES (".$name.", ".$description.", ".$domain.",".$teamleader.", ".$datacheck.")");
+    $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('Espace courtier','L’Espace Courtier est', 'DSI - INFORMATIQUE','Yoan BLAIN','2021-06-08')");
    }
    }
 }
