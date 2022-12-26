@@ -172,6 +172,7 @@ if (strlen($response) == 71) {
 
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
+    var_dump($req);
     foreach($req as $row) {
      $count = $row["COUNT(*)"];
     }
