@@ -161,22 +161,21 @@ if (strlen($response) == 71) {
 	  }
 	  if (strpos($valeur, "teamleader") !== false) {
              foreach($value1 as $valeur2 => $value2) {
-		    if (strpos($valeur2, "label") !== false) {
-                                $teamleader = $value2;
-                        }
-	     }
+		         if (strpos($valeur2, "label") !== false) {
+                     $teamleader = $value2;
+               }
+	         }
           }
 	  if (strpos($valeur, "dateMaj") !== false) {
-             $datecheck = $value1;
-             echo $name;
-             echo $datecheck;
-             $quotient = $datecheck / 1000;
-             echo "<br>";
-             echo date('Y-m-d', $quotient);
-	     //convert sec to date
-	     //echo convertSecToTime($datecheck);
-          }
+         $quotient = $value1 / 1000;    
+         $datecheck = date('Y-m-d', $quotient);
+         }
     }
+    echo $name;
+    echo $description;
+    echo $domain;
+    echo $teamleader;
+    echo $datecheck;
    }
 }
 HTML::closeForm();
