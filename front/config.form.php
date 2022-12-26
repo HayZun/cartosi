@@ -50,7 +50,7 @@ $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
-echo $count;
+echo "$count";
 if (0 == $count) {
     echo '<form method="post" action="formulaire.php">';
     echo 'Token API : ';
