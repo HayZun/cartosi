@@ -59,7 +59,7 @@ function plugin_cartosi_install() {
    if (!$DB->tableExists("glpi_plugin_cartosi_app")) {
       // create tab glpi_plugin_cartosi_credentials
       $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
-                  `name` TEXT NOT NULL,
+                  `name` TEXT {$default_key_sign} NOT NULL,
                   `description` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
