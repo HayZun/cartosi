@@ -184,7 +184,7 @@ if (strlen($response) == 71) {
       $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
       foreach($req as $row) {
          //if name_app !p glpiname, insert data
-         if $row["Name"] == $name {
+         if ($row["Name"] == $name) {
             $bool = false;
          }
       }
