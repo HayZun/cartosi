@@ -168,6 +168,7 @@ if (strlen($response) == 71) {
           }
 	  if (strpos($valeur, "dateMaj") !== false) {
              $datecheck = $value1;
+             echo $name;
              echo $datecheck;
 	     //convert sec to date
 	     //echo convertSecToTime($datecheck);
