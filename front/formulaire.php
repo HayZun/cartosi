@@ -171,11 +171,23 @@ if (strlen($response) == 71) {
     }
 
     //check if rows exists or not
+    $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
+    foreach($req as $row) {
+     $count = $row["COUNT(*)"];
+    }
+    if (0 == $count) {
+      //insert datas
+      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
+    } else {
+      $bool = false;
+      $req = $DB->query("SELECT Name FROM glpi_plugin_cartosi_app")
+      foreach($req as $row){
+         echo $row;
+      }
+    }
 
-    //insert datas
-    //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
-    //$req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`, `domain`,`leader`, `check`) VALUES (".$name.", ".$description.", ".$domain.",".$teamleader.", ".$datacheck.")");
-    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
+    
+    
    }
 }
 
