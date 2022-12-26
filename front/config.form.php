@@ -51,6 +51,7 @@ foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
 echo "$count";
+echo "test";
 if (0 == $count) {
     echo '<form method="post" action="formulaire.php">';
     echo 'Token API : ';
