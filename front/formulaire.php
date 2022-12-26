@@ -170,7 +170,7 @@ if (strlen($response) == 71) {
              $datecheck = $value1;
              echo $name;
              echo $datecheck;
-             echo "<br>"
+             echo "<br>";
              echo date('Y-m-d', $datecheck);
 	     //convert sec to date
 	     //echo convertSecToTime($datecheck);
