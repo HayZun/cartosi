@@ -170,7 +170,7 @@ if (strlen($response) == 71) {
              $datecheck = $value1;
              echo $name;
              echo $datecheck;
-             $quotient = $datecheck / 1000
+             $quotient = $datecheck / 1000;
              echo "<br>";
              echo date('Y-m-d', $quotient);
 	     //convert sec to date
