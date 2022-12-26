@@ -175,6 +175,7 @@ if (strlen($response) == 71) {
     foreach($req as $row) {
      $count = $row["COUNT(*)"];
     }
+    echo $count;
     if (0 == $count) {
       //insert datas
       $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
