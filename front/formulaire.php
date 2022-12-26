@@ -184,8 +184,8 @@ if (strlen($response) == 71) {
       foreach($req as $row) {
          echo "test1";
          echo "<br>";
-         $glpiname = $row["Name"]
-         echo $glpiname;
+         //$glpiname = $row["Name"];
+         //echo $glpiname;
       }
     } 
    }
