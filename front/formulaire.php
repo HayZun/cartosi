@@ -147,7 +147,6 @@ if (strlen($response) == 71) {
 	  }
           if (strpos($valeur, "label") !== false) {
              $name = $value1;
-             echo $name;
           }
           if (strpos($valeur, "businesses") !== false) {
 	     foreach($value1 as $valeur2 => $value2) {
@@ -171,29 +170,37 @@ if (strlen($response) == 71) {
          }
     }
 
+    if($name == "Espace courtier legacy") {
+      echo $name;
+      echo "<br>";
+      echo $description;
+      echo "<br>";
+      echo $domain;
+      echo "<br>";
+      echo $teamleader;
+      echo "<br>";
+      echo $datecheck;
+      echo "<br>";
+    }
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
     foreach($req as $row) {
      $count = $row["COUNT(*)"];
     }
-    if (0 == $count) {
-      //insert datas
-      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
-    } else {
-      $bool = true;
-      $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
-      foreach($req as $row) {
-         //if name_app == glpiname, insert data
-         if ($row["Name"] == $name) {
-            $bool = false;
-         }
+   $bool = true;
+   $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
+   foreach($req as $row) {
+      //if name_app == glpiname, insert data
+      if ($row["Name"] == $name) {
+         $bool = false;
       }
-      if($bool == true) {
-         $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
-      }
-    } 
    }
+   if($bool == true) {
+      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
+      }
+   } 
 }
+
 
 HTML::closeForm();
 Html::footer();
