@@ -61,7 +61,6 @@ function plugin_cartosi_install() {
       $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` TEXT NOT NULL,
-                  `description` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
                   `check` date,
