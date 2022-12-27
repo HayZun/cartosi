@@ -171,8 +171,8 @@ if (strlen($response) == 71) {
     }
 
     if($name == "Espace courtier legacy") {
-      $newdescription = '"'.$description.'"';
-      echo $newdescription;
+      $description = '"'.$description.'"';
+      echo $description;
     }
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
