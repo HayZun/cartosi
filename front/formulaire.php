@@ -171,7 +171,7 @@ if (strlen($response) == 71) {
     }
 
     if($name == "Espace courtier legacy") {
-      $newdescription = '"' + $description + '"';
+      $newdescription = '"'.$description.'"';
       echo $newdescription;
     }
     //check if rows exists or not
