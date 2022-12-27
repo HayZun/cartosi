@@ -170,15 +170,23 @@ if (strlen($response) == 71) {
          }
     }
 
+    #exceptions
     if($name == "Espace courtier legacy") {
       $description = explode("<a", $description);
       echo $description[0];
     }
-    //check if rows exists or not
-    $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
-    foreach($req as $row) {
-     $count = $row["COUNT(*)"];
+    if($name == "Espace courtier FD") {
+      echo $name;
+      echo "<br>";
+      echo $description;
+      echo "<br>";
+      echo $domain;
+      echo "<br>";
+      echo $teamleader;
+      echo "<br>";
+      echo $datecheck;
     }
+
    $bool = true;
    $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
    foreach($req as $row) {
