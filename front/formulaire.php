@@ -143,7 +143,7 @@ if (strlen($response) == 71) {
     {
        foreach( $value as $valeur => $value1 ) {
           if (strpos($valeur, "description") !== false) {
-                $description = '"'.$value1.'"';
+                $description = $value1;
 	  }
           if (strpos($valeur, "label") !== false) {
              $name = $value1;
@@ -168,6 +168,11 @@ if (strlen($response) == 71) {
          $quotient = $value1 / 1000;    
          $datecheck = date('Y-m-d', $quotient);
          }
+    }
+
+    if($name == "Espace courtier legacy") {
+      $description = '"'.$description.'"';
+      echo $description;
     }
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
