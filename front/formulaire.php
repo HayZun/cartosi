@@ -196,7 +196,7 @@ if (strlen($response) == 71) {
       }
    }
    if($bool == true) {
-      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
+      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name',"$description", '$domain','$teamleader','$datecheck')");
       }
    } 
 }
