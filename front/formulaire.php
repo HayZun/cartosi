@@ -142,9 +142,6 @@ if (strlen($response) == 71) {
     foreach( $data as $key => $value )
     {
        foreach( $value as $valeur => $value1 ) {
-          if (strpos($valeur, "description") !== false) {
-                $description = $value1;
-	  }
           if (strpos($valeur, "label") !== false) {
              $name = $value1;
           }
@@ -168,23 +165,6 @@ if (strlen($response) == 71) {
          $quotient = $value1 / 1000;    
          $datecheck = date('Y-m-d', $quotient);
          }
-    }
-
-    #exceptions
-    if($name == "Espace courtier legacy") {
-      $description = explode("<a", $description);
-      echo $description[0];
-    }
-    if($name == "Espace courtier FD") {
-      echo $name;
-      echo "<br>";
-      echo $description;
-      echo "<br>";
-      echo $domain;
-      echo "<br>";
-      echo $teamleader;
-      echo "<br>";
-      echo $datecheck;
     }
 
    $bool = true;
