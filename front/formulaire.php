@@ -171,8 +171,8 @@ if (strlen($response) == 71) {
     }
 
     if($name == "Espace courtier legacy") {
-      $description = '"'.$description.'"';
-      echo $description;
+      $description = explode("<a", $description);
+      echo $description[0];
     }
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
@@ -188,7 +188,7 @@ if (strlen($response) == 71) {
       }
    }
    if($bool == true) {
-      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name',"$description", '$domain','$teamleader','$datecheck')");
+      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`, `description`,`domain`,`leader`,`check`) VALUES ('$name','$description', '$domain','$teamleader','$datecheck')");
       }
    } 
 }
