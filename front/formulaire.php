@@ -180,7 +180,7 @@ if (strlen($response) == 71) {
       }
    }
    
-   $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+   $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
    foreach($req as $row) {
       $count = $row["COUNT(*)"] + 1;
    }
