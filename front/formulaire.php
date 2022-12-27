@@ -147,6 +147,7 @@ if (strlen($response) == 71) {
 	  }
           if (strpos($valeur, "label") !== false) {
              $name = $value1;
+             echo $name;
           }
           if (strpos($valeur, "businesses") !== false) {
 	     foreach($value1 as $valeur2 => $value2) {
