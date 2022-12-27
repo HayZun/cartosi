@@ -180,7 +180,7 @@ if (strlen($response) == 71) {
       echo $teamleader;
       echo "<br>";
       echo $datecheck;
-      echo "<br>"";
+      echo "<br>";
     }
     //check if rows exists or not
     $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
