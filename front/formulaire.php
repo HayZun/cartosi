@@ -116,7 +116,7 @@ if (strlen($response) == 71) {
    echo "<br>";
    echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 } else {
-	echo "sucess";
+	echo "sucess\n";
 	//retrieve application result
         $curl = curl_init();
 
@@ -178,7 +178,13 @@ if (strlen($response) == 71) {
    if($bool == true) {
       $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
       }
-   } 
+   }
+   
+   $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+   foreach($req as $row) {
+      $count = $row["COUNT(*)"] + 1;
+   }
+   echo "$count imported tables";
 }
 
 
