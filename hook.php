@@ -78,49 +78,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
 //////////////////////////////
 ////// SPECIFIC MODIF MASSIVE FUNCTIONS ///////
 
-// How to display specific search fields or dropdown ?
-// options must contain at least itemtype and options array
-// MUST Use a specific AddWhere & $tab[X]['searchtype'] = 'equals'; declaration
-function plugin_example_searchOptionsValues($options = []) {
-   $table = $options['searchoption']['table'];
-   $field = $options['searchoption']['field'];
-
-    // Table fields
-   switch ($table.".".$field) {
-      case "glpi_plugin_example_examples.serial" :
-            echo __("Not really specific - Use your own dropdown - Just for example", 'example');
-            GlpiDropdown::show(getItemTypeForTable($options['searchoption']['table']),
-                                               ['value'    => $options['value'],
-                                                'name'     => $options['name'],
-                                                'comments' => 0]);
-            // Need to return true if specific display
-            return true;
-   }
-   return false;
-}
-
-
-//////////////////////////////
-
-// Hook done on before update item case
-function plugin_pre_item_update_example($item) {
-   /* Manipulate data if needed
-   if (!isset($item->input['comment'])) {
-      $item->input['comment'] = addslashes($item->fields['comment']);
-   }
-   $item->input['comment'] .= addslashes("\nUpdate: ".date('r'));
-   */
-   Session::addMessageAfterRedirect(__("Pre Update Computer Hook", 'example'), true);
-}
-
-
-// Hook done on update item case
-function plugin_item_update_example($item) {
-   Session::addMessageAfterRedirect(sprintf(__("Update Computer Hook (%s)", 'example'), implode(',', $item->updates)), true);
-   return true;
-}
-
-
 // Hook done on get empty item case
 function plugin_item_empty_example($item) {
    if (empty($_SESSION['Already displayed "Empty Computer Hook"'])) {
