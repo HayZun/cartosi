@@ -111,20 +111,6 @@ function plugin_version_example() {
    ];
 }
 
-
-/**
- * Check pre-requisites before install
- * OPTIONNAL, but recommanded
- *
- * @return boolean
- */
-function plugin_example_check_prerequisites() {
-   if (false) {
-      return false;
-   }
-   return true;
-}
-
 /**
  * Check configuration process
  *
