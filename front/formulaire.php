@@ -41,10 +41,8 @@ global $DB;
 // Entry menu case
 include ("../../../inc/includes.php");
 
-Session::checkRight("config", UPDATE);
-
 // To be available when plugin in not activated
-Plugin::load('exemple');
+Plugin::load('example');
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
