@@ -117,7 +117,7 @@ class Example extends CommonDBTM {
          $check = $row["check"];
       }
 
-      echo """<table>;
+      echo """<table>
          <thead>
             <tr>
                   <th colspan="2">The table header</th>
