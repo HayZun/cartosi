@@ -71,7 +71,7 @@ class Example extends CommonDBTM {
     * @see CommonGLPI::getMenuName()
    **/
    static function getMenuName() {
-      return __('Example plugin');
+      return __('CartoSI');
    }
 
 
