@@ -60,7 +60,7 @@ function plugin_init_example() {
    }
 
    // Config page
-   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
+   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.form.php';
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
    $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 }
