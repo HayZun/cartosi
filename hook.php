@@ -28,9 +28,25 @@
  *
  * --------------------------------------------------------------------------
  */
-use GlpiPlugin\cartosi\cartosi;
 
+// See also GlpiPlugin\Example\Example::getSpecificValueToDisplay()
+function plugin_example_giveItem($type, $ID, $data, $num) {
+   $searchopt = &Search::getOptions($type);
+   $table = $searchopt[$ID]["table"];
+   $field = $searchopt[$ID]["field"];
 
+   switch ($table.'.'.$field) {
+      case "glpi_plugin_example_examples.name" :
+         $out = "<a href='".Toolbox::getItemTypeFormURL(Example::class)."?id=".$data['id']."'>";
+         $out .= $data[$num][0]['name'];
+         if ($_SESSION["glpiis_ids_visible"] || empty($data[$num][0]['name'])) {
+            $out .= " (".$data["id"].")";
+         }
+         $out .= "</a>";
+         return $out;
+   }
+   return "";
+}
 
 /**
  * Plugin install process
@@ -54,6 +70,29 @@ function plugin_cartosi_install() {
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
       $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
+   }
+
+   if (!$DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "CREATE TABLE `glpi_plugin_example_examples` (
+                  `id` int {$default_key_sign} NOT NULL auto_increment,
+                  `name` varchar(255) default NULL,
+                  `serial` varchar(255) NOT NULL,
+                  `plugin_example_dropdowns_id` int NOT NULL default '0',
+                  `is_deleted` tinyint NOT NULL default '0',
+                  `is_template` tinyint NOT NULL default '0',
+                  `template_name` varchar(255) default NULL,
+                PRIMARY KEY (`id`)
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
+
+      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
+
+      $query = "INSERT INTO `glpi_plugin_example_examples`
+                       (`id`, `name`, `serial`, `plugin_example_dropdowns_id`, `is_deleted`,
+                        `is_template`, `template_name`)
+                VALUES (1, 'example 1', 'serial 1', 1, 0, 0, NULL),
+                       (2, 'example 2', 'serial 2', 2, 0, 0, NULL),
+                       (3, 'example 3', 'serial 3', 1, 0, 0, NULL)";
+      $DB->query($query) or die("error populate glpi_plugin_example ". $DB->error());
    }
 
    if (!$DB->tableExists("glpi_plugin_cartosi_app")) {
@@ -83,6 +122,12 @@ function plugin_cartosi_install() {
 function plugin_cartosi_uninstall()
 {
     global $DB;
+
+     // Current version tables
+   if ($DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "DROP TABLE `glpi_plugin_example_examples`";
+      $DB->query($query) or die("error deleting glpi_plugin_example_examples");
+   }
 
     // Current version tables
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {

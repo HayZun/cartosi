@@ -29,6 +29,7 @@
  * --------------------------------------------------------------------------
  */
 
+use Glpi\Plugin\Hooks;
 use GlpiPlugin\Example\Example;
 
 define('PLUGIN_cartosi_VERSION', '0.0.1');
@@ -47,6 +48,11 @@ define("PLUGIN_cartosi_MAX_GLPI_VERSION", "10.0.99");
 function plugin_init_cartosi()
 {
     global $PLUGIN_HOOKS;
+
+    // Display a menu entry ?
+   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+                                             'tools'   => Example::class];
 
     // Config page
     if (Session::haveRight('config', UPDATE)) {
