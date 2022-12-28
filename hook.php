@@ -33,25 +33,6 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
-
-// Hook called on profile change
-// Good place to evaluate the user right on this plugin
-// And to save it in the session
-function plugin_change_profile_example() {
-   // For example : same right of computer
-   if (Session::haveRight('computer', UPDATE)) {
-      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'w'];
-
-   } else if (Session::haveRight('computer', READ)) {
-      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'r'];
-
-   } else {
-      unset($_SESSION["glpi_plugin_example_profile"]);
-   }
-}
-
-
 
 ////// SEARCH FUNCTIONS ///////(){
 
