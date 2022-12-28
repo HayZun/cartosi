@@ -75,68 +75,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    return "";
 }
 
-//////////////////////////////
-////// SPECIFIC MODIF MASSIVE FUNCTIONS ///////
-
-// Hook done on get empty item case
-function plugin_item_empty_example($item) {
-   if (empty($_SESSION['Already displayed "Empty Computer Hook"'])) {
-      Session::addMessageAfterRedirect(__("Empty Computer Hook", 'example'), true);
-      $_SESSION['Already displayed "Empty Computer Hook"'] = true;
-   }
-   return true;
-}
-
-
-// Hook done on before delete item case
-function plugin_pre_item_delete_example($object) {
-   // Manipulate data if needed
-   Session::addMessageAfterRedirect(__("Pre Delete Computer Hook", 'example'), true);
-}
-
-
-// Hook done on delete item case
-function plugin_item_delete_example($object) {
-   Session::addMessageAfterRedirect(__("Delete Computer Hook", 'example'), true);
-   return true;
-}
-
-
-// Hook done on before purge item case
-function plugin_pre_item_purge_example($object) {
-   // Manipulate data if needed
-   Session::addMessageAfterRedirect(__("Pre Purge Computer Hook", 'example'), true);
-}
-
-
-// Hook done on purge item case
-function plugin_item_purge_example($object) {
-   Session::addMessageAfterRedirect(__("Purge Computer Hook", 'example'), true);
-   return true;
-}
-
-
-// Hook done on before restore item case
-function plugin_pre_item_restore_example($item) {
-   // Manipulate data if needed
-   Session::addMessageAfterRedirect(__("Pre Restore Computer Hook", 'example'));
-}
-
-
-// Hook done on before restore item case
-function plugin_pre_item_restore_example2($item) {
-   // Manipulate data if needed
-   Session::addMessageAfterRedirect(__("Pre Restore Phone Hook", 'example'));
-}
-
-
-// Hook done on restore item case
-function plugin_item_restore_example($item) {
-   Session::addMessageAfterRedirect(__("Restore Computer Hook", 'example'));
-   return true;
-}
-
-
 // Hook done on restore item case
 function plugin_item_transfer_example($parm) {
    //TRANS: %1$s is the source type, %2$d is the source ID, %3$d is the destination ID
