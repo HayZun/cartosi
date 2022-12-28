@@ -62,10 +62,6 @@ function plugin_init_example() {
 
    $types = ['Central', 'Computer', 'ComputerDisk', 'Notification', 'Phone',
              'Preference', 'Profile', 'Supplier'];
-   Plugin::registerClass(Example::class,
-                         ['notificationtemplates_types' => true,
-                          'addtabon'                    => $types,
-                          'link_types' => true]);
 
    if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
       if (class_exists(Example::class)) {
