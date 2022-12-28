@@ -30,7 +30,7 @@
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\Example\Example;
+use GlpiPlugin\Cartosi\Example;
 
 define('PLUGIN_cartosi_VERSION', '0.0.1');
 
