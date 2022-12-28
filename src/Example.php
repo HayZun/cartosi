@@ -109,6 +109,8 @@ class Example extends CommonDBTM {
       echo $ID;
       echo "</td>";
 
+      echo "</tr>"
+
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
