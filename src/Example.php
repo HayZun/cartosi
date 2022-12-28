@@ -109,7 +109,7 @@ class Example extends CommonDBTM {
       echo "</td>";
       echo "toto";
 
-      $this->showFormButtons($options);
+      //$this->showFormButtons($options);
 
       return true;
    }
