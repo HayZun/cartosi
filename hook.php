@@ -49,7 +49,7 @@ function plugin_example_install() {
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
-   if (!$DB->tableExists("glpi_plugin_example_examples")) {
+   if (!$DB->tableExists("glpi_plugin_example_toto")) {
       $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` varchar(255) default NULL,
