@@ -88,9 +88,6 @@ class Example extends CommonDBTM {
       $links = [];
 
       $links['config'] = '/plugins/example/index.php';
-      $links["<img  src='".$CFG_GLPI["root_doc"]."/pics/menu_showall.png' title='".__s('Show all')."' alt='".__s('Show all')."'>"] = '/plugins/example/index.php';
-      $links[__s('Test link', 'example')] = '/plugins/example/index.php';
-
       return $links;
    }
 
