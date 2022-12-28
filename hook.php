@@ -164,6 +164,7 @@ function plugin_example_uninstall() {
       $query = "DROP TABLE `glpi_plugin_example_example`";
       $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
+   return true;
 
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
       $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
@@ -174,7 +175,6 @@ function plugin_example_uninstall() {
       $query = "DROP TABLE `glpi_plugin_cartosi_app`";
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
    }
-   return true
 }
 
 function plugin_example_display_central() {
