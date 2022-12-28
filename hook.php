@@ -55,6 +55,27 @@ function plugin_change_profile_example() {
 
 ////// SEARCH FUNCTIONS ///////(){
 
+
+// See also GlpiPlugin\Example\Example::getSpecificValueToDisplay()
+function plugin_example_giveItem($type, $ID, $data, $num) {
+   $searchopt = &Search::getOptions($type);
+   $table = $searchopt[$ID]["table"];
+   $field = $searchopt[$ID]["field"];
+
+   switch ($table.'.'.$field) {
+      case "glpi_plugin_example_examples.name" :
+         $out = "<a href='".Toolbox::getItemTypeFormURL(Example::class)."?id=".$data['id']."'>";
+         $out .= $data[$num][0]['name'];
+         if ($_SESSION["glpiis_ids_visible"] || empty($data[$num][0]['name'])) {
+            $out .= " (".$data["id"].")";
+         }
+         $out .= "</a>";
+         return $out;
+   }
+   return "";
+}
+
+
 function plugin_example_displayConfigItem($type, $ID, $data, $num) {
    $searchopt = &Search::getOptions($type);
    $table     = $searchopt[$ID]["table"];
