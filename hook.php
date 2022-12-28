@@ -37,6 +37,23 @@ use GlpiPlugin\Example\Dropdown;
 use GlpiPlugin\Example\Example;
 use Dropdown as GlpiDropdown;
 
+// Hook called on profile change
+// Good place to evaluate the user right on this plugin
+// And to save it in the session
+function plugin_change_profile_example() {
+   // For example : same right of computer
+   if (Session::haveRight('computer', UPDATE)) {
+      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'w'];
+
+   } else if (Session::haveRight('computer', READ)) {
+      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'r'];
+
+   } else {
+      unset($_SESSION["glpi_plugin_example_profile"]);
+   }
+}
+
+
 // Define dropdown relations
 function plugin_example_getDatabaseRelations() {
    return ["glpi_plugin_example_dropdowns" => ["glpi_plugin_example" => "plugin_example_dropdowns_id"]];
@@ -48,6 +65,8 @@ function plugin_example_getDropdown() {
    // Table => Name
    return [Dropdown::class => __("Plugin Example Dropdown", 'example')];
 }
+
+
 
 ////// SEARCH FUNCTIONS ///////(){
 
