@@ -97,7 +97,7 @@ function plugin_version_example() {
    return [
       'name'           => 'Plugin Example',
       'version'        => PLUGIN_EXAMPLE_VERSION,
-      'author'         => 'Example plugin team',
+      'author'         => 'Polo',
       'license'        => 'GPLv2+',
       'homepage'       => 'https://github.com/pluginsGLPI/example',
       'requirements'   => [
