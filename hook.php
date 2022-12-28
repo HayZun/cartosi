@@ -75,47 +75,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    return "";
 }
 
-// Hook done on restore item case
-function plugin_item_transfer_example($parm) {
-   //TRANS: %1$s is the source type, %2$d is the source ID, %3$d is the destination ID
-   Session::addMessageAfterRedirect(sprintf(__('Transfer Computer Hook %1$s %2$d -> %3$d', 'example'), $parm['type'], $parm['id'],
-                                     $parm['newID']));
-
-   return false;
-}
-
-// Do special actions for dynamic report
-function plugin_example_dynamicReport($parm) {
-   if ($parm["item_type"] == Example::class) {
-      // Do all what you want for export depending on $parm
-      echo "Personalized export for type ".$parm["display_type"];
-      echo 'with additional datas : <br>';
-      echo "Single data : add1 <br>";
-      print $parm['add1'].'<br>';
-      echo "Array data : add2 <br>";
-      Html::printCleanArray($parm['add2']);
-      // Return true if personalized display is done
-      return true;
-   }
-   // Return false if no specific display is done, then use standard display
-   return false;
-}
-
-
-// Add parameters to Html::printPager in search system
-function plugin_example_addParamFordynamicReport($itemtype) {
-   if ($itemtype == Example::class) {
-      // Return array data containing all params to add : may be single data or array data
-      // Search config are available from session variable
-      return ['add1' => $_SESSION['glpisearch'][$itemtype]['order'],
-              'add2' => ['tutu' => 'Second Add',
-                         'Other Data']];
-   }
-   // Return false or a non array data if not needed
-   return false;
-}
-
-
 /**
  * Plugin install process
  *
