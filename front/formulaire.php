@@ -55,7 +55,7 @@ $tenant = intval( $_POST['tenant']);
 //si c'est à 0, on register la data
 //si c'est à 1, on suppr la data et on register la data
 //remove datas
-echo "test"
+echo "test";
 
 HTML::closeForm();
 Html::footer();
