@@ -49,6 +49,8 @@ function plugin_init_cartosi()
 {
     global $PLUGIN_HOOKS;
 
+    // Display a menu entry ?
+   $_SESSION["glpi_plugin_example_profile"]['cartosi'] = 'w';
    $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Example::class,
                                              'tools'   => Example::class];
 
