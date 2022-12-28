@@ -29,7 +29,14 @@
  */
 
 use Glpi\Plugin\Hooks;
+use GlpiPlugin\Example\Computer;
+use GlpiPlugin\Example\Config;
+use GlpiPlugin\Example\Dropdown;
+use GlpiPlugin\Example\DeviceCamera;
 use GlpiPlugin\Example\Example;
+use GlpiPlugin\Example\ItemForm;
+use GlpiPlugin\Example\RuleTestCollection;
+use GlpiPlugin\Example\Showtabitem;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
@@ -60,9 +67,6 @@ function plugin_init_example() {
                           'addtabon'                    => $types,
                           'link_types' => true]);
 
-   Plugin::registerClass(RuleTestCollection::class,
-                         ['rulecollections_types' => true]);
-
    if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
       if (class_exists(Example::class)) {
          Link::registerTag(Example::$tags);
@@ -81,6 +85,8 @@ function plugin_init_example() {
    }
 }
 
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 
 /**
  * Get the name and the version of the plugin
