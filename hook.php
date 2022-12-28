@@ -83,9 +83,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
 function plugin_example_install() {
    global $DB;
 
-   $config = new Config();
-   $config->setConfigurationValues('plugin:Example', ['configuration' => false]);
-
    ProfileRight::addProfileRights(['example:read']);
 
    $default_charset = DBConnection::getDefaultCharset();
@@ -155,9 +152,6 @@ function plugin_example_install() {
  */
 function plugin_example_uninstall() {
    global $DB;
-
-   $config = new Config();
-   $config->deleteConfigurationValues('plugin:Example', ['configuration' => false]);
 
    // Current version tables
    if ($DB->tableExists("glpi_plugin_example_examples")) {
