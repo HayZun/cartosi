@@ -39,11 +39,6 @@
 // Entry menu case
 include ("../../../inc/includes.php");
 
-Session::checkRight("config", UPDATE);
-
-// To be available when plugin in not activated
-Plugin::load('example');
-
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
