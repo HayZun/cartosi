@@ -45,6 +45,6 @@ if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
 
 //checkTypeRight(Example::class,"r");
 
-Search::show(Example::class);
+//Search::show(Example::class);
 
 Html::footer();
