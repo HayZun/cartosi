@@ -157,65 +157,6 @@ class Example extends CommonDBTM {
       return 1;
    }
 
-
-   // Hook done on before add item case (data from form, not altered)
-   static function pre_item_add_computer(Computer $item) {
-      if (isset($item->input['name']) && empty($item->input['name'])) {
-         Session::addMessageAfterRedirect("Pre Add Computer Hook KO (name empty)", true);
-         return $item->input = false;
-      } else {
-         Session::addMessageAfterRedirect("Pre Add Computer Hook OK", true);
-      }
-   }
-
-   // Hook done on before add item case (data altered by object prepareInputForAdd)
-   static function post_prepareadd_computer(Computer $item) {
-      Session::addMessageAfterRedirect("Post prepareAdd Computer Hook", true);
-   }
-
-
-   // Hook done on add item case
-   static function item_add_computer(Computer $item) {
-
-      Session::addMessageAfterRedirect("Add Computer Hook, ID=".$item->getID(), true);
-      return true;
-   }
-
-
-   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
-
-      if (!$withtemplate) {
-         switch ($item->getType()) {
-            case 'Profile' :
-               if ($item->getField('central')) {
-                  return __('Example', 'example');
-               }
-               break;
-
-            case 'Phone' :
-               if ($_SESSION['glpishow_count_on_tabs']) {
-                  return self::createTabEntry(__('Example', 'example'),
-                                              countElementsInTable($this->getTable()));
-               }
-               return __('Example', 'example');
-
-            case 'ComputerDisk' :
-            case 'Supplier' :
-               return [1 => __("Test Plugin", 'example'),
-                       2 => __("Test Plugin 2", 'example')];
-
-            case 'Computer' :
-            case 'Central' :
-            case 'Preference':
-            case 'Notification':
-               return [1 => __("Test Plugin", 'example')];
-
-         }
-      }
-      return '';
-   }
-
-
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       switch ($item->getType()) {
