@@ -38,6 +38,13 @@ define("PLUGIN_example_MIN_GLPI_VERSION", "10.0.0");
 // Maximum GLPI version, exclusive
 define("PLUGIN_example_MAX_GLPI_VERSION", "10.0.99");
 
+// Display a menu entry ?
+$_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
+   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+                                             'tools'   => Example::class];
+}
+
 /**
  * Init hooks of the plugin.
  * REQUIRED
