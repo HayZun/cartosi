@@ -29,14 +29,7 @@
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\Example\Computer;
-use GlpiPlugin\Example\Config;
-use GlpiPlugin\Example\Dropdown;
-use GlpiPlugin\Example\DeviceCamera;
 use GlpiPlugin\Example\Example;
-use GlpiPlugin\Example\ItemForm;
-use GlpiPlugin\Example\RuleTestCollection;
-use GlpiPlugin\Example\Showtabitem;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
