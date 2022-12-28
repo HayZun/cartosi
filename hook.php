@@ -151,17 +151,15 @@ function plugin_example_uninstall() {
       $query = "DROP TABLE `glpi_plugin_example_example`";
       $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
-   if ($DB->tableExists("glpi_plugin_example_dropdowns")) {
-      $query = "DROP TABLE `glpi_plugin_example_dropdowns`;";
-      $DB->query($query) or die("error deleting glpi_plugin_example_dropdowns");
+   
+   if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
+      $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
+      $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
    }
-   if ($DB->tableExists("glpi_plugin_example_devicecameras")) {
-      $query = "DROP TABLE `glpi_plugin_example_devicecameras`;";
-      $DB->query($query) or die("error deleting glpi_plugin_example_devicecameras");
-   }
-   if ($DB->tableExists("glpi_plugin_example_items_devicecameras")) {
-      $query = "DROP TABLE `glpi_plugin_example_items_devicecameras`;";
-      $DB->query($query) or die("error deleting glpi_plugin_example_items_devicecameras");
+  
+   if ($DB->tableExists("glpi_plugin_cartosi_app")) {
+      $query = "DROP TABLE `glpi_plugin_cartosi_app`";
+      $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
    }
    return true;
 }
