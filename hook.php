@@ -106,15 +106,6 @@ function plugin_example_install() {
 
       $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
 
-      $query = "INSERT INTO `glpi_plugin_example_examples`
-                       (`id`, `name`, `serial`, `plugin_example_dropdowns_id`, `is_deleted`,
-                        `is_template`, `template_name`)
-                VALUES (1, 'example 1', 'serial 1', 1, 0, 0, NULL),
-                       (2, 'example 2', 'serial 2', 2, 0, 0, NULL),
-                       (3, 'example 3', 'serial 3', 1, 0, 0, NULL)";
-      $DB->query($query) or die("error populate glpi_plugin_example ". $DB->error());
-   }
-
    // To be called for each task the plugin manage
    // task in class
    CronTask::Register(Example::class, 'Sample', DAY_TIMESTAMP, ['param' => 50]);
