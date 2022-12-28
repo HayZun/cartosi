@@ -29,14 +29,7 @@
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\Example\Computer;
-use GlpiPlugin\Example\Config;
-use GlpiPlugin\Example\Dropdown;
-use GlpiPlugin\Example\DeviceCamera;
 use GlpiPlugin\Example\Example;
-use GlpiPlugin\Example\ItemForm;
-use GlpiPlugin\Example\RuleTestCollection;
-use GlpiPlugin\Example\Showtabitem;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
@@ -53,15 +46,6 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
  */
 function plugin_init_example() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
-
-   // Params : plugin name - string type - ID - Array of attributes
-   // No specific information passed so not needed
-   //Plugin::registerClass(Example::getType(),
-   //                      array('classname'              => Example::class,
-   //                        ));
-
-   $types = ['Central', 'Computer', 'ComputerDisk', 'Notification', 'Phone',
-             'Preference', 'Profile', 'Supplier'];
 
    if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
       if (class_exists(Example::class)) {
