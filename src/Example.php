@@ -49,7 +49,7 @@ class Example extends CommonDBTM {
 
    // Should return the localized name of the type
    static function getTypeName($nb = 0) {
-      return 'Example Type';
+      return 'Assets';
    }
 
 
