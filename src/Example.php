@@ -120,7 +120,7 @@ class Example extends CommonDBTM {
 
       echo "<tr class='tab_bg_2'>";
       echo "<br>";
-      echo "<td>" . __('Name') . "</td>";
+      echo "<td>" . __('<strong>Name</strong>') . "</td>";
       echo "<td>";
       echo $name;
       echo "</td>";
@@ -129,7 +129,7 @@ class Example extends CommonDBTM {
       
       echo "<tr class='tab_bg_3'>";
       echo "<br>";
-      echo "<td>" . __('App Domain') . "</td>";
+      echo "<td>" . __('<strong>App Domain</strong>') . "</td>";
       echo "<td>";
       echo $domain;
       echo "</td>";
@@ -138,7 +138,7 @@ class Example extends CommonDBTM {
 
       echo "<tr class='tab_bg_4'>";
       echo "<br>";
-      echo "<td>" . __('Leader') . "</td>";
+      echo "<td>" . __('<strong>Leader</strong>') . "</td>";
       echo "<td>";
       echo $leader;
       echo "</td>";
@@ -147,7 +147,7 @@ class Example extends CommonDBTM {
 
       echo "<tr class='tab_bg_5'>";
       echo "<br>";
-      echo "<td>" . __('Last check') . "</td>";
+      echo "<td>" . __('<strong>Last check</strong>') . "</td>";
       echo "<td>";
       echo $check;
       echo "</td>";
