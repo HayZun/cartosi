@@ -104,7 +104,7 @@ class Example extends CommonDBTM {
 
       echo "<tr class='tab_bg_1'>";
 
-      echo "<td><th>" . __('ID') . "</th></td>";
+      echo "<td>" . __('<th>ID</th>') . "</td>";
       echo "<td>";
       echo $ID;
       echo "</td>";
