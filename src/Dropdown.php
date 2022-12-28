@@ -32,18 +32,18 @@
 // Original Author of file:
 // Purpose of file:
 // ----------------------------------------------------------------------
+namespace GlpiPlugin\Example;
+use CommonDropdown;
 
-// Non menu entry case
-//header("Location:../../central.php");
+// Class for a Dropdown
+class Dropdown extends CommonDropdown {
 
-// Entry menu case
-include ("../../../inc/includes.php");
 
-Session::checkRight("config", UPDATE);
+   static function getTypeName($nb = 0) {
 
-// To be available when plugin in not activated
-Plugin::load('example');
-
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+      if ($nb > 0) {
+         return __('Plugin Example Dropdowns', 'example');
+      }
+      return __('Plugin Example Dropdowns', 'example');
+   }
+}

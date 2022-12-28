@@ -29,21 +29,15 @@
  */
 
 // ----------------------------------------------------------------------
-// Original Author of file:
+// Original Author of file: Remi Collet
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+use GlpiPlugin\Example\Dropdown;
 
-// Entry menu case
-include ("../../../inc/includes.php");
+include ('../../../inc/includes.php');
 
-Session::checkRight("config", UPDATE);
+Plugin::load('example', true);
 
-// To be available when plugin in not activated
-Plugin::load('example');
-
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+$dropdown = new Dropdown();
+include (GLPI_ROOT . "/front/dropdown.common.form.php");

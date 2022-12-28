@@ -33,17 +33,24 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+// Class of the defined type
 
-// Entry menu case
-include ("../../../inc/includes.php");
+namespace GlpiPlugin\Example;
+use GlpiPlugin\Example\DeviceCamera;
+use Item_Devices;
 
-Session::checkRight("config", UPDATE);
+if (!defined('GLPI_ROOT')) {
+   die("Sorry. You can't access directly to this file");
+}
 
-// To be available when plugin in not activated
-Plugin::load('example');
+/**
+ * Relation between item and devices
+**/
+class Item_DeviceCamera extends Item_Devices {
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+   static public $itemtype_2 = DeviceCamera::class;
+   static public $items_id_2 = 'plugin_example_devicecameras_id';
+
+   static protected $notable = false;
+
+}

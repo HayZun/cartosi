@@ -37,13 +37,13 @@
 //header("Location:../../central.php");
 
 // Entry menu case
-include ("../../../inc/includes.php");
+define('GLPI_ROOT', '../..');
+include (GLPI_ROOT . "/inc/includes.php");
 
-Session::checkRight("config", UPDATE);
+Session::checkRight("config", "w");
 
-// To be available when plugin in not activated
-Plugin::load('example');
+Html::header("TITLE", $_SERVER['PHP_SELF'], "plugins");
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
+echo "This is the plugin stat page";
+
 Html::footer();

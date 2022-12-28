@@ -29,21 +29,59 @@
  */
 
 // ----------------------------------------------------------------------
-// Original Author of file:
+// Original Author of file: Walid Nouh
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+namespace GlpiPlugin\Example;
+use Rule;
 
-// Entry menu case
-include ("../../../inc/includes.php");
+if (!defined('GLPI_ROOT')) {
+   die("Sorry. You can't access directly to this file");
+}
 
-Session::checkRight("config", UPDATE);
 
-// To be available when plugin in not activated
-Plugin::load('example');
+/**
+* Rule class store all informations about a GLPI rule :
+*   - description
+*   - criterias
+*   - actions
+*
+**/
+class RuleTest extends Rule {
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+   // From Rule
+   public static $rightname = 'rule_import';
+   public $can_sort  = true;
+
+
+   function getTitle() {
+      return 'test';
+   }
+
+
+   function maxActionsCount() {
+      return 1;
+   }
+
+
+   function getCriterias() {
+
+      $criterias = [];
+      $criterias['name']['field'] = 'name';
+      $criterias['name']['name']  = __('Software');
+      $criterias['name']['table'] = 'glpi_softwares';
+
+      return $criterias;
+   }
+
+
+   function getActions() {
+
+      $actions = [];
+      $actions['softwarecategories_id']['name']  = __('Category (class)', 'example');
+      $actions['softwarecategories_id']['type']  = 'dropdown';
+      $actions['softwarecategories_id']['table'] = 'glpi_softwarecategories';
+      return $actions;
+   }
+}

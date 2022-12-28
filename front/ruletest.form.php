@@ -29,21 +29,14 @@
  */
 
 // ----------------------------------------------------------------------
-// Original Author of file:
+// Original Author of file: Walid Nouh
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+use GlpiPlugin\Example\RuleTestCollection;
 
-// Entry menu case
-include ("../../../inc/includes.php");
+include ('../../../inc/includes.php');
 
-Session::checkRight("config", UPDATE);
+$rulecollection = new RuleTestCollection();
 
-// To be available when plugin in not activated
-Plugin::load('example');
-
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+include (GLPI_ROOT . "/front/rule.common.form.php");

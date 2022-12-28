@@ -28,22 +28,32 @@
  * -------------------------------------------------------------------------
  */
 
-// ----------------------------------------------------------------------
-// Original Author of file:
-// Purpose of file:
-// ----------------------------------------------------------------------
+include ('../../../inc/includes.php');
 
-// Non menu entry case
-//header("Location:../../central.php");
+Session::checkLoginUser();
 
-// Entry menu case
-include ("../../../inc/includes.php");
+if (isset($_GET["popup"])) {
+   $_SESSION["glpipopup"]["name"] = $_GET["popup"];
+}
 
-Session::checkRight("config", UPDATE);
+if (isset($_SESSION["glpipopup"]["name"])) {
+   switch ($_SESSION["glpipopup"]["name"]) {
+      case "test_rule" :
+         Html::popHeader(__('Test'), $_SERVER['PHP_SELF']);
+         include "../../../front/rule.test.php";
+         break;
 
-// To be available when plugin in not activated
-Plugin::load('example');
+      case "test_all_rules" :
+         Html::popHeader(__('Test rules engine'), $_SERVER['PHP_SELF']);
+         include "../../../front/rulesengine.test.php";
+         break;
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+      case "show_cache" :
+         Html::popHeader(__('Cache information'), $_SERVER['PHP_SELF']);
+         include "../../../front/rule.cache.php";
+         break;
+   }
+   echo "<div class='center'><br><a href='javascript:window.close()'>".__('Back')."</a>";
+   echo "</div>";
+   Html::popFooter();
+}

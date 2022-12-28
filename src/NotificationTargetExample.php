@@ -28,22 +28,23 @@
  * -------------------------------------------------------------------------
  */
 
-// ----------------------------------------------------------------------
-// Original Author of file:
-// Purpose of file:
-// ----------------------------------------------------------------------
+namespace GlpiPlugin\Example;
+use NotificationTarget;
 
-// Non menu entry case
-//header("Location:../../central.php");
+if (!defined('GLPI_ROOT')) {
+   die("Sorry. You can't access directly to this file");
+}
 
-// Entry menu case
-include ("../../../inc/includes.php");
+// Class NotificationTarget
+class NotificationTargetExample extends NotificationTarget {
 
-Session::checkRight("config", UPDATE);
+   function getEvents() {
+      return  ['alert' => 'alert example'];
+   }
 
-// To be available when plugin in not activated
-Plugin::load('example');
+   function addDataForTemplate($event, $options = []) {
+      global $DB, $CFG_GLPI;
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+      $this->data['##example.name##'] = __('Example', 'example');
+   }
+}

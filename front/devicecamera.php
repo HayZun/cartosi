@@ -33,17 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+include ('../../../inc/includes.php');
 
-// Entry menu case
-include ("../../../inc/includes.php");
-
-Session::checkRight("config", UPDATE);
-
-// To be available when plugin in not activated
-Plugin::load('example');
-
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-echo __("This is the plugin config page", 'example');
-Html::footer();
+$dropdown = new DeviceCamera();
+include (GLPI_ROOT . "/front/dropdown.common.php");
