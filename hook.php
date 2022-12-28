@@ -143,88 +143,10 @@ function plugin_example_uninstall() {
    return true;
 }
 
-function plugin_example_postinit() {
-   global $CFG_GLPI;
-
-   // All plugins are initialized, so all types are registered
-   //foreach (Infocom::getItemtypesThatCanHave() as $type) {
-      // do something
-   //}
-}
-
-
-/**
- * Hook to add more data from ldap
- * fields from plugin_retrieve_more_field_from_ldap_example
- *
- * @param $datas   array
- *
- * @return un tableau
- **/
-function plugin_retrieve_more_data_from_ldap_example(array $datas) {
-   return $datas;
-}
-
-
-/**
- * Hook to add more fields from LDAP
- *
- * @param $fields   array
- *
- * @return un tableau
- **/
-function plugin_retrieve_more_field_from_ldap_example($fields) {
-   return $fields;
-}
-
-// Check to add to status page
-function plugin_example_Status($param) {
-   // Do checks (no check for example)
-   $ok = true;
-   echo "example plugin: example";
-   if ($ok) {
-      echo "_OK";
-   } else {
-      echo "_PROBLEM";
-      // Only set ok to false if trouble (global status)
-      $param['ok'] = false;
-   }
-   echo "\n";
-   return $param;
-}
-
 function plugin_example_display_central() {
    echo "<tr><th colspan='2'>";
    echo "<div style='text-align:center; font-size:2em'>";
    echo __("Plugin example displays on central page", "example");
    echo "</div>";
    echo "</th></tr>";
-}
-
-function plugin_example_display_login() {
-   echo "<div style='text-align:center; font-size:2em'>";
-   echo __("Plugin example displays on login page", "example");
-   echo "</div>";
-}
-
-function plugin_example_infocom_hook($params) {
-   echo "<tr><th colspan='4'>";
-   echo __("Plugin example displays on central page", "example");
-   echo "</th></tr>";
-}
-
-function plugin_example_filter_actors(array $params = []): array {
-    $itemtype = $params['params']['itemtype'];
-    $items_id = $params['params']['items_id'];
-
-    // remove users_id = 1 for assignee list
-    if ($itemtype == 'Ticket' && $params['params']['actortype'] == 'assign') {
-        foreach ($params['actors'] as $index => &$actor) {
-            if ($actor['type'] == 'user' && $actor['items_id'] == 1) {
-                unset($params['actors'][$index]);
-            }
-        }
-    }
-
-    return $params;
 }
