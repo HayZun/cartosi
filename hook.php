@@ -146,27 +146,6 @@ function plugin_example_install() {
 function plugin_example_uninstall() {
    global $DB;
 
-   $config = new Config();
-   $config->deleteConfigurationValues('plugin:Example', ['configuration' => false]);
-
-   ProfileRight::deleteProfileRights(['example:read']);
-
-   $notif = new Notification();
-   $options = ['itemtype' => 'Ticket',
-               'event'    => 'plugin_example',
-               'FIELDS'   => 'id'];
-   foreach ($DB->request('glpi_notifications', $options) as $data) {
-      $notif->delete($data);
-   }
-   // Old version tables
-   if ($DB->tableExists("glpi_dropdown_plugin_example")) {
-      $query = "DROP TABLE `glpi_dropdown_plugin_example`";
-      $DB->query($query) or die("error deleting glpi_dropdown_plugin_example");
-   }
-   if ($DB->tableExists("glpi_plugin_example")) {
-      $query = "DROP TABLE `glpi_plugin_example`";
-      $DB->query($query) or die("error deleting glpi_plugin_example");
-   }
    // Current version tables
    if ($DB->tableExists("glpi_plugin_example_example")) {
       $query = "DROP TABLE `glpi_plugin_example_example`";
