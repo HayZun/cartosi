@@ -171,31 +171,3 @@ function plugin_example_display_central() {
    echo "</div>";
    echo "</th></tr>";
 }
-
-function plugin_example_display_login() {
-   echo "<div style='text-align:center; font-size:2em'>";
-   echo __("Plugin example displays on login page", "example");
-   echo "</div>";
-}
-
-function plugin_example_infocom_hook($params) {
-   echo "<tr><th colspan='4'>";
-   echo __("Plugin example displays on central page", "example");
-   echo "</th></tr>";
-}
-
-function plugin_example_filter_actors(array $params = []): array {
-    $itemtype = $params['params']['itemtype'];
-    $items_id = $params['params']['items_id'];
-
-    // remove users_id = 1 for assignee list
-    if ($itemtype == 'Ticket' && $params['params']['actortype'] == 'assign') {
-        foreach ($params['actors'] as $index => &$actor) {
-            if ($actor['type'] == 'user' && $actor['items_id'] == 1) {
-                unset($params['actors'][$index]);
-            }
-        }
-    }
-
-    return $params;
-}
