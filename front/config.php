@@ -50,7 +50,7 @@ foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
 if (0 == $count) {
-    echo '<form method="post" action="formulaire.php">';
+    echo '<form method="post" action="test.php">';
     echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
