@@ -68,7 +68,6 @@ function plugin_example_displayConfigItem($type, $ID, $data, $num) {
    return "";
 }
 
-
 /**
  * Plugin install process
  *
@@ -76,9 +75,6 @@ function plugin_example_displayConfigItem($type, $ID, $data, $num) {
  */
 function plugin_example_install() {
    global $DB;
-
-   $config = new Config();
-   $config->setConfigurationValues('plugin:Example', ['configuration' => false]);
 
    ProfileRight::addProfileRights(['example:read']);
 
