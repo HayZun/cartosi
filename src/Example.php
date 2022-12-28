@@ -119,9 +119,9 @@ class Example extends CommonDBTM {
 
       echo "<table>";
 
-      echo "<tr><th>Table Heading</th><th>Table Heading</th><th>Table Heading</th><th>Table Heading</th></tr>";
+      echo "<tr><th>ID</th><th>Name</th><th>Domain</th><th>Leader</th>th>Check</th></tr>";
 
-      echo "<tr><td>Hello world.</td><td>Hello world.</td><td>Hello world.</td><td>Hello world.</td></tr>";
+      echo "<tr><td>$ID</td><td>$name</td><td>$domain</td><td>$leader</td><td>$check</td></tr>";
 
       echo "</table>";
 
