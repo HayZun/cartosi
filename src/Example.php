@@ -119,51 +119,6 @@ class Example extends CommonDBTM {
       return true;
    }
 
-   function rawSearchOptions() {
-
-      $tab = [];
-
-      $tab[] = [
-         'id'                 => 'common',
-         'name'               => __('Header Needed')
-      ];
-
-      $tab[] = [
-         'id'                 => '1',
-         'table'              => 'glpi_plugin_example_examples',
-         'field'              => 'name',
-         'name'               => __('Name'),
-      ];
-
-      $tab[] = [
-         'id'                 => '2',
-         'table'              => 'glpi_plugin_example_dropdowns',
-         'field'              => 'name',
-         'name'               => __('Dropdown'),
-      ];
-
-      $tab[] = [
-         'id'                 => '3',
-         'table'              => 'glpi_plugin_example_examples',
-         'field'              => 'serial',
-         'name'               => __('Serial number'),
-         'usehaving'          => true,
-         'searchtype'         => 'equals',
-      ];
-
-      $tab[] = [
-         'id'                 => '30',
-         'table'              => 'glpi_plugin_example_examples',
-         'field'              => 'id',
-         'name'               => __('ID'),
-         'usehaving'          => true,
-         'searchtype'         => 'equals',
-      ];
-
-      return $tab;
-   }
-
-
    /**
     * Give localized information about 1 task
     *
