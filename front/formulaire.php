@@ -36,11 +36,7 @@
 // Non menu entry case
 //header("Location:../../central.php");
 
-// Entry menu case
-include ("../../../inc/includes.php");
-
-// To be available when plugin in not activated
-Plugin::load('example');
+global $DB;
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
