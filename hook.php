@@ -42,7 +42,7 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    $field = $searchopt[$ID]["field"];
 
    switch ($table.'.'.$field) {
-      case "glpi_plugin_example_examples.name" :
+      case "glpi_plugin_cartosi_app.name" :
          $out = "<a href='".Toolbox::getItemTypeFormURL(Example::class)."?id=".$data['id']."'>";
          $out .= $data[$num][0]['name'];
          if ($_SESSION["glpiis_ids_visible"] || empty($data[$num][0]['name'])) {
