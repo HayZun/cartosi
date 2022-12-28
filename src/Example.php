@@ -47,26 +47,6 @@ class Example extends CommonDBTM {
       return 'Assets';
    }
 
-
-   static function canCreate() {
-
-      if (isset($_SESSION["glpi_plugin_example_profile"])) {
-         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w');
-      }
-      return false;
-   }
-
-
-   static function canView() {
-
-      if (isset($_SESSION["glpi_plugin_example_profile"])) {
-         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w'
-                 || $_SESSION["glpi_plugin_example_profile"]['example'] == 'r');
-      }
-      return false;
-   }
-
-
    /**
     * @see CommonGLPI::getMenuName()
    **/
