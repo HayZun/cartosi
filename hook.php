@@ -33,9 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Dropdown;
 use GlpiPlugin\Example\Example;
-use Dropdown as GlpiDropdown;
 
 // Hook called on profile change
 // Good place to evaluate the user right on this plugin
@@ -54,69 +52,8 @@ function plugin_change_profile_example() {
 }
 
 
-// Define dropdown relations
-function plugin_example_getDatabaseRelations() {
-   return ["glpi_plugin_example_dropdowns" => ["glpi_plugin_example" => "plugin_example_dropdowns_id"]];
-}
-
-
-// Define Dropdown tables to be manage in GLPI :
-function plugin_example_getDropdown() {
-   // Table => Name
-   return [Dropdown::class => __("Plugin Example Dropdown", 'example')];
-}
-
-
 
 ////// SEARCH FUNCTIONS ///////(){
-
-// Define Additionnal search options for types (other than the plugin ones)
-function plugin_example_getAddSearchOptions($itemtype) {
-   $sopt = [];
-   if ($itemtype == 'Computer') {
-         // Just for example, not working...
-         $sopt[1001]['table']     = 'glpi_plugin_example_dropdowns';
-         $sopt[1001]['field']     = 'name';
-         $sopt[1001]['linkfield'] = 'plugin_example_dropdowns_id';
-         $sopt[1001]['name']      = __('Example plugin', 'example');
-   }
-   return $sopt;
-}
-
-function plugin_example_getAddSearchOptionsNew($itemtype) {
-   $options = [];
-   if ($itemtype == 'Computer') {
-      //Just for example, not working
-      $options[] = [
-         'id'        => '1002',
-         'table'     => 'glpi_plugin_example_dropdowns',
-         'field'     => 'name',
-         'linkfield' => 'plugin_example_dropdowns_id',
-         'name'      => __('Example plugin new', 'example')
-      ];
-   }
-   return $options;
-}
-
-// See also GlpiPlugin\Example\Example::getSpecificValueToDisplay()
-function plugin_example_giveItem($type, $ID, $data, $num) {
-   $searchopt = &Search::getOptions($type);
-   $table = $searchopt[$ID]["table"];
-   $field = $searchopt[$ID]["field"];
-
-   switch ($table.'.'.$field) {
-      case "glpi_plugin_example_examples.name" :
-         $out = "<a href='".Toolbox::getItemTypeFormURL(Example::class)."?id=".$data['id']."'>";
-         $out .= $data[$num][0]['name'];
-         if ($_SESSION["glpiis_ids_visible"] || empty($data[$num][0]['name'])) {
-            $out .= " (".$data["id"].")";
-         }
-         $out .= "</a>";
-         return $out;
-   }
-   return "";
-}
-
 
 function plugin_example_displayConfigItem($type, $ID, $data, $num) {
    $searchopt = &Search::getOptions($type);
