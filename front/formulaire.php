@@ -168,7 +168,7 @@ if (strlen($response) == 71) {
     }
 
    $bool = true;
-   $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_app");
+   $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
    foreach($req as $row) {
       //if name_app == glpiname, no insert data
       if ($row["Name"] == $name) {
@@ -176,11 +176,11 @@ if (strlen($response) == 71) {
       }
    }
    if($bool == true) {
-      $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_app` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
+      $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
       }
    }
    
-   $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_app');
+   $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_example_examples');
    foreach($req as $row) {
       $count = $row["COUNT(*)"] + 1;
    }
