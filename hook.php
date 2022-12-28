@@ -75,36 +75,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    return "";
 }
 
-
-function plugin_example_addSelect($type, $ID, $num) {
-   $searchopt = &Search::getOptions($type);
-   $table     = $searchopt[$ID]["table"];
-   $field     = $searchopt[$ID]["field"];
-
-   // Example of standard Select clause but use it ONLY for specific Select
-   // No need of the function if you do not have specific cases
-   // switch ($table.".".$field) {
-   //    case "glpi_plugin_example.name" :
-   //       return $table.".".$field." AS ITEM_$num, ";
-   // }
-   return "";
-}
-
-function plugin_example_addOrderBy($type, $ID, $order, $key = 0) {
-   $searchopt = &Search::getOptions($type);
-   $table     = $searchopt[$ID]["table"];
-   $field     = $searchopt[$ID]["field"];
-
-   // Example of standard OrderBy clause but use it ONLY for specific order by
-   // No need of the function if you do not have specific cases
-   // switch ($table.".".$field) {
-   //    case "glpi_plugin_example.name" :
-   //       return " ORDER BY $table.$field $order ";
-   // }
-   return "";
-}
-
-
 //////////////////////////////
 ////// SPECIFIC MODIF MASSIVE FUNCTIONS ///////
 
