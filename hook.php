@@ -78,54 +78,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
 //////////////////////////////
 ////// SPECIFIC MODIF MASSIVE FUNCTIONS ///////
 
-
-// Define actions :
-function plugin_example_MassiveActions($type) {
-   switch ($type) {
-      // New action for core and other plugin types : name = plugin_PLUGINNAME_actionname
-      case 'Computer' :
-         return [Example::class . MassiveAction::CLASS_ACTION_SEPARATOR . 'DoIt' =>
-                                                              __("plugin_example_DoIt", 'example')];
-
-      // Actions for types provided by the plugin are included inside the classes
-   }
-   return [];
-}
-
-
-// How to display specific update fields ?
-// options must contain at least itemtype and options array
-function plugin_example_MassiveActionsFieldsDisplay($options = []) {
-   //$type,$table,$field,$linkfield
-
-   $table     = $options['options']['table'];
-   $field     = $options['options']['field'];
-   $linkfield = $options['options']['linkfield'];
-
-   if ($table == getTableForItemType($options['itemtype'])) {
-      // Table fields
-      switch ($table.".".$field) {
-         case 'glpi_plugin_example_examples.serial' :
-            echo __("Not really specific - Just for example", 'example');
-            // Dropdown::showYesNo($linkfield);
-            // Need to return true if specific display
-            return true;
-      }
-
-   } else {
-      // Linked Fields
-      switch ($table.".".$field) {
-         case "glpi_plugin_example_dropdowns.name" :
-            echo __("Not really specific - Just for example", 'example');
-            // Need to return true if specific display
-            return true;
-      }
-   }
-   // Need to return false on non display item
-   return false;
-}
-
-
 // How to display specific search fields or dropdown ?
 // options must contain at least itemtype and options array
 // MUST Use a specific AddWhere & $tab[X]['searchtype'] = 'equals'; declaration
