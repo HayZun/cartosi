@@ -60,11 +60,9 @@ function plugin_init_example() {
    }
 
    // Config page
-   if (Session::haveRight('config', UPDATE)) {
-      $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
-   }
-      // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-      $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
+   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 }
 
 /**
