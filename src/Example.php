@@ -108,13 +108,34 @@ class Example extends CommonDBTM {
       echo "<td>";
       echo $ID;
       echo "</td>";
-      echo "toto";
 
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
+         $name = $row["name"];
          $domain = $row["domain"];
+         $leader = $row["leader"];
+         $check = $row["check"];
       }
+
+      echo "<td>" . __('Name') . "</td>";
+      echo "<td>";
+      echo $name;
+      echo "</td>";
+
+      echo "<td>" . __('Domain') . "</td>";
+      echo "<td>";
       echo $domain;
+      echo "</td>";
+
+      echo "<td>" . __('Leader') . "</td>";
+      echo "<td>";
+      echo $leader;
+      echo "</td>";
+
+      echo "<td>" . __('Check') . "</td>";
+      echo "<td>";
+      echo $check;
+      echo "</td>";
 
       $this->showFormButtons($options);
 
