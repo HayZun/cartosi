@@ -44,7 +44,7 @@ include ("../../../inc/includes.php");
 Session::checkRight("config", UPDATE);
 
 // To be available when plugin in not activated
-Plugin::load('plugincartosi');
+Plugin::load('exemple');
 
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
@@ -186,7 +186,6 @@ if (strlen($response) == 71) {
    }
    echo "$count imported tables";
 }
-
 
 HTML::closeForm();
 Html::footer();
