@@ -60,14 +60,6 @@ function plugin_example_install() {
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
       $DB->query($query) or die("error creating glpi_plugin_example_toto ". $DB->error());
-
-      $query = "INSERT INTO `glpi_plugin_example_examples`
-                       (`id`, `name`, `serial`, `plugin_example_dropdowns_id`, `is_deleted`,
-                        `is_template`, `template_name`)
-                VALUES (1, 'example 1', 'serial 1', 1, 0, 0, NULL),
-                       (2, 'example 2', 'serial 2', 2, 0, 0, NULL),
-                       (3, 'example 3', 'serial 3', 1, 0, 0, NULL)";
-      $DB->query($query) or die("error populate glpi_plugin_example ". $DB->error());
    }
 
    if (!$DB->tableExists("glpi_plugin_cartosi_credentials")) {
