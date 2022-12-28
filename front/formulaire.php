@@ -41,7 +41,6 @@ global $DB;
 // Entry menu case
 include ("../../../inc/includes.php");
 
-
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
 //datas from POST
@@ -53,5 +52,4 @@ $tenant = intval( $_POST['tenant']);
 //remove datas
 echo "test";
 
-HTML::closeForm();
 Html::footer();
