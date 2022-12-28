@@ -107,7 +107,7 @@ class Example extends CommonDBTM {
       echo "<td>" . __('ID') . "</td>";
       echo "<td>";
       echo $ID;
-      echo "</td>";
+      echo "</td>\n";
 
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
@@ -120,7 +120,7 @@ class Example extends CommonDBTM {
       echo "<td>" . __('Name') . "</td>";
       echo "<td>";
       echo $name;
-      echo "</td>";
+      echo "</td>\n";
 
       echo "<td>" . __('Domain') . "</td>";
       echo "<td>";
