@@ -44,6 +44,6 @@ if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
 }
 
 $example = new Example();
-$example->display($_GET);
+//$example->display($_GET);
 
 Html::footer();

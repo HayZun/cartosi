@@ -50,13 +50,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
          }
          $out .= "</a>";
          return $out;
-      case "glpi_plugin_example_examples.serial" :
-         $out = "<a href='".Toolbox::getItemTypeFormURL(Example::class)."?id=".$data['id']."'>";
-         $out .= $data[$num][0]['serial'];
-         if ($_SESSION["glpiis_ids_visible"] || empty($data[$num][0]['serial'])) {
-            $out .= " (".$data["id"].")";
-         }
-         $out .= "</a>";
    }
    return "";
 }
