@@ -143,23 +143,6 @@ function plugin_example_uninstall() {
    return true;
 }
 
-
-function plugin_example_AssignToTicket($types) {
-   $types[Example::class] = "Example";
-   return $types;
-}
-
-
-function plugin_example_get_events(NotificationTargetTicket $target) {
-   $target->events['plugin_example'] = __("Example event", 'example');
-}
-
-
-function plugin_example_get_datas(NotificationTargetTicket $target) {
-   $target->data['##ticket.example##'] = __("Example datas", 'example');
-}
-
-
 function plugin_example_postinit() {
    global $CFG_GLPI;
 
