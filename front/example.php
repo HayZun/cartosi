@@ -43,7 +43,6 @@ if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
    Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
 }
 
-
 //checkTypeRight(Example::class,"r");
 
 Search::show(Example::class);
