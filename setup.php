@@ -80,20 +80,6 @@ function plugin_init_example() {
    if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
       $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
                                                 'tools'   => Example::class];
-
-      // Old menu style
-      //       $PLUGIN_HOOKS['menu_entry']['example'] = 'front/example.php';
-      //
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['title'] = "Search";
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['page']  = '/plugins/example/front/example.php';
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['links']['search'] = '/plugins/example/front/example.php';
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['links']['add']    = '/plugins/example/front/example.form.php';
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['links']['config'] = '/plugins/example/index.php';
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['links']["<img  src='".$CFG_GLPI["root_doc"]."/pics/menu_showall.png' title='".__s('Show all')."' alt='".__s('Show all')."'>"] = '/plugins/example/index.php';
-      //       $PLUGIN_HOOKS['submenu_entry']['example']['options']['optionname']['links'][__s('Test link', 'example')] = '/plugins/example/index.php';
-
-      $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY]['example'] = true;
-      $PLUGIN_HOOKS[Hooks::HELPDESK_MENU_ENTRY_ICON]['example'] = 'fas fa-puzzle-piece';
    }
 
    // Config page
@@ -101,55 +87,7 @@ function plugin_init_example() {
       $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
    }
 
-   // Init session
-   //$PLUGIN_HOOKS['init_session']['example'] = 'plugin_init_session_example';
-   // Change profile
-   $PLUGIN_HOOKS['change_profile']['example'] = 'plugin_change_profile_example';
-   // Change entity
-   //$PLUGIN_HOOKS['change_entity']['example'] = 'plugin_change_entity_example';
-
    // Item action event // See define.php for defined ITEM_TYPE
-   $PLUGIN_HOOKS[Hooks::PRE_ITEM_UPDATE]['example'] = [Computer::class => 'plugin_pre_item_update_example'];
-   $PLUGIN_HOOKS[hooks::ITEM_UPDATE]['example']     = [Computer::class => 'plugin_item_update_example'];
-
-   $PLUGIN_HOOKS[Hooks::ITEM_EMPTY]['example']      = [Computer::class => 'plugin_item_empty_example'];
-
-   // Restrict right
-   $PLUGIN_HOOKS[Hooks::ITEM_CAN]['example']          = [Computer::class => [Example::class, 'item_can']];
-   $PLUGIN_HOOKS['add_default_where']['example'] = [Computer::class => [Example::class, 'add_default_where']];
-
-   // Example using a method in class
-   $PLUGIN_HOOKS[Hooks::PRE_ITEM_ADD]['example']    = [Computer::class => [Example::class,
-                                                                 'pre_item_add_computer']];
-   $PLUGIN_HOOKS[Hooks::POST_PREPAREADD]['example'] = [Computer::class => [Example::class,
-                                                                 'post_prepareadd_computer']];
-   $PLUGIN_HOOKS[Hooks::ITEM_ADD]['example']        = [Computer::class => [Example::class,
-                                                                 'item_add_computer']];
-
-   $PLUGIN_HOOKS[Hooks::PRE_ITEM_DELETE]['example'] = [Computer::class => 'plugin_pre_item_delete_example'];
-   $PLUGIN_HOOKS[Hooks::ITEM_DELETE]['example']     = [Computer::class => 'plugin_item_delete_example'];
-
-   // Example using the same function
-   $PLUGIN_HOOKS[Hooks::PRE_ITEM_PURGE]['example'] = [Computer::class => 'plugin_pre_item_purge_example',
-                                                 'Phone'    => 'plugin_pre_item_purge_example'];
-   $PLUGIN_HOOKS[Hooks::ITEM_PURGE]['example']     = [Computer::class => 'plugin_item_purge_example',
-                                                 'Phone'    => 'plugin_item_purge_example'];
-
-   // Example with 2 different functions
-   $PLUGIN_HOOKS[Hooks::PRE_ITEM_RESTORE]['example'] = [Computer::class => 'plugin_pre_item_restore_example',
-                                                   'Phone'    => 'plugin_pre_item_restore_example2'];
-   $PLUGIN_HOOKS[Hooks::ITEM_RESTORE]['example']     = [Computer::class => 'plugin_item_restore_example'];
-
-   // Add event to GLPI core itemtype, event will be raised by the plugin.
-   // See plugin_example_uninstall for cleanup of notification
-   $PLUGIN_HOOKS[Hooks::ITEM_GET_EVENTS]['example']
-                                 = ['NotificationTargetTicket' => 'plugin_example_get_events'];
-
-   // Add datas to GLPI core itemtype for notifications template.
-   $PLUGIN_HOOKS[Hooks::ITEM_GET_DATA]['example']
-                                 = ['NotificationTargetTicket' => 'plugin_example_get_datas'];
-
-   $PLUGIN_HOOKS[Hooks::ITEM_TRANSFER]['example'] = 'plugin_item_transfer_example';
 
    // function to populate planning
    // No more used since GLPI 0.84
