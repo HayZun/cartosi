@@ -75,83 +75,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    return "";
 }
 
-function plugin_example_addDefaultWhere($type) {
-   // Example of default WHERE item to be added
-   // No need of the function if you do not have specific cases
-   switch ($type) {
-      //       case Example::class :
-      case "MyType" :
-         return " `mytable`.`myfield` = 'myvalue' ";
-   }
-   return "";
-}
-
-function plugin_example_addLeftJoin($type, $ref_table, $new_table, $linkfield) {
-   // Example of standard LEFT JOIN  clause but use it ONLY for specific LEFT JOIN
-   // No need of the function if you do not have specific cases
-   switch ($new_table) {
-      case "glpi_plugin_example_dropdowns" :
-         return " LEFT JOIN `$new_table` ON (`$ref_table`.`$linkfield` = `$new_table`.`id`) ";
-   }
-   return "";
-}
-
-
-function plugin_example_forceGroupBy($type) {
-   switch ($type) {
-      case Example::class :
-         // Force add GROUP BY IN REQUEST
-         return true;
-   }
-   return false;
-}
-
-
-function plugin_example_addWhere($link, $nott, $type, $ID, $val, $searchtype) {
-   $searchopt = &Search::getOptions($type);
-   $table     = $searchopt[$ID]["table"];
-   $field     = $searchopt[$ID]["field"];
-
-   $SEARCH = Search::makeTextSearch($val, $nott);
-
-   // Example of standard Where clause but use it ONLY for specific Where
-   // No need of the function if you do not have specific cases
-   switch ($table.".".$field) {
-      /*case "glpi_plugin_example.name" :
-        $ADD = "";
-        if ($nott && $val!="NULL") {
-           $ADD = " OR `$table`.`$field` IS NULL";
-        }
-        return $link." (`$table`.`$field` $SEARCH ".$ADD." ) ";*/
-      case "glpi_plugin_example_examples.serial" :
-          return $link." `$table`.`$field` = '$val' ";
-   }
-   return "";
-}
-
-
-// This is not a real example because the use of Having condition in this case is not suitable
-function plugin_example_addHaving($link, $nott, $type, $ID, $val, $num) {
-   $searchopt = &Search::getOptions($type);
-   $table     = $searchopt[$ID]["table"];
-   $field     = $searchopt[$ID]["field"];
-
-   $SEARCH = Search::makeTextSearch($val, $nott);
-
-   // Example of standard Having clause but use it ONLY for specific Having
-   // No need of the function if you do not have specific cases
-   switch ($table.".".$field) {
-      case "glpi_plugin_example.serial" :
-         $ADD = "";
-         if (($nott && $val!="NULL")
-             || $val == '^$') {
-            $ADD = " OR ITEM_$num IS NULL";
-         }
-         return " $LINK ( ITEM_".$num.$SEARCH." $ADD ) ";
-   }
-   return "";
-}
-
 
 function plugin_example_addSelect($type, $ID, $num) {
    $searchopt = &Search::getOptions($type);
@@ -166,7 +89,6 @@ function plugin_example_addSelect($type, $ID, $num) {
    // }
    return "";
 }
-
 
 function plugin_example_addOrderBy($type, $ID, $order, $key = 0) {
    $searchopt = &Search::getOptions($type);
