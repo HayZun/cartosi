@@ -61,9 +61,9 @@ function plugin_example_install() {
                 PRIMARY KEY (`id`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
-      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
+      $DB->query($query) or die("error creating glpi_plugin_example_toto ". $DB->error());
 
-      $query = "INSERT INTO `glpi_plugin_example_examples`
+      $query = "INSERT INTO `glpi_plugin_example_toto`
                        (`id`, `name`, `serial`, `plugin_example_dropdowns_id`, `is_deleted`,
                         `is_template`, `template_name`)
                 VALUES (1, 'example 1', 'serial 1', 1, 0, 0, NULL),
