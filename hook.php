@@ -130,6 +130,22 @@ function plugin_example_uninstall() {
 
    ProfileRight::deleteProfileRights(['example:read']);
 
+   $notif = new Notification();
+   $options = ['itemtype' => 'Ticket',
+               'event'    => 'plugin_example',
+               'FIELDS'   => 'id'];
+   foreach ($DB->request('glpi_notifications', $options) as $data) {
+      $notif->delete($data);
+   }
+   // Old version tables
+   if ($DB->tableExists("glpi_dropdown_plugin_example")) {
+      $query = "DROP TABLE `glpi_dropdown_plugin_example`";
+      $DB->query($query) or die("error deleting glpi_dropdown_plugin_example");
+   }
+   if ($DB->tableExists("glpi_plugin_example")) {
+      $query = "DROP TABLE `glpi_plugin_example`";
+      $DB->query($query) or die("error deleting glpi_plugin_example");
+   }
    // Current version tables
    if ($DB->tableExists("glpi_plugin_example_example")) {
       $query = "DROP TABLE `glpi_plugin_example_example`";
@@ -143,6 +159,17 @@ function plugin_example_AssignToTicket($types) {
    $types[Example::class] = "Example";
    return $types;
 }
+
+
+function plugin_example_get_events(NotificationTargetTicket $target) {
+   $target->events['plugin_example'] = __("Example event", 'example');
+}
+
+
+function plugin_example_get_datas(NotificationTargetTicket $target) {
+   $target->data['##ticket.example##'] = __("Example datas", 'example');
+}
+
 
 function plugin_example_postinit() {
    global $CFG_GLPI;
