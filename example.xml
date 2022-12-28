@@ -1,57 +1,55 @@
 <root>
-   <name>plugincartosi</name>
-   <key>plugincartosi</key>
-   <!-- stable, beta, development, alpha, ... -->
-   <state>stable</state>
-   <logo>https://raw.githubusercontent.com/HayZun/cartosi/master/pics/cartosi50.png</logo>
-   <description>
-      <short>
-         <!-- Add as many lang tag you want -->
-         <en>plugincartosi GLPI plugin.</en>
-         <fr>Plugin GLPI plugincartosi</fr>
-      </short>
-      <long>
-         <!-- Add as many lang tag you want -->
-         <en>A long description for plugincartosi GLPI plugin.</en>
-         <fr>Un description longue pour le plugin GLPI plugincartosi</fr>
-      </long>
-   </description>
-   <homepage>https://github.com/pluginsGLPI/plugincartosi</homepage>
-   <download>https://github.com/pluginsGLPI/plugincartosi/releases</download>
-   <issues>https://github.com/pluginsGLPI/plugincartosi/issues</issues>
-   <readme>https://github.com/pluginsGLPI/plugincartosi/blob/master/README.md</readme>
-   <authors>
-      <!-- Add as many author tag you want -->
-      <author>Polo</author>
-   </authors>
-   <versions>
-      <!-- Add as many version tag you want -->
-      <version>
-         <num>0.0.1</num>
-         <!-- Add as many compatibility tag you want -->
-         <compatibility>9.4</compatibility>
-         <compatibility>9.3</compatibility>
-         <compatibility>9.2</compatibility>
-      </version>
-   </versions>
-   <langs>
-      <!-- Add as many lang tag you want -->
-      <lang>en_GB</lang>
-      <lang>fr_FR</lang>
-   </langs>
-   <license>GPL V3+</license>
-   <!--tags>
-      <en>
-         <tag>One tag</tag>
-         <tag>Another tag</tag>
-      </en>
-      <fr>
-         <tag>Un tag</tag>
-         <tag>Un autre tag</tag>
-      </fr>
-   </tags-->
-   <!--screenshots>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot.png</screenshot>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot2.png</screenshot>
-   </screenshots-->
+      <name>Example</name>
+      <key>example</key>
+      <state>stable</state>
+      <logo>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/logo.png</logo>
+      <description>
+         <short>
+            <cs>GLPI zásuvný modul pro ukázku, užitečný jako základ pro nějaký nový</cs>
+            <en>GLPI example plugin useful to bootstrap a new one</en>
+            <fr>Plugin GLPI d'example utile pour en démarrer un</fr>
+         </short>
+         <long>
+            <cs>GLPI zásuvný modul pro ukázku, užitečný jako základ pro nějaký nový, pokud z něho vycházíte, měli byste přitom upravit každou z kolonek tohoto souboru a přečíst si obsah README.md</cs>
+            <en>GLPI example plugin useful to bootstrap a new one, you should edit every field of this file, and see README.md</en>
+            <fr>Plugin GLPI d'example utile pour en démarrer un, vous devriez editer tous les champs de ce fichier, et voir README.md</fr>
+         </long>
+      </description>
+      <homepage>https://github.com/pluginsGLPI/example</homepage>
+      <download>https://github.com/pluginsGLPI/example/releases</download>
+      <issues>https://github.com/pluginsGLPI/example/issues</issues>
+      <readme>https://raw.githubusercontent.com/pluginsGLPI/example/master/README.md</readme>
+      <authors>
+         <author>Teclib'</author>
+         <author>Indepnet</author>
+      </authors>
+      <versions>
+         <version>
+            <num>0.0.1</num>
+            <compatibility>~10.0.0</compatibility>
+         </version>
+      </versions>
+      <langs>
+         <lang>cs_CZ</lang>
+         <lang>en_GB</lang>
+         <lang>fr_FR</lang>
+      </langs>
+      <license>GPL v2+</license>
+      <tags>
+         <cs>
+            <tag>ukázka</tag>
+         </cs>
+         <en>
+            <tag>example</tag>
+         </en>
+         <fr>
+            <tag>exemple</tag>
+         </fr>
+      </tags>
+      <screenshots>
+         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/first.png</screenshot>
+         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/second.png</screenshot>
+         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/third.png</screenshot>
+         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/fourth.png</screenshot>
+      </screenshots>
 </root>
