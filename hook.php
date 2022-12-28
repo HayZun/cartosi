@@ -159,24 +159,22 @@ function plugin_example_uninstall() {
    $config = new Config();
    $config->deleteConfigurationValues('plugin:Example', ['configuration' => false]);
 
-   ProfileRight::deleteProfileRights(['example:read']);
-
    // Current version tables
    if ($DB->tableExists("glpi_plugin_example_example")) {
       $query = "DROP TABLE `glpi_plugin_example_example`";
       $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
-   return true;
 
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
       $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
-      }
+   }
   
    if ($DB->tableExists("glpi_plugin_cartosi_app")) {
       $query = "DROP TABLE `glpi_plugin_cartosi_app`";
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
    }
+   return true
 }
 
 function plugin_example_display_central() {
