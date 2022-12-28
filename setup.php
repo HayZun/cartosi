@@ -60,11 +60,6 @@ function plugin_init_example() {
    //                      array('classname'              => Example::class,
    //                        ));
 
-   Plugin::registerClass(Config::class, ['addtabon' => 'Config']);
-
-   // Params : plugin name - string type - ID - Array of attributes
-   Plugin::registerClass(Dropdown::class);
-
    $types = ['Central', 'Computer', 'ComputerDisk', 'Notification', 'Phone',
              'Preference', 'Profile', 'Supplier'];
    Plugin::registerClass(Example::class,
@@ -74,9 +69,6 @@ function plugin_init_example() {
 
    Plugin::registerClass(RuleTestCollection::class,
                          ['rulecollections_types' => true]);
-
-   Plugin::registerClass(DeviceCamera::class,
-                         ['device_types' => true]);
 
    if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
       if (class_exists(Example::class)) {
