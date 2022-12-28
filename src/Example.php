@@ -102,10 +102,6 @@ class Example extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
-      var_dump($req);
-      echo $req["domain"];
-
       echo "<tr class='tab_bg_1'>";
 
       echo "<td>" . __('ID') . "</td>";
@@ -114,6 +110,10 @@ class Example extends CommonDBTM {
       echo "</td>";
       echo "toto";
 
+      $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
+      foreach($req as $row) {
+         $domain = $row["domain"];
+      }
 
 
       $this->showFormButtons($options);
