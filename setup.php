@@ -83,10 +83,9 @@ function plugin_init_example() {
    if (Session::haveRight('config', UPDATE)) {
       $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
    }
+      // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+      $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 }
-
-   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 
 /**
  * Get the name and the version of the plugin
