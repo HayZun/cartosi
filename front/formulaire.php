@@ -36,13 +36,6 @@
 // Non menu entry case
 //header("Location:../../central.php");
 
-global $DB;
-
-// Entry menu case
-include ("../../../inc/includes.php");
-
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-
 //datas from POST
 $token = $_POST['token'];
 $tenant = intval( $_POST['tenant']);
@@ -50,6 +43,7 @@ $tenant = intval( $_POST['tenant']);
 //si c'est à 0, on register la data
 //si c'est à 1, on suppr la data et on register la data
 //remove datas
-echo "test";
+echo $token;
+echo $tenant;
 
 Html::footer();
