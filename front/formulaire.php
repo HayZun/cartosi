@@ -36,8 +36,6 @@
 // Non menu entry case
 //header("Location:../../central.php");
 
-global $DB;
-
 // Entry menu case
 include ("../../../inc/includes.php");
 
