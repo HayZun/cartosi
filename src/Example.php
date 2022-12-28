@@ -115,6 +115,7 @@ class Example extends CommonDBTM {
       echo "<td>";
       echo $ID;
       echo "</td>";
+      echo "toto";
 
       $this->showFormButtons($options);
 
