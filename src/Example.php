@@ -99,8 +99,6 @@ class Example extends CommonDBTM {
       global $CFG_GLPI;
       global $DB;
 
-      $this->initForm($ID, $options);
-      $this->showFormHeader($options);
 
       echo "<tr class='tab_bg_1'>";
 
