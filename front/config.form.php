@@ -72,4 +72,5 @@ if (1 == $count) {
 }
 
 echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
+Html::closeForm()
 Html::footer();
