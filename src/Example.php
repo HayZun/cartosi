@@ -119,7 +119,7 @@ class Example extends CommonDBTM {
 
       echo "<table>";
 
-      echo "<tr><th>ID</th><th>Name</th><th>Domain</th><th>Leader</th>th>Check</th></tr>";
+      echo "<tr><th>ID</th><th>Name</th><th>Domain</th><th>Leader</th><th>Check</th></tr>";
 
       echo "<tr><td>$ID</td><td>$name</td><td>$domain</td><td>$leader</td><td>$check</td></tr>";
 
