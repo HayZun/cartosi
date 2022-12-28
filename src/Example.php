@@ -118,17 +118,40 @@ class Example extends CommonDBTM {
          $check = $row["check"];
       }
 
+      echo "<tr class='tab_bg_2'>";
       echo "<br>";
       echo "<td>" . __('Name') . "</td>";
       echo "<td>";
       echo $name;
       echo "</td>";
+      echo "</tr>";
 
+      
+      echo "<tr class='tab_bg_3'>";
       echo "<br>";
-      echo "<td>" . __('Domain') . "</td>";
+      echo "<td>" . __('App Domain') . "</td>";
       echo "<td>";
       echo $domain;
       echo "</td>";
+      echo "</tr>";
+
+
+      echo "<tr class='tab_bg_4'>";
+      echo "<br>";
+      echo "<td>" . __('Leader') . "</td>";
+      echo "<td>";
+      echo $leader;
+      echo "</td>";
+      echo "</tr>";
+
+
+      echo "<tr class='tab_bg_5'>";
+      echo "<br>";
+      echo "<td>" . __('Last check') . "</td>";
+      echo "<td>";
+      echo $check;
+      echo "</td>";
+      echo "</tr>";
 
 
       $this->showFormButtons($options);
