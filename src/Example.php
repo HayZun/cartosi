@@ -87,7 +87,7 @@ class Example extends CommonDBTM {
       global $CFG_GLPI;
       $links = [];
 
-      $links['config'] = '/plugins/example/index.php';
+      $links['config'] = '/plugins/example/front/config.php';
       return $links;
    }
 
