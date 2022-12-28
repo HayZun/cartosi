@@ -2,42 +2,41 @@
 
 /**
  * -------------------------------------------------------------------------
- * cartosi plugin for GLPI
- * Copyright (C) 2022 by the cartosi Development Team.
+ * Example plugin for GLPI
  * -------------------------------------------------------------------------
  *
- * MIT License
+ * LICENSE
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This file is part of Example.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * Example is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * Example is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * --------------------------------------------------------------------------
+ * You should have received a copy of the GNU General Public License
+ * along with Example. If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2006-2022 by Example plugin team.
+ * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://github.com/pluginsGLPI/example
+ * -------------------------------------------------------------------------
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\cartosi\cartosi;
+use GlpiPlugin\Example\Example;
 
-define('PLUGIN_cartosi_VERSION', '0.0.1');
+define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_cartosi_MIN_GLPI_VERSION", "10.0.0");
+define('PLUGIN_EXAMPLE_MIN_GLPI', '10.0.0');
 // Maximum GLPI version, exclusive
-define("PLUGIN_cartosi_MAX_GLPI_VERSION", "10.0.99");
+define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -45,23 +44,26 @@ define("PLUGIN_cartosi_MAX_GLPI_VERSION", "10.0.99");
  *
  * @return void
  */
-function plugin_init_cartosi()
-{
-    global $PLUGIN_HOOKS;
+function plugin_init_example() {
+   global $PLUGIN_HOOKS,$CFG_GLPI;
 
-    // Display a menu entry ?
-   $_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] = 'w';
-   $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => cartosi::class,
-                                             'tools'   => cartosi::class];
+   if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
+      if (class_exists(Example::class)) {
+         Link::registerTag(Example::$tags);
+      }
+   }
+   // Display a menu entry ?
+   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+   if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
+      $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+                                                'tools'   => Example::class];
+   }
 
-    // Config page
-    if (Session::haveRight('config', UPDATE)) {
-        $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.form.php';
-    }
-
-    $PLUGIN_HOOKS['csrf_compliant']['cartosi'] = true;
+   // Config page
+   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 }
-
 
 /**
  * Get the name and the version of the plugin
@@ -69,32 +71,20 @@ function plugin_init_cartosi()
  *
  * @return array
  */
-function plugin_version_cartosi()
-{
-    return [
-        'name'           => 'cartosi',
-        'version'        => PLUGIN_cartosi_VERSION,
-        'author'         => 'Polo',
-        'license'        => '',
-        'homepage'       => '',
-        'requirements'   => [
-            'glpi' => [
-                'min' => PLUGIN_cartosi_MIN_GLPI_VERSION,
-                'max' => PLUGIN_cartosi_MAX_GLPI_VERSION,
-            ]
-        ]
-    ];
-}
-
-/**
- * Check pre-requisites before install
- * OPTIONNAL, but recommanded
- *
- * @return boolean
- */
-function plugin_cartosi_check_prerequisites()
-{
-    return true;
+function plugin_version_example() {
+   return [
+      'name'           => 'Plugin Example',
+      'version'        => PLUGIN_EXAMPLE_VERSION,
+      'author'         => 'Polo',
+      'license'        => 'GPLv2+',
+      'homepage'       => 'https://github.com/pluginsGLPI/example',
+      'requirements'   => [
+         'glpi' => [
+            'min' => PLUGIN_EXAMPLE_MIN_GLPI,
+            'max' => PLUGIN_EXAMPLE_MAX_GLPI,
+         ]
+      ]
+   ];
 }
 
 /**
@@ -104,14 +94,13 @@ function plugin_cartosi_check_prerequisites()
  *
  * @return boolean
  */
-function plugin_cartosi_check_config($verbose = false)
-{
-    if (true) { // Your configuration check
-        return true;
-    }
+function plugin_example_check_config($verbose = false) {
+   if (true) { // Your configuration check
+      return true;
+   }
 
-    if ($verbose) {
-        echo __('Installed / not configured', 'cartosi');
-    }
-    return false;
+   if ($verbose) {
+      echo __('Installed / not configured', 'example');
+   }
+   return false;
 }

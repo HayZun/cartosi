@@ -1,11 +1,21 @@
-# cartosi GLPI plugin
+# GLPi Example Plugin
 
-Add your plugin description here.
+## Introduction
 
-## Contributing
+This plugin implements a few basic glpi hooks.
+Most of implemented features stands for example and are not
+expected to provide fantastic functionality other than teaching.
 
-* Open a ticket for each bug/feature so it can be discussed
-* Follow [development guidelines](http://glpi-developer-documentation.readthedocs.io/en/latest/plugins/index.html)
-* Refer to [GitFlow](http://git-flow.readthedocs.io/) process for branching
-* Work on a new branch on your own fork
-* Open a PR that will be reviewed by a developer
+## Documentation
+
+This plugin is documented [here](https://github.com/pluginsGLPI/glpi-example-plugin/wiki),
+It is the developer documentation for plugin contributors as of now.
+You may change that link and provide documentation for your plugin,
+if you totally create your plugin repository from the worktree of this one.
+
+## Installation
+
+```sh
+cd /my/glpi/deployment/main/directory/plugins
+git clone git@github.com:pluginsGLPI/glpi-example-plugin.git example
+```

@@ -2,32 +2,40 @@
 
 /**
  * -------------------------------------------------------------------------
- * cartosi plugin for GLPI
- * Copyright (C) 2022 by the cartosi Development Team.
+ * Example plugin for GLPI
  * -------------------------------------------------------------------------
  *
- * MIT License
+ * LICENSE
  *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * This file is part of Example.
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * Example is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * Example is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- * --------------------------------------------------------------------------
+ * You should have received a copy of the GNU General Public License
+ * along with Example. If not, see <http://www.gnu.org/licenses/>.
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) 2006-2022 by Example plugin team.
+ * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
+ * @link      https://github.com/pluginsGLPI/example
+ * -------------------------------------------------------------------------
  */
+
+// ----------------------------------------------------------------------
+// Original Author of file:
+// Purpose of file:
+// ----------------------------------------------------------------------
+
+
+////// SEARCH FUNCTIONS ///////(){
+
 
 // See also GlpiPlugin\Example\Example::getSpecificValueToDisplay()
 function plugin_example_giveItem($type, $ID, $data, $num) {
@@ -53,24 +61,14 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
  *
  * @return boolean
  */
-function plugin_cartosi_install() {
+function plugin_example_install() {
    global $DB;
+
+   ProfileRight::addProfileRights(['example:read']);
 
    $default_charset = DBConnection::getDefaultCharset();
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
-
-   if (!$DB->tableExists("glpi_plugin_cartosi_credentials")) {
-      // create tab glpi_plugin_cartosi_credentials
-      $query = "CREATE TABLE `glpi_plugin_cartosi_credentials` (
-                  `id` int {$default_key_sign} NOT NULL auto_increment,
-                  `token` TEXT NOT NULL,
-                  `tenant` INT NOT NULL,
-                PRIMARY KEY (`id`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
-
-      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
-   }
 
    if (!$DB->tableExists("glpi_plugin_example_examples")) {
       $query = "CREATE TABLE `glpi_plugin_example_examples` (
@@ -95,6 +93,18 @@ function plugin_cartosi_install() {
       $DB->query($query) or die("error populate glpi_plugin_example ". $DB->error());
    }
 
+   if (!$DB->tableExists("glpi_plugin_cartosi_credentials")) {
+      // create tab glpi_plugin_cartosi_credentials
+      $query = "CREATE TABLE `glpi_plugin_cartosi_credentials` (
+                  `id` int {$default_key_sign} NOT NULL auto_increment,
+                  `token` TEXT NOT NULL,
+                  `tenant` INT NOT NULL,
+                PRIMARY KEY (`id`)
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
+
+      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
+   }
+
    if (!$DB->tableExists("glpi_plugin_cartosi_app")) {
       // create tab glpi_plugin_cartosi_credentials
       $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
@@ -109,36 +119,43 @@ function plugin_cartosi_install() {
       $DB->query($query) or die("error glpi_plugin_cartosi_app ". $DB->error());
    }
 
-   // CronTask::Register('cartosi', 'SynchroGlpiCartoSi', DAY_TIMESTAMP, ['param' => 50]);
-
+   // To be called for each task the plugin manage
+   // task in class
+   CronTask::Register(Example::class, 'Sample', DAY_TIMESTAMP, ['param' => 50]);
    return true;
 }
+
 
 /**
  * Plugin uninstall process
  *
  * @return boolean
  */
-function plugin_cartosi_uninstall()
-{
-    global $DB;
+function plugin_example_uninstall() {
+   global $DB;
 
-     // Current version tables
+   // Current version tables
    if ($DB->tableExists("glpi_plugin_example_examples")) {
       $query = "DROP TABLE `glpi_plugin_example_examples`";
       $DB->query($query) or die("error deleting glpi_plugin_example_examples");
    }
 
-    // Current version tables
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
-    $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
-    $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
-    }
-
+      $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
+      $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
+   }
+  
    if ($DB->tableExists("glpi_plugin_cartosi_app")) {
       $query = "DROP TABLE `glpi_plugin_cartosi_app`";
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
    }
-   
-    return true;
+   return true;
+}
+
+function plugin_example_display_central() {
+   echo "<tr><th colspan='2'>";
+   echo "<div style='text-align:center; font-size:2em'>";
+   echo __("Plugin example displays on central page", "example");
+   echo "</div>";
+   echo "</th></tr>";
 }

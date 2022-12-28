@@ -33,23 +33,19 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-// Non menu entry case
-//header("Location:../../central.php");
+use GlpiPlugin\Example\Example;
 
-global $DB;
+include ('../../../inc/includes.php');
 
-// Entry menu case
-include ("../../../inc/includes.php");
+if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
+   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Example::class, "");
+} else {
+   Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
+}
 
-Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
-//datas from POST
-$token = $_POST['token'];
-$tenant = intval( $_POST['tenant']);
+//checkTypeRight(Example::class,"r");
 
-//si c'est à 0, on register la data
-//si c'est à 1, on suppr la data et on register la data
-//remove datas
-echo "test";
+Search::show(Example::class);
 
 Html::footer();

@@ -33,19 +33,8 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
+// Non menu entry case
+//header("Location:../../central.php");
 
-include ('../../../inc/includes.php');
-
-if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
-   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Example::class, "");
-} else {
-   Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
-}
-
-
-//checkTypeRight(Example::class,"r");
-
-Search::show(Example::class);
-
-Html::footer();
+// Entry menu case
+echo "test";

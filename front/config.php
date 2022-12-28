@@ -39,19 +39,13 @@
 // Entry menu case
 include ("../../../inc/includes.php");
 
-Session::checkRight("config", UPDATE);
-
-// To be available when plugin in not activated
-Plugin::load('plugincartosi');
-
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
-
 $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
 if (0 == $count) {
-    echo '<form method="post" action="formulaire.php">';
+    echo '<form method="post" action="config.php">';
     echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
@@ -67,7 +61,7 @@ if (1 == $count) {
      $token = $row["token"];
      $tenant = $row["tenant"];
    }
-   echo '<form method="post" action="formulaire.php">';
+   echo '<form method="post" action="config.php">';
     echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
@@ -78,5 +72,4 @@ if (1 == $count) {
 }
 
 echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
-HTML::closeForm();
 Html::footer();

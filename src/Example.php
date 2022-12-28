@@ -2,29 +2,29 @@
 
 /**
  * -------------------------------------------------------------------------
- * cartosi plugin for GLPI
+ * Example plugin for GLPI
  * -------------------------------------------------------------------------
  *
  * LICENSE
  *
- * This file is part of cartosi.
+ * This file is part of Example.
  *
- * cartosi is free software; you can redistribute it and/or modify
+ * Example is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * cartosi is distributed in the hope that it will be useful,
+ * Example is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with cartosi. If not, see <http://www.gnu.org/licenses/>.
+ * along with Example. If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
- * @copyright Copyright (C) 2006-2022 by cartosi plugin team.
+ * @copyright Copyright (C) 2006-2022 by Example plugin team.
  * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
- * @link      https://github.com/pluginsGLPI/cartosi
+ * @link      https://github.com/pluginsGLPI/example
  * -------------------------------------------------------------------------
  */
 
@@ -33,14 +33,14 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-namespace GlpiPlugin\cartosi;
+namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
 
 // Class of the defined type
-class cartosi extends CommonDBTM {
+class Example extends CommonDBTM {
 
-   static $tags = '[cartosi_ID]';
+   static $tags = '[EXAMPLE_ID]';
 
    // Should return the localized name of the type
    static function getTypeName($nb = 0) {
@@ -50,8 +50,8 @@ class cartosi extends CommonDBTM {
 
    static function canCreate() {
 
-      if (isset($_SESSION["glpi_plugin_cartosi_profile"])) {
-         return ($_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'w');
+      if (isset($_SESSION["glpi_plugin_example_profile"])) {
+         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w');
       }
       return false;
    }
@@ -59,9 +59,9 @@ class cartosi extends CommonDBTM {
 
    static function canView() {
 
-      if (isset($_SESSION["glpi_plugin_cartosi_profile"])) {
-         return ($_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'w'
-                 || $_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'r');
+      if (isset($_SESSION["glpi_plugin_example_profile"])) {
+         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w'
+                 || $_SESSION["glpi_plugin_example_profile"]['example'] == 'r');
       }
       return false;
    }
@@ -82,7 +82,7 @@ class cartosi extends CommonDBTM {
       global $CFG_GLPI;
       $links = [];
 
-      $links['config'] = '/plugins/cartosi/front/config.php';
+      $links['config'] = '/plugins/example/front/config.php';
       return $links;
    }
 
@@ -125,8 +125,8 @@ class cartosi extends CommonDBTM {
 
       switch ($name) {
          case 'Sample' :
-            return ['description' => __('Cron description for cartosi', 'cartosi'),
-                    'parameter'   => __('Cron parameter for cartosi', 'cartosi')];
+            return ['description' => __('Cron description for example', 'example'),
+                    'parameter'   => __('Cron parameter for example', 'example')];
       }
       return [];
    }
@@ -143,7 +143,7 @@ class cartosi extends CommonDBTM {
     */
    static function cronSample($task) {
 
-      $task->log("cartosi log message from class");
+      $task->log("Example log message from class");
       $r = mt_rand(0, $task->fields['param']);
       usleep(1000000+$r*1000);
       $task->setVolume($r);
