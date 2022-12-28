@@ -33,6 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
+use GlpiPlugi\Example\Example;
 
 ////// SEARCH FUNCTIONS ///////(){
 
