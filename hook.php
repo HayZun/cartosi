@@ -75,19 +75,6 @@ function plugin_example_giveItem($type, $ID, $data, $num) {
    return "";
 }
 
-
-function plugin_example_addDefaultSelect($type) {
-   // Example of default SELECT item to be added
-   // No need of the function if you do not have specific cases
-   switch ($type) {
-      //       case Example::class :
-      case "MyType" :
-         return "`mytable`.`myfield` = 'myvalue' AS MYNAME, ";
-   }
-   return "";
-}
-
-
 function plugin_example_addDefaultWhere($type) {
    // Example of default WHERE item to be added
    // No need of the function if you do not have specific cases
@@ -98,7 +85,6 @@ function plugin_example_addDefaultWhere($type) {
    }
    return "";
 }
-
 
 function plugin_example_addLeftJoin($type, $ref_table, $new_table, $linkfield) {
    // Example of standard LEFT JOIN  clause but use it ONLY for specific LEFT JOIN
