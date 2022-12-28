@@ -102,7 +102,8 @@ class Example extends CommonDBTM {
       $this->showFormHeader($options);
 
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
-      echo $req["domain"]
+      var_dump($req);
+      echo $req["domain"];
 
       echo "<tr class='tab_bg_1'>";
 
