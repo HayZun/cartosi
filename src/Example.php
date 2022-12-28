@@ -114,7 +114,7 @@ class Example extends CommonDBTM {
       foreach($req as $row) {
          $domain = $row["domain"];
       }
-
+      echo $domain;
 
       $this->showFormButtons($options);
 
