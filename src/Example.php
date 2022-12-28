@@ -36,11 +36,6 @@
 namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
-use Computer;
-use Html;
-use Log;
-use MassiveAction;
-use Session;
 
 // Class of the defined type
 class Example extends CommonDBTM {
