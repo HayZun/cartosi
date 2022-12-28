@@ -35,67 +35,6 @@
 
 use GlpiPlugin\Example\Example;
 
-// Hook called on profile change
-// Good place to evaluate the user right on this plugin
-// And to save it in the session
-function plugin_change_profile_example() {
-   // For example : same right of computer
-   if (Session::haveRight('computer', UPDATE)) {
-      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'w'];
-
-   } else if (Session::haveRight('computer', READ)) {
-      $_SESSION["glpi_plugin_example_profile"] = ['example' => 'r'];
-
-   } else {
-      unset($_SESSION["glpi_plugin_example_profile"]);
-   }
-}
-
-
-// Define dropdown relations
-function plugin_example_getDatabaseRelations() {
-   return ["glpi_plugin_example_dropdowns" => ["glpi_plugin_example" => "plugin_example_dropdowns_id"]];
-}
-
-
-// Define Dropdown tables to be manage in GLPI :
-function plugin_example_getDropdown() {
-   // Table => Name
-   return [Dropdown::class => __("Plugin Example Dropdown", 'example')];
-}
-
-
-
-////// SEARCH FUNCTIONS ///////(){
-
-// Define Additionnal search options for types (other than the plugin ones)
-function plugin_example_getAddSearchOptions($itemtype) {
-   $sopt = [];
-   if ($itemtype == 'Computer') {
-         // Just for example, not working...
-         $sopt[1001]['table']     = 'glpi_plugin_example_dropdowns';
-         $sopt[1001]['field']     = 'name';
-         $sopt[1001]['linkfield'] = 'plugin_example_dropdowns_id';
-         $sopt[1001]['name']      = __('Example plugin', 'example');
-   }
-   return $sopt;
-}
-
-function plugin_example_getAddSearchOptionsNew($itemtype) {
-   $options = [];
-   if ($itemtype == 'Computer') {
-      //Just for example, not working
-      $options[] = [
-         'id'        => '1002',
-         'table'     => 'glpi_plugin_example_dropdowns',
-         'field'     => 'name',
-         'linkfield' => 'plugin_example_dropdowns_id',
-         'name'      => __('Example plugin new', 'example')
-      ];
-   }
-   return $options;
-}
-
 // See also GlpiPlugin\Example\Example::getSpecificValueToDisplay()
 function plugin_example_giveItem($type, $ID, $data, $num) {
    $searchopt = &Search::getOptions($type);
