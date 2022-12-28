@@ -106,7 +106,7 @@ class Example extends CommonDBTM {
 
       echo "<td>" . __('ID') . "</td>";
       echo "<td>";
-         echo $ID;
+      echo $ID;
       echo "</td>\n";
 
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
@@ -116,6 +116,14 @@ class Example extends CommonDBTM {
          $leader = $row["leader"];
          $check = $row["check"];
       }
+
+      echo "<table>";
+
+      echo "<tr><th>Table Heading</th><th>Table Heading</th><th>Table Heading</th><th>Table Heading</th></tr>";
+
+      echo "<tr><td>Hello world.</td><td>Hello world.</td><td>Hello world.</td><td>Hello world.</td></tr>";
+
+      echo "</table>";
 
       $this->showFormButtons($options);
 
