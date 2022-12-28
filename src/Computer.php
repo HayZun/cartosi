@@ -33,17 +33,51 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
+namespace GlpiPlugin\Example;
+use CommonDBTM;
 
-include ('../../../inc/includes.php');
+// Class of the defined type
 
-if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
-   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Example::class, "");
-} else {
-   Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
+if (!defined('GLPI_ROOT')) {
+   die("Sorry. You can't access directly to this file");
 }
 
-$example = new Example();
-$example->display($_GET);
+class Computer extends CommonDBTM {
 
-Html::footer();
+   static function showInfo() {
+
+      echo '<table class="tab_glpi" width="100%">';
+      echo '<tr>';
+      echo '<th>'.__('More information').'</th>';
+      echo '</tr>';
+      echo '<tr class="tab_bg_1">';
+      echo '<td>';
+      echo __('Test successful');
+      echo '</td>';
+      echo '</tr>';
+      echo '</table>';
+   }
+
+
+   static function item_can($item) {
+
+      if (($item->getType() == 'Computer')
+          && ($item->right == READ)
+          && ($item->fields['groups_id'] > 0)
+          && !in_array($item->fields['groups_id'], $_SESSION["glpigroups"])) {
+         $item->right = 0; // unknown, so denied.
+      }
+   }
+
+
+   static function add_default_where($in) {
+
+      list($itemtype, $condition) = $in;
+      if ($itemtype == 'Computer') {
+         $table = getTableForItemType($itemtype);
+         $condition .= " (".$table.".groups_id NOT IN (".implode(',', $_SESSION["glpigroups"])."))";
+      }
+      return [$itemtype, $condition];
+   }
+
+}
