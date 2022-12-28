@@ -98,8 +98,8 @@ class Example extends CommonDBTM {
    function showForm($ID, array $options = []) {
       global $CFG_GLPI;
 
-      $this->initForm($ID, $options);
-      $this->showFormHeader($options);
+      //$this->initForm($ID, $options);
+      //$this->showFormHeader($options);
 
       echo "<tr class='tab_bg_1'>";
 
