@@ -117,36 +117,6 @@ class Example extends CommonDBTM {
          $check = $row["check"];
       }
 
-      echo """<table>
-         <thead>
-            <tr>
-                  <th colspan="2">The table header</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-                  <td>ID</td>
-                  <td>$ID</td>
-            </tr>
-            <tr>
-                  <td>Name</td>
-                  <td>$Name</td>
-            </tr>
-            <tr>
-                  <td>Domain</td>
-                  <td>$Domain</td>
-            </tr>
-            <tr>
-                  <td>Leader</td>
-                  <td>$leader</td>
-            </tr>
-            <tr>
-                  <td>Check</td>
-                  <td>$check</td>
-            </tr>
-         </tbody>
-      </table>""";
-
       $this->showFormButtons($options);
 
       return true;
