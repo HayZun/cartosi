@@ -49,8 +49,8 @@ function plugin_example_install() {
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
-   if (!$DB->tableExists("glpi_plugin_example_toto")) {
-      $query = "CREATE TABLE `glpi_plugin_example_toto` (
+   if (!$DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` varchar(255) default NULL,
                   `serial` varchar(255) NOT NULL,
@@ -63,7 +63,7 @@ function plugin_example_install() {
 
       $DB->query($query) or die("error creating glpi_plugin_example_toto ". $DB->error());
 
-      $query = "INSERT INTO `glpi_plugin_example_toto`
+      $query = "INSERT INTO `glpi_plugin_example_examples`
                        (`id`, `name`, `serial`, `plugin_example_dropdowns_id`, `is_deleted`,
                         `is_template`, `template_name`)
                 VALUES (1, 'example 1', 'serial 1', 1, 0, 0, NULL),
@@ -114,9 +114,9 @@ function plugin_example_uninstall() {
    global $DB;
 
    // Current version tables
-   if ($DB->tableExists("glpi_plugin_example_toto")) {
-      $query = "DROP TABLE `glpi_plugin_example_toto`";
-      $DB->query($query) or die("error deleting glpi_plugin_example_toto");
+   if ($DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "DROP TABLE `glpi_plugin_example_examples`";
+      $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
    
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
