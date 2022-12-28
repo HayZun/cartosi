@@ -115,58 +115,6 @@ function plugin_example_install() {
       $DB->query($query) or die("error populate glpi_plugin_example ". $DB->error());
    }
 
-   if (!$DB->tableExists("glpi_plugin_example_dropdowns")) {
-      $query = "CREATE TABLE `glpi_plugin_example_dropdowns` (
-                  `id` int {$default_key_sign} NOT NULL auto_increment,
-                  `name` varchar(255) default NULL,
-                  `comment` text,
-                PRIMARY KEY  (`id`),
-                KEY `name` (`name`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
-
-      $DB->query($query) or die("error creating glpi_plugin_example_dropdowns". $DB->error());
-
-      $query = "INSERT INTO `glpi_plugin_example_dropdowns`
-                       (`id`, `name`, `comment`)
-                VALUES (1, 'dp 1', 'comment 1'),
-                       (2, 'dp2', 'comment 2')";
-
-      $DB->query($query) or die("error populate glpi_plugin_example_dropdowns". $DB->error());
-
-   }
-
-   if (!$DB->tableExists('glpi_plugin_example_devicecameras')) {
-      $query = "CREATE TABLE `glpi_plugin_example_devicecameras` (
-                  `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
-                  `designation` varchar(255) DEFAULT NULL,
-                  `comment` text,
-                  `manufacturers_id` int {$default_key_sign} NOT NULL DEFAULT '0',
-                  PRIMARY KEY (`id`),
-                  KEY `designation` (`designation`),
-                  KEY `manufacturers_id` (`manufacturers_id`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
-
-      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
-   }
-
-   if (!$DB->tableExists('glpi_plugin_example_items_devicecameras')) {
-      $query = "CREATE TABLE `glpi_plugin_example_items_devicecameras` (
-                  `id` int {$default_key_sign} NOT NULL AUTO_INCREMENT,
-                  `items_id` int {$default_key_sign} NOT NULL DEFAULT '0',
-                  `itemtype` varchar(255) DEFAULT NULL,
-                  `plugin_example_devicecameras_id` int {$default_key_sign} NOT NULL DEFAULT '0',
-                  `is_deleted` tinyint NOT NULL DEFAULT '0',
-                  `is_dynamic` tinyint NOT NULL DEFAULT '0',
-                  PRIMARY KEY (`id`),
-                  KEY `computers_id` (`items_id`),
-                  KEY `plugin_example_devicecameras_id` (`plugin_example_devicecameras_id`),
-                  KEY `is_deleted` (`is_deleted`),
-                  KEY `is_dynamic` (`is_dynamic`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
-
-      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
-   }
-
    // To be called for each task the plugin manage
    // task in class
    CronTask::Register(Example::class, 'Sample', DAY_TIMESTAMP, ['param' => 50]);
