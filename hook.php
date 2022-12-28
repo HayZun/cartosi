@@ -160,9 +160,9 @@ function plugin_example_uninstall() {
    $config->deleteConfigurationValues('plugin:Example', ['configuration' => false]);
 
    // Current version tables
-   if ($DB->tableExists("glpi_plugin_example_example")) {
-      $query = "DROP TABLE `glpi_plugin_example_example`";
-      $DB->query($query) or die("error deleting glpi_plugin_example_example");
+   if ($DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "DROP TABLE `glpi_plugin_example_examples`";
+      $DB->query($query) or die("error deleting glpi_plugin_example_examples");
    }
 
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
