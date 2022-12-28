@@ -38,6 +38,10 @@
 
 global $DB;
 
+// Entry menu case
+include ("../../../inc/includes.php");
+
+
 Html::header("TITRE", $_SERVER['PHP_SELF'], "config", "plugins");
 
 //datas from POST
