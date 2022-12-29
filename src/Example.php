@@ -296,6 +296,6 @@ class Example extends CommonDBTM {
                $task->log("$count imported tables");
             }
          }
+         return 1;
       }
-      return 1;
    }
