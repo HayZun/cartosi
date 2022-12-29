@@ -188,7 +188,10 @@ class Example extends CommonDBTM {
     */
    static function cronSample($task) {
 
-      global $DB;
+      $task->log("Example log message from class");
+      $r = mt_rand(0, $task->fields['param']);
+      usleep(1000000+$r*1000);
+      $task->setVolume($r);
 
       return 1;
    }
