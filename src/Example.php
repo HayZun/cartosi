@@ -37,6 +37,9 @@ namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
 
+// Entry menu case
+include ("../../../inc/includes.php");
+
 // Class of the defined type
 class Example extends CommonDBTM {
 
@@ -187,12 +190,47 @@ class Example extends CommonDBTM {
     *     0 : nothing to do
     */
    static function cronSample($task) {
+      global $DB;
+      
+      $task->log("Initalisation synchro cartoSI");
 
-      $task->log("Example log message from class");
-      $r = mt_rand(0, $task->fields['param']);
-      usleep(1000000+$r*1000);
-      $task->setVolume($r);
+      //get-VARs
+      $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+      foreach($req as $row) {
+         $count = $row["COUNT(*)"];
+      }
 
+      //
+      if (1 == $count) {
+         $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
+        foreach($req as $row) {
+          $token = $row["token"];
+          $tenant = $row["tenant"];
+        }
+         //test connexion
+         $curl = curl_init();
+         curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://app.carto-si.com/api/v2/activity/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+               'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
+            ),
+            ));
+   
+            $response = curl_exec($curl);
+            curl_close($curl);
+            if (strlen($response) == 71) {
+               $task->log("Arrêt de la synchronisation");
+               $task->log("Tenant ou token invalide");
+            } else {
+               $task->log("Token/tenant valide");
+            }
+      }
       return 1;
-   }
 }
