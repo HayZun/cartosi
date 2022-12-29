@@ -232,6 +232,7 @@ class Example extends CommonDBTM {
                $task->log("Token/tenant valide");
             }
       }
+      Html::closeForm();
       return 1;
    }  
 }
