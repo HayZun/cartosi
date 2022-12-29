@@ -193,21 +193,6 @@ class Example extends CommonDBTM {
       global $DB;
       
       $task->log("Initalisation synchro cartoSI");
-
-      //get-VARs
-      $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
-      foreach($req as $row) {
-         $count = $row["COUNT(*)"];
-      }
-
-      //
-      if (1 == $count) {
-         $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
-        foreach($req as $row) {
-          $token = $row["token"];
-          $tenant = $row["tenant"];
-        }
-      }
       return 1;
    }  
 }
