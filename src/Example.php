@@ -37,9 +37,6 @@ namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
 
-// Entry menu case
-include ("../../../inc/includes.php");
-
 // Class of the defined type
 class Example extends CommonDBTM {
 
@@ -190,9 +187,12 @@ class Example extends CommonDBTM {
     *     0 : nothing to do
     */
    static function cronSample($task) {
-      global $DB;
-      
-      $task->log("Initalisation synchro cartoSI");
+
+      $task->log("Example log message from class");
+      $r = mt_rand(0, $task->fields['param']);
+      usleep(1000000+$r*1000);
+      $task->setVolume($r);
+
       return 1;
-   }  
+   }
 }
