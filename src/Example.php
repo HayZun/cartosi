@@ -197,7 +197,7 @@ class Example extends CommonDBTM {
       foreach($req as $row) {
          $count = $row["COUNT(*)"];
       }
-      $task->log("$count")
+      $task->log("$count");
       return 1;
    }
 }
