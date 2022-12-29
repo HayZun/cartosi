@@ -207,32 +207,7 @@ class Example extends CommonDBTM {
           $token = $row["token"];
           $tenant = $row["tenant"];
         }
-         //test connexion
-         $curl = curl_init();
-         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://app.carto-si.com/api/v2/activity/',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
-            ),
-            ));
-   
-            $response = curl_exec($curl);
-            curl_close($curl);
-            if (strlen($response) == 71) {
-               $task->log("Arrêt de la synchronisation");
-               $task->log("Tenant ou token invalide");
-            } else {
-               $task->log("Token/tenant valide");
-            }
       }
-      Html::closeForm();
       return 1;
    }  
 }
