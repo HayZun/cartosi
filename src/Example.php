@@ -221,14 +221,81 @@ class Example extends CommonDBTM {
             ),
             ));
    
+         $response = curl_exec($curl);
+         curl_close($curl);
+         if (strlen($response) == 71) {
+            $task->log("Arrêt de la synchronisation");
+            $task->log("Tenant ou token invalide");
+         } else {
+            $task->log("Token/tenant valide");
+            //import appplication from cartoSI to GLPI
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/application',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'GET',
+               CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
+            ),
+            ));
             $response = curl_exec($curl);
+
             curl_close($curl);
-            if (strlen($response) == 71) {
-               $task->log("Arrêt de la synchronisation");
-               $task->log("Tenant ou token invalide");
-            } else {
-               $task->log("Token/tenant valide");
+            $data = json_decode($response, true);
+            //retrievas datas (name,description,domain,leader and check)
+            foreach( $data as $key => $value ) {
+               foreach( $value as $valeur => $value1 ) {
+                  if (strpos($valeur, "label") !== false) {
+                     $name = $value1;
+                  }
+                  if (strpos($valeur, "businesses") !== false) {
+                     foreach($value1 as $valeur2 => $value2) {
+                        foreach($value2 as $valeur3 => $value3) {
+                           if (strpos($valeur3, "label") !== false) {
+                              $domain = $value3;
+                           }
+                        }
+                     }
+                  }
+               if (strpos($valeur, "teamleader") !== false) {
+                        foreach($value1 as $valeur2 => $value2) {
+                           if (strpos($valeur2, "label") !== false) {
+                                 $teamleader = $value2;
+                           }
+                        }
+                     }
+               if (strpos($valeur, "dateMaj") !== false) {
+                     $quotient = $value1 / 1000;    
+                     $datecheck = date('Y-m-d', $quotient);
+                     }
+               }
+
+               $bool = true;
+               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
+               foreach($req as $row) {
+                  //if name_app == glpiname, no insert data
+                  if ($row["Name"] == $name) {
+                     $bool = false;
+                  }
+               }
+               if($bool == true) {
+                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
+                  }
+               }
+               
+               $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_example_examples');
+               foreach($req as $row) {
+                  $count = $row["COUNT(*)"] + 1;
+               }
+               $task->log("$count imported tables");
             }
+         }
       }
       return 1;
    }
