@@ -249,6 +249,7 @@ class Example extends CommonDBTM {
             curl_close($curl);
             $data = json_decode($response, true);
             //retrievas datas (name,description,domain,leader and check)
+            $nbapps = 0
             foreach( $data as $key => $value ) {
                foreach( $value as $valeur => $value1 ) {
                   if (strpos($valeur, "label") !== false) {
@@ -286,14 +287,10 @@ class Example extends CommonDBTM {
                }
                if($bool == true) {
                   $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
+                  $nbapps = $nbapps + 1;
                   }
                }
-               
-               $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_example_examples');
-               foreach($req as $row) {
-                  $count = $row["COUNT(*)"] + 1;
-               }
-               $task->log("$count imported tables");
+               $task->log("$nbapps applications ajoutées");
             }
          }
          return 1;
