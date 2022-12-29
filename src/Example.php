@@ -296,7 +296,7 @@ class Example extends CommonDBTM {
             $task->log("$count imported tables");
          }
       } else {
-         $task->log("Veuillez remplir les credentials (token/tenant)")
+         $task->log("Veuillez remplir les credentials (token/tenant)");
       }
       return 1;
    }
