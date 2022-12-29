@@ -187,6 +187,5 @@ if (strlen($response) == 71) {
    echo "$count imported tables";
 }
 
-
 HTML::closeForm();
 Html::footer();
