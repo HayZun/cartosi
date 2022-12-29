@@ -188,10 +188,16 @@ class Example extends CommonDBTM {
     */
    static function cronSample($task) {
 
-      $task->log("Example log message from class");
-      $r = mt_rand(0, $task->fields['param']);
-      usleep(1000000+$r*1000);
-      $task->setVolume($r);
+      global $DB;
+      
+      $task->log("Initalisation synchro cartoSI");
+
+      //get-VARs
+      $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+      foreach($req as $row) {
+         $count = $row["COUNT(*)"];
+      }
+      $task->log($count);
 
       return 1;
    }
