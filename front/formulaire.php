@@ -87,9 +87,6 @@ echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
 echo '<input type="nombre" id="tenant" name="tenant" value="'.$tenant.'" size="50">';
 echo "</tr>";
 
-echo "<br>";
-echo "<br>";
-
 //test connection cartosi
 $curl = curl_init();
 
