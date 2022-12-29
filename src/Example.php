@@ -37,6 +37,11 @@ namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
 
+use DB;
+
+// Entry menu case
+include ("../../../inc/includes.php");
+
 // Class of the defined type
 class Example extends CommonDBTM {
 
