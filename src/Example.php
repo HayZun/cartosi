@@ -204,8 +204,8 @@ class Example extends CommonDBTM {
           $token = $row["token"];
           $tenant = $row["tenant"];
         }
-        $task->log("$token");
-        $task->log("$tenant");
+        $task->log("Initalisation synchro cartoSI");
+        $task->log("Initalisation synchro cartoSI");
       }
 
       return 1;
