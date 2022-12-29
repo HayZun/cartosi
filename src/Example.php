@@ -287,6 +287,7 @@ class Example extends CommonDBTM {
                }
                if($bool == true) {
                   $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
+                  $task->log("$name");
                   $nbapps = $nbapps + 1;
                   }
                }
