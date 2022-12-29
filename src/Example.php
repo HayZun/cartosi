@@ -229,7 +229,6 @@ class Example extends CommonDBTM {
          } else {
             $task->log("Token/tenant valide");
       }
-
-      return 1;
    }
+   return 1;
 }
