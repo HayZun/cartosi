@@ -44,7 +44,7 @@ class Example extends CommonDBTM {
 
    // Should return the localized name of the type
    static function getTypeName($nb = 0) {
-      return 'Assets';
+      return 'Applications';
    }
 
 
@@ -169,8 +169,8 @@ class Example extends CommonDBTM {
    static function cronInfo($name) {
 
       switch ($name) {
-         case 'Sample' :
-            return ['description' => __('Cron description for example', 'example'),
+         case 'CartoSI' :
+            return ['description' => __('Synchronisation application CartoSI à GLPI', 'example'),
                     'parameter'   => __('Cron parameter for example', 'example')];
       }
       return [];
@@ -186,7 +186,7 @@ class Example extends CommonDBTM {
     *    <0 : to be run again (not finished)
     *     0 : nothing to do
     */
-   static function cronSample($task) {
+   static function cronCartoSI($task) {
 
       global $DB;
       
