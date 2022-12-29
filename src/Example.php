@@ -197,7 +197,16 @@ class Example extends CommonDBTM {
       foreach($req as $row) {
          $count = $row["COUNT(*)"];
       }
-      $task->log($count);
+      
+      if (1 == $count) {
+         $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
+        foreach($req as $row) {
+          $token = $row["token"];
+          $tenant = $row["tenant"];
+        }
+        $task->log("$token");
+        $task->log("$tenant");
+      }
 
       return 1;
    }
