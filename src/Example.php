@@ -222,15 +222,6 @@ class Example extends CommonDBTM {
                'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
             ),
             ));
-   
-            $response = curl_exec($curl);
-            curl_close($curl);
-            if (strlen($response) == 71) {
-               $task->log("Arrêt de la synchronisation");
-               $task->log("Tenant ou token invalide");
-            } else {
-               $task->log("Token/tenant valide");
-            }
       }
       return 1;
 }
