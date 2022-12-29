@@ -170,8 +170,7 @@ class Example extends CommonDBTM {
 
       switch ($name) {
          case 'CartoSI' :
-            return ['description' => __('Synchronisation application CartoSI à GLPI', 'example'),
-                    'parameter'   => __('Cron parameter for example', 'example')];
+            return ['description' => __('Synchronisation application CartoSI à GLPI', 'example')];
       }
       return [];
    }

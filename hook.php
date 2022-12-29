@@ -90,7 +90,7 @@ function plugin_example_install() {
    
    // To be called for each task the plugin manage
    // task in class
-   CronTask::Register(Example::class, 'CartoSI', DAY_TIMESTAMP, ['param' => 50]);
+   CronTask::Register(Example::class, 'CartoSI', DAY_TIMESTAMP);
    return true;
 }
 
