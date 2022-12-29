@@ -119,6 +119,5 @@ if (strlen($response) == 71) {
 	echo "sucess\n";
 }
 
-
 HTML::closeForm();
 Html::footer();
