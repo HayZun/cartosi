@@ -189,24 +189,6 @@ class Example extends CommonDBTM {
    static function cronSample($task) {
 
       global $DB;
-      
-      $task->log("Initalisation synchro cartoSI");
-
-      //get-VARs
-      $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
-      foreach($req as $row) {
-         $count = $row["COUNT(*)"];
-      }
-      
-      if (1 == $count) {
-         $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
-        foreach($req as $row) {
-          $token = $row["token"];
-          $tenant = $row["tenant"];
-        }
-        $task->log("Initalisation synchro cartoSI");
-        $task->log("Initalisation synchro cartoSI");
-      }
 
       return 1;
    }
