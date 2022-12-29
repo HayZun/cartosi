@@ -253,7 +253,7 @@ class Example extends CommonDBTM {
             foreach( $data as $key => $value ) {
                foreach( $value as $valeur => $value1 ) {
                   if (strpos($valeur, "label") !== false) {
-                     $name = $value1;
+                     $name = str_replace("'", " ","$value1");
                   }
                   if (strpos($valeur, "businesses") !== false) {
                      foreach($value1 as $valeur2 => $value2) {
