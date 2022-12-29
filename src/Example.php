@@ -299,4 +299,3 @@ class Example extends CommonDBTM {
       }
       return 1;
    }
-}
