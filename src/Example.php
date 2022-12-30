@@ -131,7 +131,7 @@ class Example extends CommonDBTM {
       echo "<br>";
       echo "<td>" . __('<strong>Description</strong>') . "</td>";
       echo "<td>";
-      echo $name;
+      echo $description;
       echo "</td>";
       echo "</tr>";
 
