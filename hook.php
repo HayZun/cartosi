@@ -52,6 +52,7 @@ function plugin_example_install() {
    if (!$DB->tableExists("glpi_plugin_example_examples")) {
       $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
+                  `description` TEXT NOT NULL,
                   `name` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
