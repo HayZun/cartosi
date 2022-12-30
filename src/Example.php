@@ -113,6 +113,7 @@ class Example extends CommonDBTM {
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
+         $description = $row["description"]
          $domain = $row["domain"];
          $leader = $row["leader"];
          $check = $row["check"];
@@ -123,6 +124,14 @@ class Example extends CommonDBTM {
       echo "<td>" . __('<strong>Name</strong>') . "</td>";
       echo "<td>";
       echo $name;
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr class='tab_bg_2'>";
+      echo "<br>";
+      echo "<td>" . __('<strong>Description</strong>') . "</td>";
+      echo "<td>";
+      echo $description;
       echo "</td>";
       echo "</tr>";
 
