@@ -126,6 +126,14 @@ class Example extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
+      echo "<tr class='tab_bg_2'>";
+      echo "<br>";
+      echo "<td>" . __('<strong>Description</strong>') . "</td>";
+      echo "<td>";
+      echo $description;
+      echo "</td>";
+      echo "</tr>";
+
       
       echo "<tr class='tab_bg_3'>";
       echo "<br>";
