@@ -264,7 +264,7 @@ class Example extends CommonDBTM {
                      $name = str_replace("'", " ","$value1");
                   }
                   if (strpos($valeur, "description") !== false) {
-                     $description = str_replace("'", " ","$description");
+                     $description = str_replace("'", " ","$value1");
                   }
                   if (strpos($valeur, "businesses") !== false) {
                      foreach($value1 as $valeur2 => $value2) {
