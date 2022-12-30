@@ -36,6 +36,7 @@
 namespace GlpiPlugin\Example;
 use CommonDBTM;
 use CommonGLPI;
+use Ticket;
 
 // Class of the defined type
 class Example extends CommonDBTM {
