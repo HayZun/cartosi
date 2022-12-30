@@ -254,6 +254,9 @@ class Example extends CommonDBTM {
                   if (strpos($valeur, "label") !== false) {
                      $name = str_replace("'", " ","$value1");
                   }
+                  if (strpos($valeur, "description") !== false) {
+                     $description = $value1;
+                  }
                   if (strpos($valeur, "businesses") !== false) {
                      foreach($value1 as $valeur2 => $value2) {
                         foreach($value2 as $valeur3 => $value3) {
@@ -285,7 +288,7 @@ class Example extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
                   $nbapps = $nbapps + 1;
                   }

@@ -78,6 +78,7 @@ function plugin_example_install() {
       // create tab glpi_plugin_cartosi_credentials
       $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
+                  `description` TEXT NOT,
                   `name` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
