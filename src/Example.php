@@ -291,7 +291,7 @@ class Example extends CommonDBTM {
                   $task->log("$description");
                   $task->log("$domain");
                   $task->log("$teamleader");
-                  $task->log("$datechecks");
+                  $task->log("$datecheck");
                   $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
                   $nbapps = $nbapps + 1;
