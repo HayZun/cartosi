@@ -64,7 +64,7 @@ function plugin_init_example() {
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
    $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 
-   Plugin::registerClass('PluginTimelineticketDisplay', array('addtabon' => array('Ticket')));
+   Plugin::registerClass('PluginTimelineticketDisplay',  ['addtabon' => ['Ticket']]);
 }
 
 /**
