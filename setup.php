@@ -30,6 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Example\Example;
+use GlpiPlugin\Example\PluginexampleticketDisplay;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
@@ -47,7 +48,7 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 function plugin_init_example() {
    global $PLUGIN_HOOKS;
 
-   Plugin::registerClass('PluginexampleticketDisplay',
+   Plugin::registerClass(PluginexampleticketDisplay::class,
                                ['addtabon' => ['Ticket']]);
 
    // Display a menu entry ?
