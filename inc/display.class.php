@@ -73,7 +73,6 @@ class PluginTimelineticketDisplay extends CommonDBTM {
       return '';
    }
 
-
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
       if ($item->getType() == 'Ticket') {
