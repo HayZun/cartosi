@@ -299,6 +299,13 @@ class Example extends CommonDBTM {
                if($bool == true) {
                   $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
+
+                  $name = "";
+                  $description = "";
+                  $domain = "";
+                  $teamleader = "";
+                  $datecheck = "";
+
                   $nbapps = $nbapps + 1;
                   }
                }
@@ -310,34 +317,5 @@ class Example extends CommonDBTM {
             }  
          }
          return 1;
-      }
-   function getTabNameForItem(CommonGLPI $item, $withtemplate=0) {
-      switch ($item::getType()) {
-         case Ticket::getType():
-            return __('Tab from my plugin', 'example');
-            break;
-      }
-      return '';
-   }
-   
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum=1, $withtemplate=0) {
-      switch ($item::getType()) {
-         case Ticket::getType():
-            //display form for computers
-            self::displayTabContentForTicket($item);
-            break;
-      }
-      if ($item->getType() == 'ObjetDuCoeur') {
-         $monplugin = new self();
-         $ID = $item->getField('id');
-         // j'affiche le formulaire
-         $monplugin->nomDeLaFonctionQuiAfficheraLeContenuDeMonOnglet();
-      }
-      return true;
-   }
-   
-   private static function displayTabContentForTicket(Ticket $item) {
-      echo "toto";
-   }
-   
+   } 
 }
