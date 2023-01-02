@@ -53,7 +53,7 @@ function plugin_init_example() {
       }
    }
 
-   Plugin::registerClass('PluginTimelineticketDisplay',
+   Plugin::registerClass('PluginexampleticketDisplay',
                                ['addtabon' => ['Ticket']]);
 
    // Display a menu entry ?
