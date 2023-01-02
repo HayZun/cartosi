@@ -307,6 +307,17 @@ class Example extends CommonDBTM {
                } else {
                   $task->log("Pas d'applications ajoutées");
                }
+               //update table
+               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
+               foreach($req as $row) {
+                  foreach($req as $rows) {
+                     if((str($rows["Name"],$row["Name"]) && $rows["id"] <> $row["id"]) || 
+                     ((str($rows["description"],$row["description"]) && $rows["id"] <> $row["id"]))) {
+                        $minvalue = min($row["id"],$row["id"])
+                        $_REQUEST = $DB->query("DELETE from glpi_plugin_example_examples WHERE id=$minvalue");
+                     }
+                  }
+               }
             }  
          }
          return 1;
