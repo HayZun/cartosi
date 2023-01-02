@@ -110,7 +110,7 @@ class Example extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      $req = $DB->query("SELECT * FROM glpi_plugin_example_example where id=$ID");
+      $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
          $description = $row["description"];
@@ -289,7 +289,7 @@ class Example extends CommonDBTM {
                }
 
                $bool = true;
-               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_example");
+               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
                foreach($req as $row) {
                   //if name_app == glpiname, no insert data
                   if ($row["Name"] == $name) {
@@ -297,7 +297,7 @@ class Example extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_example_example` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
                   $nbapps = $nbapps + 1;
                   }
