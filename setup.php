@@ -52,8 +52,8 @@ function plugin_init_example() {
 
    // Display a menu entry ?
    // Right set in change_profile hook
-   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Toto::class,
-                                                'tools'   => Toto::class];
+   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+                                                'tools'   => Example::class];
 
    // Config page
    $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
