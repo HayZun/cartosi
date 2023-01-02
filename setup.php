@@ -48,7 +48,7 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 function plugin_init_example() {
    global $PLUGIN_HOOKS;
 
-   Plugin::registerClass(PluginexampleticketDisplay::class, ['addtabon' => ['Ticket']]);
+   Plugin::registerClass('PluginexampleticketDisplay', ['addtabon' => ['Ticket']]);
 
    // Display a menu entry ?
    // Right set in change_profile hook
