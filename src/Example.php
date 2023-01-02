@@ -38,7 +38,7 @@ use CommonDBTM;
 use CommonGLPI;
 
 // Class of the defined type
-class Toto extends CommonDBTM {
+class Example extends CommonDBTM {
 
    static $tags = '[EXAMPLE_ID]';
 
