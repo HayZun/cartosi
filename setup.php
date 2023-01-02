@@ -45,13 +45,7 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
  * @return void
  */
 function plugin_init_example() {
-   global $PLUGIN_HOOKS,$CFG_GLPI;
-
-   if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
-      if (class_exists(Example::class)) {
-         Link::registerTag(Example::$tags);
-      }
-   }
+   global $PLUGIN_HOOKS;
 
    Plugin::registerClass('PluginexampleticketDisplay',
                                ['addtabon' => ['Ticket']]);
