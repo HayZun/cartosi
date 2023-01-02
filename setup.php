@@ -51,11 +51,9 @@ function plugin_init_example() {
                                ['addtabon' => ['Ticket']]);
 
    // Display a menu entry ?
-   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
-   if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
-      $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+   // Right set in change_profile hook
+   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
                                                 'tools'   => Example::class];
-   }
 
    // Config page
    $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
