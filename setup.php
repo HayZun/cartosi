@@ -52,6 +52,10 @@ function plugin_init_example() {
          Link::registerTag(Example::$tags);
       }
    }
+
+   Plugin::registerClass('PluginTimelineticketDisplay',
+                               ['addtabon' => ['Ticket']]);
+
    // Display a menu entry ?
    $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
    if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook

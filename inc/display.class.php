@@ -43,35 +43,20 @@ if (!defined('GLPI_ROOT')) {
 
 class PluginTimelineticketDisplay extends CommonDBTM {
 
-   public static function getTypeName($nb = 0) {
-
-      return _n('Timeline of ticket', 'Timeline of tickets', $nb, 'timelineticket');
-   }
-
-   /**
-    * @return array
-    */
-   function rawSearchOptions() {
-
-      $tab = [];
-
-      return $tab;
-   }
-
-
    static function showForTicket(Ticket $ticket) {
-      echo "toto";
+      global $CFG_GLPI, $DB;
+      echo "test";
    }
 
 
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
-      if ($item->getType() == 'Ticket'
-          && $_SESSION['glpiactiveprofile']['interface'] == 'central') {
-         return __('Timeline', 'timelineticket');
+      if ($item->getType() == 'Ticket') {
+         return __('CartoSI');
       }
       return '';
    }
+
 
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
@@ -80,5 +65,4 @@ class PluginTimelineticketDisplay extends CommonDBTM {
       }
       return true;
    }
-
 }
