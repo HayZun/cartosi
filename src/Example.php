@@ -230,7 +230,7 @@ class Example extends CommonDBTM {
             //import appplication from cartoSI to GLPI
 
             //delete old database
-            $req = $DB->query('TRUNCATE FROM glpi_plugin_example_examples');
+            $req = $DB->query('TRUNCATE TABLE glpi_plugin_example_examples');
 
             $curl = curl_init();
 
