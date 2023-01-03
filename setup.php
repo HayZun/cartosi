@@ -29,7 +29,7 @@
  */
 
 use Glpi\Plugin\Hooks;
-//use GlpiPlugin\Example\Example;
+use GlpiPlugin\Example\Cartosi;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
