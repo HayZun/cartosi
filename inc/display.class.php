@@ -36,7 +36,7 @@
 
    ------------------------------------------------------------------------
  */
-namespace GlpiPlugin\Cartosi;
+namespace Cartosi;
 use CommonDBTM;
 use CommonGLPI;
 
