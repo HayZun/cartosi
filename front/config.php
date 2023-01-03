@@ -65,6 +65,7 @@ if (1 == $count) {
     echo "<center>";
     echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
+    echo "<br>";
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" value="'.$tenant.'" size="50">';
     echo "</tr>";
