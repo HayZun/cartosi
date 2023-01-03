@@ -94,7 +94,7 @@ function plugin_version_cartosi() {
  *
  * @return boolean
  */
-function plugin_example_check_config($verbose = false) {
+function plugin_cartosi_check_config($verbose = false) {
    if (true) { // Your configuration check
       return true;
    }
