@@ -1,50 +1,37 @@
 <root>
-      <name>Example</name>
-      <key>example</key>
+      <name>cartosi</name>
+      <key>cartosi</key>
       <state>stable</state>
       <logo>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/logo.png</logo>
       <description>
          <short>
-            <cs>GLPI zásuvný modul pro ukázku, užitečný jako základ pro nějaký nový</cs>
-            <en>GLPI example plugin useful to bootstrap a new one</en>
-            <fr>Plugin GLPI d'example utile pour en démarrer un</fr>
+            <en>This plugin allows to integrete applications from CartoSI</en>
          </short>
          <long>
-            <cs>GLPI zásuvný modul pro ukázku, užitečný jako základ pro nějaký nový, pokud z něho vycházíte, měli byste přitom upravit každou z kolonek tohoto souboru a přečíst si obsah README.md</cs>
-            <en>GLPI example plugin useful to bootstrap a new one, you should edit every field of this file, and see README.md</en>
-            <fr>Plugin GLPI d'example utile pour en démarrer un, vous devriez editer tous les champs de ce fichier, et voir README.md</fr>
+            <en>This plugin allows to integrete applications from CartoSI (collaborative solution dedicated to operational staff who need to easily represent their assets, flows and data, while integrating easily into the company's ecosystem) on GLPI.</en>
          </long>
       </description>
-      <homepage>https://github.com/pluginsGLPI/example</homepage>
+      <homepage>https://github.com/HayZun/cartosi</homepage>
       <download>https://github.com/pluginsGLPI/example/releases</download>
-      <issues>https://github.com/pluginsGLPI/example/issues</issues>
-      <readme>https://raw.githubusercontent.com/pluginsGLPI/example/master/README.md</readme>
+      <issues>https://github.com/HayZun/cartosi/issues</issues>
+      <readme>https://raw.githubusercontent.com/HayZun/cartosi/master/README.md</readme>
       <authors>
-         <author>Teclib'</author>
-         <author>Indepnet</author>
+         <author>Paul Durieux</author>
       </authors>
       <versions>
          <version>
             <num>0.0.1</num>
-            <compatibility>~10.0.0</compatibility>
+            <compatibility>~10.0.5</compatibility>
          </version>
       </versions>
       <langs>
-         <lang>cs_CZ</lang>
          <lang>en_GB</lang>
-         <lang>fr_FR</lang>
       </langs>
       <license>GPL v2+</license>
       <tags>
-         <cs>
-            <tag>ukázka</tag>
-         </cs>
          <en>
-            <tag>example</tag>
+            <tag>cartosi</tag>
          </en>
-         <fr>
-            <tag>exemple</tag>
-         </fr>
       </tags>
       <screenshots>
          <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/first.png</screenshot>
