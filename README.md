@@ -1,21 +1,25 @@
-# GLPi Example Plugin
+# Synchronisation GLPI/Carto-SI Plugin
 
 ## Introduction
 
-This plugin implements a few basic glpi hooks.
-Most of implemented features stands for example and are not
-expected to provide fantastic functionality other than teaching.
+This plugin allows to integrete applications from CartoSI (collaborative solution dedicated to operational staff who need to easily represent their assets, flows and data, while integrating easily into the company's ecosystem) on GLPI.
 
 ## Documentation
 
-This plugin is documented [here](https://github.com/pluginsGLPI/glpi-example-plugin/wiki),
-It is the developer documentation for plugin contributors as of now.
-You may change that link and provide documentation for your plugin,
-if you totally create your plugin repository from the worktree of this one.
+Once the plugin is activate :
+1. Go on the config page of Carto-SI plugin and fill token and tenant fill.
+2. Go on the page "Automatic actions" which is found on the Setup menu.
+3. Seach "Carto-SI".
+4. Launch the plugin (click on the execute button).
+
+Applications from Carto-SI are imported on the menu Plugin/Carto-SI.
+
 
 ## Installation
 
+On your host glpi :
+Go on /var/www/html/plugins/
 ```sh
-cd /my/glpi/deployment/main/directory/plugins
-git clone git@github.com:pluginsGLPI/glpi-example-plugin.git example
+cd /var/www/html/plugins/
+git clone https://github.com/HayZun/cartosi.git
 ```
