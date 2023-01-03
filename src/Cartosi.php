@@ -179,7 +179,7 @@ class Cartosi extends CommonDBTM {
 
       switch ($name) {
          case 'CartoSI' :
-            return ['description' => __('Synchronisation application CartoSI à GLPI', 'cartosi')];
+            return ['description' => __('Synchronisation Carto-SI application to GLPI', 'cartosi')];
       }
       return [];
    }
