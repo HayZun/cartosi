@@ -30,6 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Cartosi\PluginTimelineticketDisplay;
 
 define('PLUGIN_CARTOSI_VERSION', '1.0.0');
 
