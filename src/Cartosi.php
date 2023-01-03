@@ -325,28 +325,3 @@ class Cartosi extends CommonDBTM {
          return 1;
       }
 }
-
-class PluginCartositicketDisplay extends CommonDBTM {
-
-   static function showForTicket(Ticket $ticket) {
-      global $CFG_GLPI, $DB;
-      echo "Test";
-   }
-
-
-   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
-
-      if ($item->getType() == 'Ticket') {
-         return __('CartoSI');
-      }
-      return '';
-   }
-
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
-
-      if ($item->getType() == 'Ticket') {
-         self::showForTicket($item);
-      }
-      return true;
-   }
-}
