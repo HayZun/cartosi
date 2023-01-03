@@ -110,7 +110,7 @@ class Cartosi extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
+      $req = $DB->query("SELECT * FROM glpi_plugin_cartosi_cartosis where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
          $domain = $row["domain"];
