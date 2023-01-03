@@ -113,7 +113,6 @@ class Example extends CommonDBTM {
       $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
-         $description = $row["description"];
          $domain = $row["domain"];
          $leader = $row["leader"];
          $check = $row["check"];
@@ -124,14 +123,6 @@ class Example extends CommonDBTM {
       echo "<td>" . __('<strong>Name</strong>') . "</td>";
       echo "<td>";
       echo $name;
-      echo "</td>";
-      echo "</tr>";
-
-      echo "<tr class='tab_bg_2'>";
-      echo "<br>";
-      echo "<td>" . __('<strong>Description</strong>') . "</td>";
-      echo "<td>";
-      echo $description;
       echo "</td>";
       echo "</tr>";
 
@@ -263,9 +254,6 @@ class Example extends CommonDBTM {
                   if (strpos($valeur, "label") !== false) {
                      $name = str_replace("'", " ","$value1");
                   }
-                  if (strpos($valeur, "description") !== false) {
-                     $description = str_replace("'", " ","$value1");
-                  }
                   if (strpos($valeur, "businesses") !== false) {
                      foreach($value1 as $valeur2 => $value2) {
                         foreach($value2 as $valeur3 => $value3) {
@@ -297,15 +285,8 @@ class Example extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`domain`,`leader`,`check`) VALUES ('$name','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
-
-                  $name = "";
-                  $description = "";
-                  $domain = "";
-                  $teamleader = "";
-                  $datecheck = "";
-
                   $nbapps = $nbapps + 1;
                   }
                }
@@ -317,5 +298,5 @@ class Example extends CommonDBTM {
             }  
          }
          return 1;
-   } 
+      }
 }

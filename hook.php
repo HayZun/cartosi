@@ -52,7 +52,6 @@ function plugin_example_install() {
    if (!$DB->tableExists("glpi_plugin_example_examples")) {
       $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
-                  `description` TEXT NOT NULL,
                   `name` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
@@ -111,7 +110,7 @@ function plugin_example_uninstall() {
    // Current version tables
    if ($DB->tableExists("glpi_plugin_example_examples")) {
       $query = "DROP TABLE `glpi_plugin_example_examples`";
-      $DB->query($query) or die("error deleting glpi_plugin_example_examples");
+      $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
    
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {

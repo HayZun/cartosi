@@ -30,7 +30,6 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Example\Example;
-use GlpiPlugin\Example\PluginexampleticketDisplay;
 
 define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
@@ -46,14 +45,19 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
  * @return void
  */
 function plugin_init_example() {
-   global $PLUGIN_HOOKS;
+   global $PLUGIN_HOOKS,$CFG_GLPI;
 
-   Plugin::registerClass('PluginexampleticketDisplay', ['addtabon' => ['Ticket']]);
-
+   if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
+      if (class_exists(Example::class)) {
+         Link::registerTag(Example::$tags);
+      }
+   }
    // Display a menu entry ?
-   // Right set in change_profile hook
-   $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+   if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
+      $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
                                                 'tools'   => Example::class];
+   }
 
    // Config page
    $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
