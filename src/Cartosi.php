@@ -82,7 +82,7 @@ class Cartosi extends CommonDBTM {
       global $CFG_GLPI;
       $links = [];
 
-      $links['config'] = '/plugins/example/front/config.php';
+      $links['config'] = '/plugins/cartosi/front/config.php';
       return $links;
    }
 
