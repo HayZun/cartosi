@@ -58,13 +58,11 @@ if (0 == $count) {
     echo "<center>";
     echo '<h2>Token API : </h2>';
     echo "<br>";
-    echo "<br>";
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
     echo "<br>";
     echo "<br>";
     echo "<br>";
     echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
-    echo "<br>";
     echo "<br>";
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" size="50">';
     echo "</tr>";
@@ -83,13 +81,11 @@ if (1 == $count) {
     echo "<center>";
     echo '<h2>Token API : </h2>';
     echo "<br>";
-    echo "<br>";
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
     echo "<br>";
     echo "<br>";
     echo "<br>";
     echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
-    echo "<br>";
     echo "<br>";
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" value="'.$tenant.'" size="50">';
     echo "</tr>";
