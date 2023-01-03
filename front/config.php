@@ -62,11 +62,13 @@ if (1 == $count) {
      $tenant = $row["tenant"];
    }
    echo '<form method="post" action="formulaire.php">';
+    echo "<center>";
     echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" value="'.$tenant.'" size="50">';
     echo "</tr>";
+    echo "</center>";
     echo "<br>";
     echo "<br>";
 }
