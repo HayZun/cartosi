@@ -33,7 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
+//use GlpiPlugin\Example\Example;
 
 /**
  * Plugin install process
