@@ -30,7 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
-use GlpiPlugin\Cartosi\PluginCartositicketDisplay;
+use Glpiplugin\Display\PluginCartositicketDisplay;
 
 define('PLUGIN_CARTOSI_VERSION', '1.0.0');
 
