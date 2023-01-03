@@ -75,18 +75,32 @@ if (1 == $count) {
    	$req = $DB->query("DELETE FROM glpi_plugin_cartosi_credentials WHERE id=1");
 
 	//insert datas
-        $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
+    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
    }
 }
 
+echo "<center><h1>Configuration plugin Carto-SI</h1></center>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 echo '<form method="post" action="formulaire.php">';
-echo 'Token API : ';
+echo "<center>";
+echo '<h2>Token API : </h2>';
+echo "<br>";
 echo '<input type="nombre" id="token" name="token" value="'.$token.'" size="50">';
-
-echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
+echo "<br>";
 echo '<input type="nombre" id="tenant" name="tenant" value="'.$tenant.'" size="50">';
 echo "</tr>";
-
+echo "</center>";
 echo "<br>";
 echo "<br>";
 
