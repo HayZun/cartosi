@@ -37,6 +37,7 @@
    ------------------------------------------------------------------------
  */
 
+
 class PluginCartositicketDisplay extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
