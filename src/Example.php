@@ -114,6 +114,7 @@ class Example extends CommonDBTM {
       foreach($req as $row) {
          $name = $row["name"];
          $domain = $row["domain"];
+         $description = $row["description"];
          $leader = $row["leader"];
          $check = $row["check"];
       }
