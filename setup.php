@@ -53,16 +53,16 @@ function plugin_init_cartosi() {
       }
    }
    // Display a menu entry ?
-   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+   $_SESSION["glpi_plugin_example_profile"]['cartosi'] = 'w';
    if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
-      $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+      $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Example::class,
                                                 'tools'   => Example::class];
    }
 
    // Config page
-   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
+   $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
 }
 
 /**
