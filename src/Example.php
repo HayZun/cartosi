@@ -228,6 +228,10 @@ class Example extends CommonDBTM {
          } else {
             $task->log("Token/tenant valide");
             //import appplication from cartoSI to GLPI
+
+            //delete old database
+            $req = $DB->query('TRUNCATE FROM glpi_plugin_example_examples');
+
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -299,7 +303,6 @@ class Example extends CommonDBTM {
       } else {
          $task->log("Token/tenant invalide");
       }
-
          return 1;
       }
 }
