@@ -34,9 +34,5 @@
          </en>
       </tags>
       <screenshots>
-         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/first.png</screenshot>
-         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/second.png</screenshot>
-         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/third.png</screenshot>
-         <screenshot>https://raw.githubusercontent.com/pluginsGLPI/example/master/misc/screenshots/fourth.png</screenshot>
       </screenshots>
 </root>
