@@ -42,7 +42,7 @@ class PluginCartosiTicket extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
-      echo "Test";
+      echo "Polo";
    }
 
 
