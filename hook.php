@@ -53,6 +53,7 @@ function plugin_example_install() {
       $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` TEXT NOT NULL,
+                  `description` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
                   `check` date,
