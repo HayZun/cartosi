@@ -33,7 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-//use GlpiPlugin\Example\Example;
+use GlpiPlugin\Example\Cartosi;
 
 /**
  * Plugin install process
@@ -91,7 +91,7 @@ function plugin_cartosi_install() {
    
    // To be called for each task the plugin manage
    // task in class
-   CronTask::Register(Example::class, 'CartoSI', DAY_TIMESTAMP,
+   CronTask::Register(Cartosi::class, 'CartoSI', DAY_TIMESTAMP,
          array(
             'comment'   => '',
             'mode'      => Crontask::MODE_EXTERNAL
