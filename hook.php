@@ -33,7 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Cartosi;
+use GlpiPlugin\Cartosi\Cartosi;
 
 /**
  * Plugin install process
