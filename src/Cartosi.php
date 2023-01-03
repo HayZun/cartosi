@@ -239,7 +239,7 @@ class Cartosi extends CommonDBTM {
             //import appplication from cartoSI to GLPI
 
             //delete old database
-            $req = $DB->query('TRUNCATE TABLE glpi_plugin_cartosi_cartosis');
+            //$req = $DB->query('TRUNCATE TABLE glpi_plugin_cartosi_cartosis');
 
             $curl = curl_init();
 
