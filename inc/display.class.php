@@ -37,12 +37,14 @@
    ------------------------------------------------------------------------
  */
 namespace GlpiPlugin\Cartosi;
+use CommonDBTM;
+use CommonGLPI;
 
 if (!defined('GLPI_ROOT')) {
    die("Sorry. You can't access directly to this file");
 }
 
-class PluginTimelineticketDisplay extends CommonDBTM {
+class PluginCartoSIDisplay extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
