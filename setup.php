@@ -31,7 +31,7 @@
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
 
-define('PLUGIN_CARTOSI_VERSION', '0.0.1');
+define('PLUGIN_CARTOSI_VERSION', '1.0.0');
 
 // Minimal GLPI version, inclusive
 define('PLUGIN_CARTOSI_MIN_GLPI', '10.0.0');
