@@ -71,7 +71,7 @@ class Cartosi extends CommonDBTM {
     * @see CommonGLPI::getMenuName()
    **/
    static function getMenuName() {
-      return __('CartoSI');
+      return __('Carto-SI');
    }
 
 
