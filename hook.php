@@ -40,7 +40,7 @@ use GlpiPlugin\Example\Example;
  *
  * @return boolean
  */
-function plugin_example_install() {
+function plugin_cartosi_install() {
    global $DB;
 
    ProfileRight::addProfileRights(['example:read']);
@@ -105,7 +105,7 @@ function plugin_example_install() {
  *
  * @return boolean
  */
-function plugin_example_uninstall() {
+function plugin_cartosi_uninstall() {
    global $DB;
 
    // Current version tables
@@ -126,7 +126,7 @@ function plugin_example_uninstall() {
    return true;
 }
 
-function plugin_example_display_central() {
+function plugin_cartosi_display_central() {
    echo "<tr><th colspan='2'>";
    echo "<div style='text-align:center; font-size:2em'>";
    echo __("Plugin example displays on central page", "example");
