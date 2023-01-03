@@ -47,12 +47,9 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 function plugin_init_cartosi() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
-   // Display a menu entry ?
-   $_SESSION["glpi_plugin_example_profile"]['cartosi'] = 'w';
-   if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
-      $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
-                                                'tools'   => Cartosi::class];
-   }
+   //$PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
+   //                                          'tools'   => Cartosi::class];
+
 
    // Config page
    $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
