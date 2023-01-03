@@ -96,7 +96,7 @@ function plugin_cartosi_uninstall() {
 
    // Current version tables
    if ($DB->tableExists("creating glpi_plugin_cartosi_cartosis")) {
-      $query = "DROP TABLE `creating glpi_plugin_cartosi_cartosis`";
+      $query = "DROP TABLE `glpi_plugin_cartosi_cartosis`";
       $DB->query($query) or die("error deleting creating glpi_plugin_cartosi_cartosis");
    }
    
