@@ -30,6 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Cartosi\PluginCartositicketDisplay;
 
 define('PLUGIN_CARTOSI_VERSION', '1.0.0');
 
@@ -37,31 +38,6 @@ define('PLUGIN_CARTOSI_VERSION', '1.0.0');
 define('PLUGIN_CARTOSI_MIN_GLPI', '10.0.0');
 // Maximum GLPI version, exclusive
 define('PLUGIN_CARTOSI_MAX_GLPI', '10.0.99');
-
-class PluginCartositicketDisplay extends CommonDBTM {
-
-   static function showForTicket(Ticket $ticket) {
-      global $CFG_GLPI, $DB;
-      echo "Test";
-   }
-
-
-   function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
-
-      if ($item->getType() == 'Ticket') {
-         return __('CartoSI');
-      }
-      return '';
-   }
-
-   static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
-
-      if ($item->getType() == 'Ticket') {
-         self::showForTicket($item);
-      }
-      return true;
-   }
-}
 
 /**
  * Init hooks of the plugin.
