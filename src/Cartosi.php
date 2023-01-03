@@ -239,7 +239,7 @@ class Cartosi extends CommonDBTM {
             //import appplication from cartoSI to GLPI
 
             //delete old database
-            $req = $DB->query('TRUNCATE TABLE glpi_plugin_example_examples');
+            $req = $DB->query('TRUNCATE TABLE glpi_plugin_cartosi_cartosis');
 
             $curl = curl_init();
 
@@ -293,7 +293,7 @@ class Cartosi extends CommonDBTM {
                }
 
                $bool = true;
-               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
+               $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_cartosis");
                foreach($req as $row) {
                   //if name_app == glpiname, no insert data
                   if ($row["Name"] == $name) {
@@ -301,7 +301,7 @@ class Cartosi extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
 
                   $name = "";
