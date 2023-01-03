@@ -110,13 +110,14 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 //echo $response;
 curl_close($curl);
-echo "<br><br>Connexion between GLPI and Carto SI ";
+echo "<br><br>";
 if (strlen($response) == 71) {
-	echo "failed";
-   echo "<br>";
-   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
+  echo "<h1><FONT COLOR=red>Connexion between GLPI and Carto SI failed</h1>";
+  echo "<br>";
+  echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 } else {
-	echo "sucess\n";
+	echo "<h1><FONT COLOR=green>Connexion between GLPI and Carto SI sucess</h1>";
+  echo "<br>";
 }
 HTML::closeForm();
 Html::footer();
