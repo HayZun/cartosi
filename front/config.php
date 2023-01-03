@@ -45,6 +45,14 @@ foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
 echo "<center><h1>Configuration plugin Carto-SI</h1></center>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 if (0 == $count) {
     echo '<form method="post" action="formulaire.php">';
     echo "<center>";
