@@ -50,12 +50,15 @@ function plugin_init_cartosi() {
    $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
                                              'tools'   => Cartosi::class];
 
-   Plugin::registerClass('PluginCartositicketDisplay',['addtabon' => ['Ticket']]);
+   if (Plugin::isPluginActive('cartosi')) {
 
-   // Config page
-   $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
-   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
+      Plugin::registerClass('PluginCartositicketToto',['addtabon' => ['Ticket']]);
+      // Config page
+      $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
+      // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+      $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
+
+   }
 }
 
 /**
