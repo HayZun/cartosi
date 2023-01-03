@@ -40,11 +40,7 @@ namespace GlpiPlugin\Cartosi;
 use CommonDBTM;
 use CommonGLPI;
 
-if (!defined('GLPI_ROOT')) {
-   die("Sorry. You can't access directly to this file");
-}
-
-class PluginCartoSIDisplay extends CommonDBTM {
+class PluginCartositicketDisplay extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
@@ -59,7 +55,6 @@ class PluginCartoSIDisplay extends CommonDBTM {
       }
       return '';
    }
-
 
    static function displayTabContentForItem(CommonGLPI $item, $tabnum = 1, $withtemplate = 0) {
 
