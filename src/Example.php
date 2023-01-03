@@ -238,7 +238,7 @@ class Example extends CommonDBTM {
             $task->log("Token/tenant valide");
 
             //suppr old base
-            $req = $DB->query("TRUNCATE TABLE glpi_plugin_example_examples");
+            //$req = $DB->query("TRUNCATE TABLE glpi_plugin_example_examples");
 
             //import appplication from cartoSI to GLPI
             $curl = curl_init();
