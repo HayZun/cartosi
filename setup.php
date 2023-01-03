@@ -44,7 +44,7 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
  *
  * @return void
  */
-function plugin_init_example() {
+function plugin_init_cartosi() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
    if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
@@ -71,13 +71,13 @@ function plugin_init_example() {
  *
  * @return array
  */
-function plugin_version_example() {
+function plugin_version_cartosi() {
    return [
-      'name'           => 'Plugin Example',
+      'name'           => 'Synchronization Carto-SI',
       'version'        => PLUGIN_EXAMPLE_VERSION,
-      'author'         => 'Polo',
-      'license'        => 'GPLv2+',
-      'homepage'       => 'https://github.com/pluginsGLPI/example',
+      'author'         => 'Paul Durieux',
+      'license'        => '',
+      'homepage'       => 'https://github.com/HayZun/cartosi',
       'requirements'   => [
          'glpi' => [
             'min' => PLUGIN_EXAMPLE_MIN_GLPI,
