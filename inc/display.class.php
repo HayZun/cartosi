@@ -38,7 +38,7 @@
  */
 
 
-class PluginCartositicketToto extends CommonDBTM {
+class PluginCartositicketDisplay extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
