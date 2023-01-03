@@ -1,4 +1,4 @@
-# Synchronisation GLPI/Carto-SI Plugin
+# GLPI/Carto-SI Plugin synchronization
 
 ## Introduction
 
@@ -10,7 +10,7 @@ Once the plugin is activate :
 1. Go on the config page of Carto-SI plugin and fill token and tenant fill.
 2. Go on the page "Automatic actions" which is found on the Setup menu.
 3. Seach "Carto-SI".
-4. Launch the plugin (click on the execute button).
+4. Launch the automatic action (click on the execute button).
 
 Applications from Carto-SI are imported on the menu Plugin/Carto-SI.
 
