@@ -31,12 +31,12 @@
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
 
-define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
+define('PLUGIN_CARTOSI_VERSION', '0.0.1');
 
 // Minimal GLPI version, inclusive
-define('PLUGIN_EXAMPLE_MIN_GLPI', '10.0.0');
+define('PLUGIN_CARTOSI_MIN_GLPI', '10.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
+define('PLUGIN_CARTOSI_MAX_GLPI', '10.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -66,14 +66,14 @@ function plugin_init_cartosi() {
 function plugin_version_cartosi() {
    return [
       'name'           => 'Synchronization Carto-SI',
-      'version'        => PLUGIN_EXAMPLE_VERSION,
+      'version'        => PLUGIN_CARTOSI_VERSION,
       'author'         => 'Paul Durieux',
       'license'        => '',
       'homepage'       => 'https://github.com/HayZun/cartosi',
       'requirements'   => [
          'glpi' => [
-            'min' => PLUGIN_EXAMPLE_MIN_GLPI,
-            'max' => PLUGIN_EXAMPLE_MAX_GLPI,
+            'min' => PLUGIN_CARTOSI_MIN_GLPI,
+            'max' => PLUGIN_CARTOSI_MAX_GLPI,
          ]
       ]
    ];
