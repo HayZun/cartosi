@@ -236,10 +236,6 @@ class Example extends CommonDBTM {
             $task->log("Tenant ou token invalide");
          } else {
             $task->log("Token/tenant valide");
-
-            //suppr old base
-            //$req = $DB->query("TRUNCATE TABLE glpi_plugin_example_examples");
-
             //import appplication from cartoSI to GLPI
             $curl = curl_init();
 
@@ -319,9 +315,7 @@ class Example extends CommonDBTM {
                   $task->log("Pas d'applications ajoutées");
                }
             }  
-      } else {
-         $task->log("Token/tenant invalide");
-      }
+         }
          return 1;
    } 
 }
