@@ -47,6 +47,9 @@ define('PLUGIN_CARTOSI_MAX_GLPI', '10.0.99');
 function plugin_init_cartosi() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
+
    $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
                                              'tools'   => Cartosi::class];
 
@@ -55,9 +58,6 @@ function plugin_init_cartosi() {
       Plugin::registerClass('PluginCartositicketToto',['addtabon' => ['Ticket']]);
       // Config page
       $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
-      // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-      $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
-
    }
 }
 
