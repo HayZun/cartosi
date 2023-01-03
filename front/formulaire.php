@@ -112,9 +112,10 @@ $response = curl_exec($curl);
 curl_close($curl);
 echo "<br><br>";
 if (strlen($response) == 71) {
-  echo "<center><h1><FONT COLOR=red>Connexion between GLPI and Carto SI failed</h1></center>";
+  echo "<center><h1><FONT COLOR=red>Connexion between GLPI and Carto SI failed</h1>";
   echo "<br>";
   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
+  echo "</center>";
 } else {
 	echo "<center><h1><FONT COLOR=green>Connexion between GLPI and Carto SI sucess</h1></center>";
   echo "<br>";
