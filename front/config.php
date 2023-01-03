@@ -44,13 +44,23 @@ $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
+echo "<center><h1>Configuration plugin Carto-SI</h1></center>";
 if (0 == $count) {
     echo '<form method="post" action="formulaire.php">';
+    echo "<center>";
     echo 'Token API : ';
+    echo "<br>";
+    echo "<br>";
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
     echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
+    echo "<br>";
+    echo "<br>";
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" size="50">';
     echo "</tr>";
+    echo "</center>";
     echo "<br>";
     echo "<br>";
 }
