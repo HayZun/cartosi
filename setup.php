@@ -47,8 +47,8 @@ define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 function plugin_init_cartosi() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
-   //$PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
-   //                                          'tools'   => Cartosi::class];
+   $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
+                                             'tools'   => Cartosi::class];
 
 
    // Config page
