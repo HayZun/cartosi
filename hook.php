@@ -43,8 +43,6 @@ use GlpiPlugin\Cartosi\Cartosi;
 function plugin_cartosi_install() {
    global $DB;
 
-   ProfileRight::addProfileRights(['example:read']);
-
    $default_charset = DBConnection::getDefaultCharset();
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
