@@ -312,6 +312,14 @@ class Cartosi extends CommonDBTM {
                                           `check` = $datecheck,
                                           `id_app` = $idapp
                                      WHERE id_app = $idapp");
+                  $task->log("UPDATE `glpi_plugin_cartosi_cartosis` 
+                  SET `name` = $name,
+                      `description` = $description,
+                       `domain` = $domain,
+                       `leader` = $teamleader,
+                       `check` = $datecheck,
+                       `id_app` = $idapp
+                  WHERE id_app = $idapp")
                }
                $name = "";
                $description = "";
