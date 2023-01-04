@@ -52,7 +52,7 @@ function plugin_cartosi_install() {
    if (!$DB->tableExists("glpi_plugin_cartosi_cartosis")) {
       $query = "CREATE TABLE `glpi_plugin_cartosi_cartosis` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
-                  `id_app` int NOT NULL,
+                  `id_app` TEXT NOT NULL,
                   `name` TEXT NOT NULL,
                   `description` TEXT NOT NULL,
                   `domain` TEXT NOT NULL,
