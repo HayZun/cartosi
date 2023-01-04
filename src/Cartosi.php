@@ -297,6 +297,7 @@ class Cartosi extends CommonDBTM {
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app=".$idapp);
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
+                  $task->log("$count");
                }
                if (0 == $count) {
                   //application doesn't exist in db of glpi
