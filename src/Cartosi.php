@@ -263,6 +263,7 @@ class Cartosi extends CommonDBTM {
             //retrievas datas (name,description,domain,leader and check)
             $nbapps = 0;
             foreach( $data as $key => $value ) {
+               $count = 0;
                foreach( $value as $valeur => $value1 ) {
                   if (strpos($valeur, "id") !== false) {
                      $idapp = $value1;
@@ -294,6 +295,7 @@ class Cartosi extends CommonDBTM {
                         $datecheck = date('Y-m-d', $quotient);
                         }
                }
+
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app=$idapp");
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
