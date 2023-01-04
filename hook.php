@@ -33,22 +33,24 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Example\Example;
 
 /**
  * Plugin install process
  *
  * @return boolean
  */
-function plugin_cartosi_install() {
+function plugin_example_install() {
    global $DB;
+
+   ProfileRight::addProfileRights(['example:read']);
 
    $default_charset = DBConnection::getDefaultCharset();
    $default_collation = DBConnection::getDefaultCollation();
    $default_key_sign = DBConnection::getDefaultPrimaryKeySignOption();
 
-   if (!$DB->tableExists("glpi_plugin_cartosi_cartosis")) {
-      $query = "CREATE TABLE `glpi_plugin_cartosi_cartosis` (
+   if (!$DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "CREATE TABLE `glpi_plugin_example_examples` (
                   `id` int {$default_key_sign} NOT NULL auto_increment,
                   `name` TEXT NOT NULL,
                   `description` TEXT NOT NULL,
@@ -58,7 +60,7 @@ function plugin_cartosi_install() {
                 PRIMARY KEY (`id`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
-      $DB->query($query) or die("error creating glpi_plugin_cartosi_cartosis ". $DB->error());
+      $DB->query($query) or die("error creating glpi_plugin_example_toto ". $DB->error());
    }
 
    if (!$DB->tableExists("glpi_plugin_cartosi_credentials")) {
@@ -70,12 +72,26 @@ function plugin_cartosi_install() {
                 PRIMARY KEY (`id`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
-      $DB->query($query) or die("error glpi_plugin_cartosi_credentials ". $DB->error());
+      $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
    }
 
+   if (!$DB->tableExists("glpi_plugin_cartosi_app")) {
+      // create tab glpi_plugin_cartosi_credentials
+      $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
+                  `id` int {$default_key_sign} NOT NULL auto_increment,
+                  `name` TEXT NOT NULL,
+                  `domain` TEXT NOT NULL,
+                  `leader` TEXT NOT NULL,
+                  `check` date,
+                PRIMARY KEY (`id`)
+               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
+
+      $DB->query($query) or die("error glpi_plugin_cartosi_app ". $DB->error());
+   }
+   
    // To be called for each task the plugin manage
    // task in class
-   CronTask::Register(Cartosi::class, 'CartoSI', DAY_TIMESTAMP,
+   CronTask::Register(Example::class, 'CartoSI', DAY_TIMESTAMP,
          array(
             'comment'   => '',
             'mode'      => Crontask::MODE_EXTERNAL
@@ -89,24 +105,28 @@ function plugin_cartosi_install() {
  *
  * @return boolean
  */
-function plugin_cartosi_uninstall() {
+function plugin_example_uninstall() {
    global $DB;
 
    // Current version tables
-   if ($DB->tableExists("glpi_plugin_cartosi_cartosis")) {
-      $query = "DROP TABLE `glpi_plugin_cartosi_cartosis`";
-      $DB->query($query) or die("error deleting creating glpi_plugin_cartosi_cartosis");
+   if ($DB->tableExists("glpi_plugin_example_examples")) {
+      $query = "DROP TABLE `glpi_plugin_example_examples`";
+      $DB->query($query) or die("error deleting glpi_plugin_example_example");
    }
    
    if ($DB->tableExists("glpi_plugin_cartosi_credentials")) {
       $query = "DROP TABLE `glpi_plugin_cartosi_credentials`";
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
    }
-
+  
+   if ($DB->tableExists("glpi_plugin_cartosi_app")) {
+      $query = "DROP TABLE `glpi_plugin_cartosi_app`";
+      $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
+   }
    return true;
 }
 
-function plugin_cartosi_display_central() {
+function plugin_example_display_central() {
    echo "<tr><th colspan='2'>";
    echo "<div style='text-align:center; font-size:2em'>";
    echo __("Plugin example displays on central page", "example");

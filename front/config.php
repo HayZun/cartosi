@@ -44,29 +44,13 @@ $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
 foreach($req as $row) {
      $count = $row["COUNT(*)"];
 }
-echo "<center><h1>Configuration plugin Carto-SI</h1></center>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
 if (0 == $count) {
     echo '<form method="post" action="formulaire.php">';
-    echo "<center>";
-    echo '<h2>Token API : </h2>';
-    echo "<br>";
+    echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si"  size="50">';
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
-    echo "<br>";
+    echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" size="50">';
     echo "</tr>";
-    echo "</center>";
     echo "<br>";
     echo "<br>";
 }
@@ -78,23 +62,15 @@ if (1 == $count) {
      $tenant = $row["tenant"];
    }
    echo '<form method="post" action="formulaire.php">';
-    echo "<center>";
-    echo '<h2>Token API : </h2>';
-    echo "<br>";
+    echo 'Token API : ';
     echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
-    echo "<br>";
-    echo "<br>";
-    echo "<br>";
-    echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
-    echo "<br>";
+    echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
     echo '<input type="nombre" id="tenant" name="tenant" placeholder="Entrer votre tenant carto-si" value="'.$tenant.'" size="50">';
     echo "</tr>";
-    echo "</center>";
+    echo "<br>";
     echo "<br>";
 }
 
-echo "<center>";
 echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
-echo "</center>";
 Html::closeForm();
 Html::footer();
