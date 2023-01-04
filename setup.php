@@ -68,11 +68,11 @@ function plugin_init_Cartosi() {
  */
 function plugin_version_Cartosi() {
    return [
-      'name'           => 'Plugin Cartosi',
+      'name'           => 'Synchronization Carto-SI',
       'version'        => PLUGIN_Cartosi_VERSION,
-      'author'         => 'Polo',
-      'license'        => 'GPLv2+',
-      'homepage'       => 'https://github.com/pluginsGLPI/Cartosi',
+      'author'         => 'Paul Durieux',
+      'license'        => '',
+      'homepage'       => 'https://github.com/HayZun/cartosi',
       'requirements'   => [
          'glpi' => [
             'min' => PLUGIN_Cartosi_MIN_GLPI,
