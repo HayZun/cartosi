@@ -46,6 +46,9 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "h1>Applications Carto-SI :</h1>";
       echo "Polo";
       echo "</center>";
+      echo "<form autocomplete="off"><input type="text" name="q" id="q" onKeyUp="showResults(this.value)" />";
+      echo "<div id="result"></div>";
+      echo "</form>";
    }
 
 
