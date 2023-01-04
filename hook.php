@@ -74,21 +74,6 @@ function plugin_example_install() {
 
       $DB->query($query) or die("error creating glpi_plugin_example_examples ". $DB->error());
    }
-
-   if (!$DB->tableExists("glpi_plugin_cartosi_app")) {
-      // create tab glpi_plugin_cartosi_credentials
-      $query = "CREATE TABLE `glpi_plugin_cartosi_app` (
-                  `id` int {$default_key_sign} NOT NULL auto_increment,
-                  `name` TEXT NOT NULL,
-                  `domain` TEXT NOT NULL,
-                  `leader` TEXT NOT NULL,
-                  `check` date,
-                PRIMARY KEY (`id`)
-               ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
-
-      $DB->query($query) or die("error glpi_plugin_cartosi_app ". $DB->error());
-   }
-   
    // To be called for each task the plugin manage
    // task in class
    CronTask::Register(Example::class, 'CartoSI', DAY_TIMESTAMP,
@@ -119,10 +104,6 @@ function plugin_example_uninstall() {
       $DB->query($query) or die("error deleting glpi_plugin_cartosi_credentials");
    }
   
-   if ($DB->tableExists("glpi_plugin_cartosi_app")) {
-      $query = "DROP TABLE `glpi_plugin_cartosi_app`";
-      $DB->query($query) or die("error deleting glpi_plugin_cartosi_app");
-   }
    return true;
 }
 
