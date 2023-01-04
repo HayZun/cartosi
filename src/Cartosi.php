@@ -238,9 +238,6 @@ class Cartosi extends CommonDBTM {
             $task->log("Token/tenant valide");
             //import appplication from cartoSI to GLPI
 
-            //delete old database
-            $req = $DB->query('TRUNCATE TABLE glpi_plugin_cartosi_cartosis');
-
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -297,6 +294,7 @@ class Cartosi extends CommonDBTM {
                }
 
                $req = $DB->query("SELECT COUNT(*) FROM `glpi_plugin_cartosi_cartosis` WHERE id_app=".$idapp);
+               $task->log("SELECT COUNT(*) FROM `glpi_plugin_cartosi_cartosis` WHERE id_app=".$idapp);
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
                }
