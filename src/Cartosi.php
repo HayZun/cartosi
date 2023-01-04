@@ -306,7 +306,7 @@ class Cartosi extends CommonDBTM {
                if($bool == true) {
                   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
-
+                  $task->log("$idapp");
                   $name = "";
                   $description = "";
                   $domain = "";
