@@ -29,14 +29,14 @@
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Example\Example;
 
-define('PLUGIN_CARTOSI_VERSION', '1.0.0');
+define('PLUGIN_EXAMPLE_VERSION', '0.0.1');
 
 // Minimal GLPI version, inclusive
-define('PLUGIN_CARTOSI_MIN_GLPI', '10.0.0');
+define('PLUGIN_EXAMPLE_MIN_GLPI', '10.0.0');
 // Maximum GLPI version, exclusive
-define('PLUGIN_CARTOSI_MAX_GLPI', '10.0.99');
+define('PLUGIN_EXAMPLE_MAX_GLPI', '10.0.99');
 
 /**
  * Init hooks of the plugin.
@@ -44,21 +44,25 @@ define('PLUGIN_CARTOSI_MAX_GLPI', '10.0.99');
  *
  * @return void
  */
-function plugin_init_cartosi() {
+function plugin_init_example() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
-   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
-
-   $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
-                                             'tools'   => Cartosi::class];
-
-   if (Plugin::isPluginActive('cartosi')) {
-
-      Plugin::registerClass('PluginCartosiTicket',['addtabon' => ['Ticket']]);
-      // Config page
-      $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
+   if (version_compare(GLPI_VERSION, '9.1', 'ge')) {
+      if (class_exists(Example::class)) {
+         Link::registerTag(Example::$tags);
+      }
    }
+   // Display a menu entry ?
+   $_SESSION["glpi_plugin_example_profile"]['example'] = 'w';
+   if (isset($_SESSION["glpi_plugin_example_profile"])) { // Right set in change_profile hook
+      $PLUGIN_HOOKS['menu_toadd']['example'] = ['plugins' => Example::class,
+                                                'tools'   => Example::class];
+   }
+
+   // Config page
+   $PLUGIN_HOOKS['config_page']['example'] = 'front/config.php';
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['example'] = true;
 }
 
 /**
@@ -67,17 +71,17 @@ function plugin_init_cartosi() {
  *
  * @return array
  */
-function plugin_version_cartosi() {
+function plugin_version_example() {
    return [
-      'name'           => 'Synchronization Carto-SI',
-      'version'        => PLUGIN_CARTOSI_VERSION,
-      'author'         => 'Paul Durieux',
-      'license'        => '',
-      'homepage'       => 'https://github.com/HayZun/cartosi',
+      'name'           => 'Plugin Example',
+      'version'        => PLUGIN_EXAMPLE_VERSION,
+      'author'         => 'Polo',
+      'license'        => 'GPLv2+',
+      'homepage'       => 'https://github.com/pluginsGLPI/example',
       'requirements'   => [
          'glpi' => [
-            'min' => PLUGIN_CARTOSI_MIN_GLPI,
-            'max' => PLUGIN_CARTOSI_MAX_GLPI,
+            'min' => PLUGIN_EXAMPLE_MIN_GLPI,
+            'max' => PLUGIN_EXAMPLE_MAX_GLPI,
          ]
       ]
    ];
@@ -90,7 +94,7 @@ function plugin_version_cartosi() {
  *
  * @return boolean
  */
-function plugin_cartosi_check_config($verbose = false) {
+function plugin_example_check_config($verbose = false) {
    if (true) { // Your configuration check
       return true;
    }

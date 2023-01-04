@@ -75,32 +75,18 @@ if (1 == $count) {
    	$req = $DB->query("DELETE FROM glpi_plugin_cartosi_credentials WHERE id=1");
 
 	//insert datas
-    $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
+        $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_credentials` (`id`, `token`, `tenant`) VALUES (1, '".$token."', ".$tenant.")");
    }
 }
 
-echo "<center><h1>Configuration plugin Carto-SI</h1></center>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo "<br>";
 echo '<form method="post" action="formulaire.php">';
-echo "<center>";
-echo '<h2>Token API : </h2>';
-echo "<br>";
+echo 'Token API : ';
 echo '<input type="nombre" id="token" name="token" value="'.$token.'" size="50">';
-echo "<br>";
-echo "<br>";
-echo "<br>";
-echo '<td style="width: 200px">' . __('<h2>     Tenant :       </h2>') .'</td>';
-echo "<br>";
+
+echo '<td style="width: 200px">' . __('     Tenant :       ') .'</td>';
 echo '<input type="nombre" id="tenant" name="tenant" value="'.$tenant.'" size="50">';
 echo "</tr>";
-echo "</center>";
+
 echo "<br>";
 echo "<br>";
 
@@ -124,14 +110,13 @@ curl_setopt_array($curl, array(
 $response = curl_exec($curl);
 //echo $response;
 curl_close($curl);
+echo "<br><br>Connexion between GLPI and Carto SI ";
 if (strlen($response) == 71) {
-  echo "<center><h1><FONT COLOR=red>Connexion between GLPI and Carto SI failed</h1>";
-  echo "<br>";
-  echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
-  echo "</center>";
+	echo "failed";
+   echo "<br>";
+   echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
 } else {
-	echo "<center><h1><FONT COLOR=green>Connexion between GLPI and Carto SI sucess</h1></center>";
-  echo "<br>";
+	echo "sucess\n";
 }
 HTML::closeForm();
 Html::footer();
