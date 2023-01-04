@@ -46,6 +46,9 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<h1>Applications Carto-SI :</h1>";
       echo "Polo";
       echo "</center>";
+      echo '<script type="text/javascript">';
+      echo 'alert("This alert box was called with the onload event");'
+      echo "</script>";
    }
 
 
