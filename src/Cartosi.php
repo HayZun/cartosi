@@ -298,6 +298,19 @@ class Cartosi extends CommonDBTM {
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
                }
+               if (0 == $count) {
+                  //application doesn't exist in db of glpi
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
+               } else {
+                  //application exists
+                  $req = $DB->query("UPDATE `glpi_plugin_cartosi_cartosis` 
+                                     SET `name` = $name,
+                                         `description` = $description,
+                                          `domain` = $domain,
+                                          `leader` = $teamleader,
+                                          `check` = $datecheck
+                                     WHERE id_app = $idapp");
+               }
                $task->log("$count");
                $bool = true;
                $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_cartosis");
