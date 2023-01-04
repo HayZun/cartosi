@@ -317,12 +317,12 @@ class Cartosi extends CommonDBTM {
                $domain = "";
                $teamleader = "";
                $datecheck = "";
-               if ($nbapps > 0) {
-                  $task->log("$nbapps applications ajoutées");
-               } else {
-                  $task->log("Pas d'applications ajoutées");
-               }
             }  
+            if ($nbapps > 0) {
+               $task->log("$nbapps applications ajoutées");
+            } else {
+               $task->log("Pas d'applications ajoutées");
+            }
          } 
       } else {
          $task->log("Token/tenant invalide");
