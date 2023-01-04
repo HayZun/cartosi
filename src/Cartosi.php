@@ -294,6 +294,8 @@ class Cartosi extends CommonDBTM {
                }
 
                $req = $DB->query("SELECT COUNT(*) FROM `glpi_plugin_cartosi_cartosis` WHERE id_app=".$idapp);
+               $data = var_dump($req);
+               $task->log("$data");
                $task->log("SELECT COUNT(*) FROM `glpi_plugin_cartosi_cartosis` WHERE id_app=".$idapp);
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
