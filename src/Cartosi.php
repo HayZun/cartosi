@@ -290,6 +290,7 @@ class Cartosi extends CommonDBTM {
                   if (strpos($valeur, "dateMaj") !== false) {
                         $quotient = $value1 / 1000;    
                         $datecheck = date('Y-m-d', $quotient);
+                        $task->log($datecheck);
                         }
                }
 
