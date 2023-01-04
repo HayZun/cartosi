@@ -297,7 +297,6 @@ class Cartosi extends CommonDBTM {
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
                }
-               $task->log("$count");
                if (0 == $count) {
                   $task->log("création de la table $name");
                   //application doesn't exist in db of glpi
