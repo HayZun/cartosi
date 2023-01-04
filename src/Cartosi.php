@@ -302,6 +302,7 @@ class Cartosi extends CommonDBTM {
                }
                $task->log("$count");
                if (0 == $count) {
+                  $task->log("création");
                   //application doesn't exist in db of glpi
                   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
                   $nbapps = $nbapps + 1;
