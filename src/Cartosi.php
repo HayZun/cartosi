@@ -307,7 +307,7 @@ class Cartosi extends CommonDBTM {
                   $task->log("update");
                   //application exists
                   $req = $DB->query("UPDATE glpi_plugin_cartosi_cartosis SET `name`=".$name." WHERE id_app=".$idapp."");
-                  $task->log("UPDATE glpi_plugin_cartosi_cartosis SET `name`='".$name."' WHERE id_app='".$idapp"'");
+                  //$task->log("UPDATE glpi_plugin_cartosi_cartosis SET `name`='".$name."' WHERE id_app='".$idapp"'");
                }
                $name = "";
                $description = "";
