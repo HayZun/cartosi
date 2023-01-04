@@ -33,7 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-namespace GlpiPlugin\Cartosi;
+namespace GlpiPlugin\cartosi;
 use CommonDBTM;
 use CommonGLPI;
 
