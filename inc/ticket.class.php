@@ -43,7 +43,7 @@ class PluginCartosiTicket extends CommonDBTM {
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
       echo "<center>";
-      echo "h1>Applications Carto-SI :</h1>";
+      echo "<h1>Applications Carto-SI :</h1>";
       echo "Polo";
       echo "</center>";
    }
