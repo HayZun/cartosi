@@ -47,20 +47,17 @@ define('PLUGIN_Cartosi_MAX_GLPI', '10.0.99');
 function plugin_init_Cartosi() {
    global $PLUGIN_HOOKS,$CFG_GLPI;
 
-   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
-$PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
-
    // Display a menu entry ?
    $_SESSION["glpi_plugin_Cartosi_profile"]['cartosi'] = 'w';
    if (isset($_SESSION["glpi_plugin_Cartosi_profile"])) { // Right set in change_profile hook
       $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
                                                 'tools'   => Cartosi::class];
    }
-   if (Plugin::isPluginActive('cartosi')) {
-      Plugin::registerClass('PluginCartosiTicket',['addtabon' => ['Ticket']]);
-      // Config page
-      $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
-   }
+
+   // Config page
+   $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
+   // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
+   $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
 }
 
 /**
@@ -75,7 +72,7 @@ function plugin_version_Cartosi() {
       'version'        => PLUGIN_Cartosi_VERSION,
       'author'         => 'Paul Durieux',
       'license'        => '',
-      'homepage'       => 'https://github.com/HayZun/cartosi',
+      'homepage'       => 'https://github.com/pluginsGLPI/Cartosi',
       'requirements'   => [
          'glpi' => [
             'min' => PLUGIN_Cartosi_MIN_GLPI,
