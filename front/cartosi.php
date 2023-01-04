@@ -2,29 +2,29 @@
 
 /**
  * -------------------------------------------------------------------------
- * Example plugin for GLPI
+ * Cartosi plugin for GLPI
  * -------------------------------------------------------------------------
  *
  * LICENSE
  *
- * This file is part of Example.
+ * This file is part of Cartosi.
  *
- * Example is free software; you can redistribute it and/or modify
+ * Cartosi is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- * Example is distributed in the hope that it will be useful,
+ * Cartosi is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Example. If not, see <http://www.gnu.org/licenses/>.
+ * along with Cartosi. If not, see <http://www.gnu.org/licenses/>.
  * -------------------------------------------------------------------------
- * @copyright Copyright (C) 2006-2022 by Example plugin team.
+ * @copyright Copyright (C) 2006-2022 by Cartosi plugin team.
  * @license   GPLv2 https://www.gnu.org/licenses/gpl-2.0.html
- * @link      https://github.com/pluginsGLPI/example
+ * @link      https://github.com/pluginsGLPI/Cartosi
  * -------------------------------------------------------------------------
  */
 
@@ -33,17 +33,18 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
+use GlpiPlugin\Cartosi\Cartosi;
 
 include ('../../../inc/includes.php');
 
 if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
-   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Example::class, "");
+   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Cartosi::class, "");
 } else {
    Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
 }
 
-$example = new Example();
-$example->display($_GET);
+//checkTypeRight(Cartosi::class,"r");
+
+Search::show(Cartosi::class);
 
 Html::footer();
