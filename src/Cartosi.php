@@ -301,6 +301,7 @@ class Cartosi extends CommonDBTM {
                if (0 == $count) {
                   //application doesn't exist in db of glpi
                   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
+                  $nbapps = $nbapps + 1;
                } else {
                   //application exists
                   $req = $DB->query("UPDATE `glpi_plugin_cartosi_cartosis` 
@@ -311,26 +312,11 @@ class Cartosi extends CommonDBTM {
                                           `check` = $datecheck
                                      WHERE id_app = $idapp");
                }
-               $task->log("$count");
-               $bool = true;
-               $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_cartosis");
-               foreach($req as $row) {
-                  //if name_app == glpiname, no insert data
-                  if ($row["Name"] == $name) {
-                     $bool = false;
-                  }
-               }
-               if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
-                  $task->log("$name");
-                  $name = "";
-                  $description = "";
-                  $domain = "";
-                  $teamleader = "";
-                  $datecheck = "";
-                  $nbapps = $nbapps + 1;
-                  }
-               }
+               $name = "";
+               $description = "";
+               $domain = "";
+               $teamleader = "";
+               $datecheck = "";
                if ($nbapps > 0) {
                   $task->log("$nbapps applications ajoutées");
                } else {
@@ -342,4 +328,5 @@ class Cartosi extends CommonDBTM {
       }
          return 1;
       }
+   }
 }
