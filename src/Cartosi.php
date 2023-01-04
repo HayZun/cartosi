@@ -267,7 +267,7 @@ class Cartosi extends CommonDBTM {
                   if (strpos($valeur, "id") !== false) {
                      $idapp = $value1;
                   }
-                  $req = $DB->query("SELECT `COUNT(*)` FROM glpi_plugin_cartosi_cartosis WHERE id_app=$idapp");
+                  $req = $DB->query("SELECT `COUNT(*)` FROM glpi_plugin_cartosi_cartosis WHERE id_app='$idapp'");
                   $task->log($req["COUNT(*)"]);
                   if (strpos($valeur, "label") !== false) {
                      $name = str_replace("'", " ","$value1");
