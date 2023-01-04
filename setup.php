@@ -50,8 +50,8 @@ function plugin_init_cartosi() {
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
    $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
 
-   $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
-                                             'tools'   => Cartosi::class];
+   //$PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
+    //                                         'tools'   => Cartosi::class];
 
    if (Plugin::isPluginActive('cartosi')) {
 
