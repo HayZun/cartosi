@@ -33,17 +33,17 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Example\Example;
+use GlpiPlugin\Cartosi\Cartosi;
 
 include ('../../../inc/includes.php');
 
 if ($_SESSION["glpiactiveprofile"]["interface"] == "central") {
-   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Example::class, "");
+   Html::header("TITRE", $_SERVER['PHP_SELF'], "plugins", Cartosi::class, "");
 } else {
    Html::helpHeader("TITRE", $_SERVER['PHP_SELF']);
 }
 
-$example = new Example();
+$example = new Cartosi();
 $example->display($_GET);
 
 Html::footer();

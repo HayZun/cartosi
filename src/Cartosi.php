@@ -33,12 +33,12 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-namespace GlpiPlugin\Example;
+namespace GlpiPlugin\Cartosi;
 use CommonDBTM;
 use CommonGLPI;
 
 // Class of the defined type
-class Example extends CommonDBTM {
+class Cartosi extends CommonDBTM {
 
    static $tags = '[EXAMPLE_ID]';
 
@@ -50,8 +50,8 @@ class Example extends CommonDBTM {
 
    static function canCreate() {
 
-      if (isset($_SESSION["glpi_plugin_example_profile"])) {
-         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w');
+      if (isset($_SESSION["glpi_plugin_cartosi_profile"])) {
+         return ($_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'w');
       }
       return false;
    }
@@ -59,9 +59,9 @@ class Example extends CommonDBTM {
 
    static function canView() {
 
-      if (isset($_SESSION["glpi_plugin_example_profile"])) {
-         return ($_SESSION["glpi_plugin_example_profile"]['example'] == 'w'
-                 || $_SESSION["glpi_plugin_example_profile"]['example'] == 'r');
+      if (isset($_SESSION["glpi_plugin_cartosi_profile"])) {
+         return ($_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'w'
+                 || $_SESSION["glpi_plugin_cartosi_profile"]['cartosi'] == 'r');
       }
       return false;
    }
@@ -82,7 +82,7 @@ class Example extends CommonDBTM {
       global $CFG_GLPI;
       $links = [];
 
-      $links['config'] = '/plugins/example/front/config.php';
+      $links['config'] = '/plugins/cartosi/front/config.php';
       return $links;
    }
 
@@ -110,7 +110,7 @@ class Example extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-      $req = $DB->query("SELECT * FROM glpi_plugin_example_examples where id=$ID");
+      $req = $DB->query("SELECT * FROM glpi_plugin_cartosi_cartosis where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
          $domain = $row["domain"];
@@ -179,7 +179,7 @@ class Example extends CommonDBTM {
 
       switch ($name) {
          case 'CartoSI' :
-            return ['description' => __('Synchronisation application CartoSI à GLPI', 'example')];
+            return ['description' => __('Synchronisation application CartoSI à GLPI', 'cartosi')];
       }
       return [];
    }
@@ -239,7 +239,7 @@ class Example extends CommonDBTM {
             //import appplication from cartoSI to GLPI
 
             //delete old database
-            $req = $DB->query('TRUNCATE TABLE glpi_plugin_example_examples');
+            $req = $DB->query('TRUNCATE TABLE glpi_plugin_cartosi_cartosis');
 
             $curl = curl_init();
 
@@ -293,7 +293,7 @@ class Example extends CommonDBTM {
                }
 
                $bool = true;
-               $req = $DB->query("SELECT `Name` FROM glpi_plugin_example_examples");
+               $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_cartosis");
                foreach($req as $row) {
                   //if name_app == glpiname, no insert data
                   if ($row["Name"] == $name) {
@@ -301,7 +301,7 @@ class Example extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_example_examples` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
 
                   $name = "";
