@@ -264,11 +264,13 @@ class Cartosi extends CommonDBTM {
             $nbapps = 0;
             foreach( $data as $key => $value ) {
                foreach( $value as $valeur => $value1 ) {
-                  if (strpos($valeur, "label") !== false) {
-                     $name = str_replace("'", " ","$value1");
-                  }
                   if (strpos($valeur, "id") !== false) {
                      $idapp = $value1;
+                  }
+                  $req = $DB->query("SELECT `COUNT(*)` FROM glpi_plugin_cartosi_cartosis WHERE id_app=$idapp");
+                  $task->log($req["COUNT(*)"]);
+                  if (strpos($valeur, "label") !== false) {
+                     $name = str_replace("'", " ","$value1");
                   }
                   if (strpos($valeur, "description") !== false) {
                      $description = str_replace("'", " ","$value1");
@@ -306,7 +308,6 @@ class Cartosi extends CommonDBTM {
                if($bool == true) {
                   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
-                  $task->log("$idapp");
                   $name = "";
                   $description = "";
                   $domain = "";
