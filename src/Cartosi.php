@@ -323,10 +323,10 @@ class Cartosi extends CommonDBTM {
                   $task->log("Pas d'applications ajoutées");
                }
             }  
+         } 
       } else {
          $task->log("Token/tenant invalide");
       }
-         return 1;
-      }
+      return 1;
    }
 }
