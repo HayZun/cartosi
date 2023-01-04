@@ -267,6 +267,9 @@ class Cartosi extends CommonDBTM {
                   if (strpos($valeur, "label") !== false) {
                      $name = str_replace("'", " ","$value1");
                   }
+                  if (strpos($valeur, "id") !== false) {
+                     $idapp = $value1;
+                  }
                   if (strpos($valeur, "description") !== false) {
                      $description = str_replace("'", " ","$value1");
                   }
@@ -279,17 +282,17 @@ class Cartosi extends CommonDBTM {
                         }
                      }
                   }
-               if (strpos($valeur, "teamleader") !== false) {
-                        foreach($value1 as $valeur2 => $value2) {
-                           if (strpos($valeur2, "label") !== false) {
-                                 $teamleader = $value2;
+                  if (strpos($valeur, "teamleader") !== false) {
+                           foreach($value1 as $valeur2 => $value2) {
+                              if (strpos($valeur2, "label") !== false) {
+                                    $teamleader = $value2;
+                              }
                            }
                         }
-                     }
-               if (strpos($valeur, "dateMaj") !== false) {
-                     $quotient = $value1 / 1000;    
-                     $datecheck = date('Y-m-d', $quotient);
-                     }
+                  if (strpos($valeur, "dateMaj") !== false) {
+                        $quotient = $value1 / 1000;    
+                        $datecheck = date('Y-m-d', $quotient);
+                        }
                }
 
                $bool = true;
@@ -301,7 +304,7 @@ class Cartosi extends CommonDBTM {
                   }
                }
                if($bool == true) {
-                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`idapp`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
                   $task->log("$name");
 
                   $name = "";
@@ -309,7 +312,6 @@ class Cartosi extends CommonDBTM {
                   $domain = "";
                   $teamleader = "";
                   $datecheck = "";
-
                   $nbapps = $nbapps + 1;
                   }
                }
