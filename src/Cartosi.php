@@ -294,8 +294,10 @@ class Cartosi extends CommonDBTM {
                         $datecheck = date('Y-m-d', $quotient);
                         }
                }
-               $req = $DB->query("SELECT `COUNT(*)` FROM glpi_pluginz_cartosi_cartosis WHERE id_app=$idapp");
+               $req = $DB->query("SELECT `COUNT(*)` FROM glpi_pluginz_cartosi_cartosis WHERE id_app=".$idapp);
+               $task->log("SELECT `COUNT(*)` FROM glpi_pluginz_cartosi_cartosis WHERE id_app=".$idapp);
                $task->log($req["COUNT(*)"]);
+               $task->log(var_dump($req));
                $bool = true;
                $req = $DB->query("SELECT `Name` FROM glpi_plugin_cartosi_cartosis");
                foreach($req as $row) {
