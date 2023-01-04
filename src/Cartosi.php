@@ -309,7 +309,8 @@ class Cartosi extends CommonDBTM {
                                          `description` = $description,
                                           `domain` = $domain,
                                           `leader` = $teamleader,
-                                          `check` = $datecheck
+                                          `check` = $datecheck,
+                                          `id_app` = $idapp
                                      WHERE id_app = $idapp");
                }
                $name = "";
