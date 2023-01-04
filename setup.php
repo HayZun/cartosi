@@ -29,7 +29,7 @@
  */
 
 use Glpi\Plugin\Hooks;
-use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\cartosi\cartosi;
 
 define('PLUGIN_Cartosi_VERSION', '0.0.1');
 

@@ -33,7 +33,7 @@
 // Purpose of file:
 // ----------------------------------------------------------------------
 
-use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\cartosi\Cartosi;
 
 include ('../../../inc/includes.php');
 
