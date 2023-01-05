@@ -64,6 +64,10 @@ function plugin_init_cartosi() {
    $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
    $PLUGIN_HOOKS[Hooks::CSRF_COMPLIANT]['cartosi'] = true;
+
+   // Add specific files to add to the header : javascript or css
+   $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['example'] = 'cartosi.js';
+   $PLUGIN_HOOKS[Hooks::ADD_CSS]['example']        = 'cartosi.css';
 }
 
 /**
