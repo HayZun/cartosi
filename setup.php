@@ -76,7 +76,7 @@ function plugin_version_cartosi() {
    return [
       'name'           => 'Synchronization Carto-SI',
       'version'        => PLUGIN_CARTOSI_VERSION,
-      'author'         => 'Paul Durieux',
+      'author'         => 'Data-Expertise',
       'license'        => '',
       'homepage'       => 'https://github.com/HayZun/cartosi',
       'requirements'   => [
