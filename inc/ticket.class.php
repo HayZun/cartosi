@@ -41,10 +41,7 @@ class PluginCartosiTicket extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
-      $sampleArray = array(
-         0 => "Geeks", 
-         1 => "for", 
-         2 => "Geeks", 
+      $sampleArray = array("papa"
       );
       $fruit = "fraise";
       echo "<center>";
