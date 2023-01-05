@@ -41,6 +41,11 @@ class PluginCartosiTicket extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB;
+      $sampleArray = array(
+         0 => "Geeks", 
+         1 => "for", 
+         2 => "Geeks", 
+      );
 
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
@@ -51,7 +56,8 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '</form>';
       echo "</center>";
       echo "<script>";
-      echo 'autocomplete(document.getElementById("myInput"), countries);';
+      echo "var toto = <?php echo json_encode($sampleArray); ?>";
+      echo 'autocomplete(document.getElementById("myInput"), toto);';
       echo "</script>";
    }
 
