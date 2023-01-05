@@ -49,7 +49,6 @@ class PluginCartosiTicket extends CommonDBTM {
          echo "</div>";
       echo '</form>';
       echo "</center>";
-
    }
 
 
