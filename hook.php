@@ -82,6 +82,7 @@ function plugin_cartosi_install() {
             'comment'   => '',
             'mode'      => Crontask::MODE_EXTERNAL
          ));
+
    return true;
 }
 
