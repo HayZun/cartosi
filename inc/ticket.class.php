@@ -46,7 +46,7 @@ class PluginCartosiTicket extends CommonDBTM {
          1 => "for", 
          2 => "Geeks", 
       );
-
+      $fruit = "fraise";
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo '<form autocomplete="off" action="/action_page.php">';
@@ -57,7 +57,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "</center>";
       echo '<script type=text/javascript>';
       echo 'const fruits = [];';
-      echo 'fruits.push("banana", "apple", "peach");';
+      echo 'fruits.push("'.$fruit.'", "apple", "peach");';
       echo 'autocomplete(document.getElementById("myInput"), fruits);';
       echo "</script>";
    }
