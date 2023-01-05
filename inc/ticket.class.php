@@ -43,8 +43,14 @@ class PluginCartosiTicket extends CommonDBTM {
       global $CFG_GLPI, $DB;
       echo "<center>";
       echo "<h1>Applications Carto-SI :</h1>";
-      echo "Polo";
+      echo '<form autocomplete="off" action="/action_page.php">';
+         echo '<div class="autocomplete" style="width:300px;">';
+         echo '<input id="myInput" type="text" name="myCountry" placeholder="Country">';
+         echo "</div>";
+      echo '<input type="submit">';
+      echo '</form>';
       echo "</center>";
+
    }
 
 
