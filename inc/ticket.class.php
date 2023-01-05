@@ -57,7 +57,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "</center>";
       echo '<script type=text/javascript>';
       echo 'const fruits = [];';
-      echo 'fruits.push("'.$fruit.'", "apple", "peach");';
+      echo 'fruits.push("'.$sampleArray.'", "apple", "peach");';
       echo 'autocomplete(document.getElementById("myInput"), fruits);';
       echo "</script>";
    }
