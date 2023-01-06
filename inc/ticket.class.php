@@ -48,6 +48,10 @@ class PluginCartosiTicket extends CommonDBTM {
       echo $path;
       echo "<br>";
       echo $DB->dbhost;
+      echo $DB->dbpassword;
+      echo $DB->dbuser;
+      echo $DB->dbdefault;
+      echo $DB->dbhost;
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo '<form autocomplete="off" action="/action_page.php">';
