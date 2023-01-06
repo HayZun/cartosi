@@ -41,15 +41,17 @@ class PluginCartosiTicket extends CommonDBTM {
 
    static function showForTicket(Ticket $ticket) {
       global $CFG_GLPI, $DB, $GLPI_CONFIG_DIR;
-      $sampleArray = array("papa"
-      );
-      $fruit = "fraise";
+
       $path = GLPI_CONFIG_DIR."/config_db.php";
 
       //echo $DB->dbhost;
       //retrieve tab names :
+      $phpvar = json_encode(["Apple", "Banana", "Cherry"]);
+      echo $phpvar;
       $req = $DB->query("SELECT name FROM glpi_plugin_cartosi_cartosis");
-
+      foreach($req as $row) {
+         echo $row['name'];
+      }
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo '<form autocomplete="off" action="/action_page.php">';
