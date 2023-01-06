@@ -44,7 +44,8 @@ class PluginCartosiTicket extends CommonDBTM {
       $sampleArray = array("papa"
       );
       $fruit = "fraise";
-      echo GLPI_CONFIG_DIR;
+      $path = GLPI_CONFIG_DIR."/config_db.php";
+      echo $path;
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo '<form autocomplete="off" action="/action_page.php">';
