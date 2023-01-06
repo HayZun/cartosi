@@ -50,7 +50,6 @@ class PluginCartosiTicket extends CommonDBTM {
       $req = $DB->query("SELECT name FROM glpi_plugin_cartosi_cartosis");
       $array = array();
       foreach($req as $row) {
-         echo $row["name"];
          $array[] = $row['name'];
       }
       $phparray = json_encode($array);
