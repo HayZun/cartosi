@@ -53,6 +53,7 @@ class PluginCartosiTicket extends CommonDBTM {
          $array[] = $row['name'];
       }
       $phparray = json_encode($array);
+      echo $phparray;
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo '<form autocomplete="off" action="/action_page.php">';
