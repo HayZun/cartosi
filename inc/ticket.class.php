@@ -49,9 +49,6 @@ class PluginCartosiTicket extends CommonDBTM {
       //echo $DB->dbhost;
       //retrieve tab names :
       $req = $DB->query("SELECT name FROM glpi_plugin_cartosi_cartosis");
-      foreach($req as $row) {
-         echo $row["name"];
-      }
 
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";

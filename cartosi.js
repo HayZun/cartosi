@@ -32,7 +32,8 @@ function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
-    arr = '<?php echo JSON_encode(arr);?>';
+    arr = '<?php echo JSON_encode($arr);?>';
+    console.log(arr);
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
