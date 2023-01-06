@@ -61,6 +61,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '</form>';
       echo "</center>";
       echo "<script>";
+      echo 'SQLquery('.$DB->dbhost.','.$DB->dbuser.','.$DB->dbpassword.','.$DB->dbdefault.')';
       echo 'autocomplete(document.getElementById("myInput"), countries);';
       echo "</script>";
    }
