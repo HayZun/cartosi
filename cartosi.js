@@ -124,24 +124,3 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
   }
-  
-  function SQLquery() {
-    var mysql = require('mysql');
-
-    var con = mysql.createConnection({
-      host: "localhost",
-      user: "user",
-      password: "dH687UL%211DGftcZvk",
-      database: "glpidb"
-    });
-
-    con.connect(function(err) {
-      if (err) throw err;
-      con.query("SELECT name FROM glpi_cartosi_cartosis", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
-    });
-    return result;
-  }
-  console.log(SQLquery());
