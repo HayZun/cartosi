@@ -62,7 +62,9 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '</form>';
       echo "</center>";
       echo "<script>";
-      echo 'autocomplete(document.getElementById("myInput"), countries);';
+      echo "fruits = []";
+      echo 'var array = <?php echo json_encode("'.$data'"); ?>';
+      echo 'autocomplete(document.getElementById("myInput"), array);';
       echo 'SQLquery()';
       echo "</script>";
    }
