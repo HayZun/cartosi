@@ -124,7 +124,3 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
   }
-
-function myFunction(description) {
-  document.getElementById(description).value = "Johnny Bravo";
-}
