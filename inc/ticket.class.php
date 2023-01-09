@@ -73,19 +73,16 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "var jsvar = JSON.parse('".$phparray."');";
       echo 'autocomplete(document.getElementById("myInput"), jsvar);';
       echo "</script>";
-      $mytitle = "The title of my email";
-      $$body = "This email will contain this";
-      $email = <<<heredocEmail
-      <div id="outer">
-         <div id="left">
-            if(!empty($title))
-                  <h1>{$title}</h1>
-            <p>{$body}</p>
-         </div>
-         <div id="right">What we offer</div>
-      </div>
-      heredocEmail;
-      echo $email;
+      $edpresso = <<<justRandomSpecifier
+      Write interractive byte sized shots<br>
+      You can Write on:<br>
+      1. Web development<br>
+      2. Dev OPS<br>
+      3. Machine learning<br>
+      4. Datascience <br>
+      5. Networking etc.
+      justRandomSpecifier;
+      echo $edpresso;
    }
 
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
