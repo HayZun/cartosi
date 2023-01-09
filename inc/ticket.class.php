@@ -63,7 +63,6 @@ class PluginCartosiTicket extends CommonDBTM {
          $leader[$row["name"]] = $row["leader"];
          $check[$row["name"]] = $row["check"];
       }
-      echo var_dump($description);
       $phparray = json_encode($array);
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
