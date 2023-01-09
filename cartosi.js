@@ -124,3 +124,8 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
   }
+
+function changeText(){
+  var element = document.getElementById("description");
+  element.innerHTML = "Hello World!";
+}

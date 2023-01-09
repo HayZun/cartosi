@@ -62,7 +62,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<div class="autocomplete" style="width:300px;">';
       echo '<input id="myInput" type="text" placeholder="Applications">';
       echo "</div>";
-      echo '<input type="submit" onclick="myFunction()">';
+      echo '<input type="submit" onclick="changeText()">';
       echo "</center>";
       echo "<br>";
       echo "<br>";
