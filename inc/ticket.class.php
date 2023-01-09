@@ -68,7 +68,17 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<br>";
       echo "<br>";
       echo '<label for="Description">Description : </label>';
-      echo '<input id="MyText">';
+      echo '<input id="description">';
+      echo '<br>';
+      echo '<label for="Description">Domain : </label>';
+      echo '<input id="domain">';
+      echo '<br>';
+      echo '<label for="Description">Leader : </label>';
+      echo '<input id="leader">';
+      echo '<br>';
+      echo '<label for="Description">Check : </label>';
+      echo '<input id="check">';
+      echo '<br>';
       echo "<script type=text/javascript>";
       echo 'function myFunction() {
          document.getElementById("MyText").value = document.getElementById("myInput").value;
