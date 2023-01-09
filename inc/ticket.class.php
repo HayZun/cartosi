@@ -95,7 +95,17 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<input id="check"size="50">';
       echo '<br>';
       echo '<br>';
+      echo '<div id="div_donnees" style="width: 100px;height:100px;background:yellow;"></div>';
+      echo '<button id="bouton" >POST</button>';
       echo "<script type=text/javascript>";
+      echo "$('#bouton').click(function() {
+         //mettre directement le nom du fichier php
+         var url = './ajax_donnees.php';
+         $.post(url, function(data){
+              $('#data').html(data);
+            });
+      });";
+
       echo 'function myFunction() {
          document.getElementById("description").value = document.getElementById("myInput").value;
        }';
