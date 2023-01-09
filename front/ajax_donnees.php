@@ -1,7 +1,6 @@
 <?php
 // Entry menu case
-
-Session::checkRight("config", "w");
+Session::checkRight("cartosi", "w");
 
 function testajax(){
     echo "coucou ajax";
