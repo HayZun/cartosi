@@ -102,14 +102,6 @@ class Cartosi extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
-      echo "<tr class='tab_bg_1'>";
-
-      echo "<td>" . __('<strong>ID</strong>') . "</td>";
-      echo "<td>";
-      echo $ID;
-      echo "</td>";
-      echo "</tr>";
-
       $req = $DB->query("SELECT * FROM glpi_plugin_cartosi_cartosis where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
