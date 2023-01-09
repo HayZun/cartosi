@@ -51,11 +51,19 @@ class PluginCartosiTicket extends CommonDBTM {
       foreach($req as $row) {
          $array[] = $row['name'];
       }
-      $req = $DB->query("SELECT name,description,check,leader FROM glpi_plugin_cartosi_cartosis");
-      $array = array();
+      $req = $DB->query("SELECT * FROM glpi_plugin_cartosi_cartosis");
+      
+      $description = array();
+      $domain = array();
+      $leader = array();
+      $check = array();
       foreach($req as $row) {
-         $array[] = $row['name'];
+         $description[$row["name"]] = $row['description'];
+         $domain[$row["name"]] = $row["domain"];
+         $leader[$row["name"]] = $row["leader"];
+         $check[$row["name"]] = $row["check"];
       }
+      echo $description;
       $phparray = json_encode($array);
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
