@@ -64,9 +64,7 @@ class PluginCartosiTicket extends CommonDBTM {
          $check[$row["name"]] = $row["check"];
       }
       $phpdescription = json_encode($description);
-      echo $phpdescription;
       $phparray = json_encode($array);
-      echo $phparray;
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo "<br>";
@@ -99,6 +97,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<br>';
       echo "<script type=text/javascript>";
       echo 'function myFunction() {
+         var data_js = <?php print $phpdescription;?>;
          document.getElementById("description").value = document.getElementById("myInput").value;
        }';
       echo "var jsvar = JSON.parse('".$phparray."');";
