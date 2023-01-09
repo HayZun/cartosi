@@ -100,7 +100,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<script type=text/javascript>";
       echo "$('#bouton').click(function() {
          //mettre directement le nom du fichier php
-         var url = '/ajax/ajax_donnees.php';
+         var url = 'ajax_donnees.php';
          $.post(url, function(data){
               $('#data').html(data);
             });
