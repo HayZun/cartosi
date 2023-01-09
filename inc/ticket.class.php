@@ -88,7 +88,6 @@ class PluginCartosiTicket extends CommonDBTM {
       echo $email;
    }
 
-
    function getTabNameForItem(CommonGLPI $item, $withtemplate = 0) {
 
       if ($item->getType() == 'Ticket') {
@@ -105,3 +104,4 @@ class PluginCartosiTicket extends CommonDBTM {
       return true;
    }
 }
+?>
