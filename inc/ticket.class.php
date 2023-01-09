@@ -46,8 +46,12 @@ class PluginCartosiTicket extends CommonDBTM {
 
       //echo $DB->dbhost;
       //retrieve tab names :
-      $phpvar = json_encode(["Apple", "Banana", "Cherry"]);
       $req = $DB->query("SELECT name FROM glpi_plugin_cartosi_cartosis");
+      $array = array();
+      foreach($req as $row) {
+         $array[] = $row['name'];
+      }
+      $req = $DB->query("SELECT name,description,check,leader FROM glpi_plugin_cartosi_cartosis");
       $array = array();
       foreach($req as $row) {
          $array[] = $row['name'];
