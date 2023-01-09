@@ -125,7 +125,7 @@ function autocomplete(inp, arr) {
     });
   }
 
-function changeText(){
+function changeText() {
   var element = document.getElementById("description");
   element.innerHTML = "Hello World!";
 }
