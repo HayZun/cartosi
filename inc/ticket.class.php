@@ -75,7 +75,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "</script>";
       $mytitle = "The title of my email";
       $$body = "This email will contain this";
-      $email = <<< heredocEmail
+      $email = <<<heredocEmail
       <div id="outer">
          <div id="left">
             if(!empty($title))
