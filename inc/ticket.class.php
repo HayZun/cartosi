@@ -108,6 +108,9 @@ class PluginCartosiTicket extends CommonDBTM {
       });";
 
       echo 'function myFunction() {
+         $.post(/plugins/cartosi/front/ajax_donnees.php, function(data){
+            $("#data").html(data);
+         });
          document.getElementById("description").value = document.getElementById("myInput").value;
        }';
       echo "var jsvar = JSON.parse('".$phparray."');";
