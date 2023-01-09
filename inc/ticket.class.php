@@ -97,6 +97,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<br>';
       echo '<div id="div_donnees" style="width: 100px;height:100px;background:yellow;"></div>';
       echo '<button id="bouton" >POST</button>';
+      echo '<div id="data"></div>';
       echo "<script type=text/javascript>";
       echo "$('#bouton').click(function() {
          //mettre directement le nom du fichier php
