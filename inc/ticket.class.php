@@ -66,6 +66,7 @@ class PluginCartosiTicket extends CommonDBTM {
       $phpdescription = json_encode($description);
       echo $phpdescription;
       $phparray = json_encode($array);
+      echo $phpdescription;
       echo "<center>";
       echo "<h1>Carto-SI :</h1>";
       echo "<br>";
