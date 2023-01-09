@@ -18,8 +18,8 @@ Applications from Carto-SI are imported on the menu Plugin/Carto-SI.
 ## Installation
 
 On your host glpi :
-go on /var/www/html/glpi/plugins/
+Go on /var/www/html/plugins/
 ```sh
-cd /var/www/html/glpi/plugins/
+cd /var/www/html/plugins/
 git clone https://github.com/HayZun/cartosi.git
 ```
