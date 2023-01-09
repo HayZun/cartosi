@@ -69,11 +69,22 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<br>";
       echo '<label for="Description">Description : </label>';
       echo '<p id="description"></p>';
-      $edpresso = <<<justRandomSpecifier
       echo "<script>";
       echo "var jsvar = JSON.parse('".$phparray."');";
       echo 'autocomplete(document.getElementById("myInput"), jsvar);';
       echo "</script>";
+      $edpresso = <<<justRandomSpecifier
+      <script>
+      var jsvar = JSON.parse('".$phparray."');
+      autocomplete(document.getElementById("myInput"), jsvar);
+      </script>
+      Write interractive byte sized shots<br>
+      You can Write on:<br>
+      1. Web development<br>
+      2. Dev OPS<br>
+      3. Machine learning<br>
+      4. Datascience <br>
+      5. Networking etc.
       justRandomSpecifier;
       echo $edpresso;
    }
