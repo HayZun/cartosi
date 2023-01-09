@@ -58,8 +58,6 @@ function plugin_init_cartosi() {
       $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
                                                 'tools'   => Cartosi::class];
    }
-
-   Plugin::registerClass('PluginCartosiTicket',['addtabon' => ['Ticket']]);
    // Config page
    $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
