@@ -68,7 +68,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<br>";
       echo "<br>";
       echo '<label for="Description">Description : </label>';
-      echo '<p id="description"></p>';
+      echo '<p id="description">Tototo</p>';
       echo "<script type=text/javascript>";
       echo 'function myFunction() {
          document.getElementById("description").value = "Johnny Bravo";
