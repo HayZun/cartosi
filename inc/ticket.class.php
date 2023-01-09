@@ -69,7 +69,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo "<br>";
       echo '<label for="Description">Description : </label>';
       echo '<p id="description"></p>';
-      echo "<script>";
+      echo "<script type=text/javascript>";
       echo "var jsvar = JSON.parse('".$phparray."');";
       echo 'autocomplete(document.getElementById("myInput"), jsvar);';
       echo 'function changeText() {';
