@@ -76,7 +76,7 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<div class="autocomplete" style="width:300px;">';
       echo '<input id="myInput" type="text" placeholder="Applications">';
       echo "</div>";
-      echo '<button onclick="myFunction()">Submit</button>';
+      echo '<button onclick="myFunction($phpdescription)">Submit</button>';
       echo "</center>";
       echo "<br>";
       echo "<br>";
@@ -98,10 +98,10 @@ class PluginCartosiTicket extends CommonDBTM {
       echo '<br>';
       echo '<br>';
       echo "<script type=text/javascript>";
-      echo 'function myFunction() {
+      echo 'function myFunction(description) {
+         console.log(description);
          document.getElementById("description").value = document.getElementById("myInput").value;
        }';
-      echo "var jsdesc = JSON.parse('".$phpdescription."');";
       echo "var jsvar = JSON.parse('".$phparray."');";
       echo 'autocomplete(document.getElementById("myInput"), jsvar);';
       echo "</script>";
