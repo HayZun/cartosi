@@ -1,8 +1,8 @@
 <?php
-
-function testajax(){
-    echo "coucou ajax";
-}
- 
-testajax();
+if (\Session::haveRight(self::$rightname, CREATE)) {
+    function testajax(){
+        echo "coucou ajax";
+    }
+     
+    testajax();
 ?>
