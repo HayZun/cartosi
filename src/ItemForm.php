@@ -62,8 +62,9 @@ class ItemForm {
             echo '<h2>Carto-SI : </h2>';
             echo "<br>";
             echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
+            echo '<p><input type="submit" value="OK"></p>';
+            echo '</form>';
             echo "<br>";
-            echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
             HTML::closeForm();
       }
    }
