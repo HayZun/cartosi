@@ -58,9 +58,14 @@ class ItemForm {
                   }
                }
             }
-            echo $id;
-            echo 'Carto-SI <input type="text" value="toto" size=2/>';
+            echo '<form method="post" action="formulaire.php">';
+            echo "<center>";
+            echo '<h2>Carto-SI : </h2>';
+            echo "<br>";
+            echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
+            echo "<br>";
             echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
+            HTML::closeForm();
       }
    }
 }
