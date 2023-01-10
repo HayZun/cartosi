@@ -49,10 +49,11 @@ class ItemForm {
    static public function postItemForm($params) {
       $item = $params['item'];
       $options = $params['options'];
-      echo "$ID";
       switch ($item::getType()) {
          case "Ticket":
-            var_dump($params);
+            foreach($item as $key => $element) {
+               echo $key . " - " . $element."<br />";
+            }
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
       }
    }
