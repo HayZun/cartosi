@@ -49,7 +49,6 @@ class ItemForm {
    static public function postItemForm($params) {
       $item = $params['item'];
       $options = $params['options'];
-      var_dump($item["fields"]);
       switch ($item::getType()) {
          case "Ticket":
             foreach($item as $key => $element) {
