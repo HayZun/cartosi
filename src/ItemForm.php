@@ -67,9 +67,7 @@ class ItemForm {
             echo "$('#bouton').click(function() {
                //mettre directement le nom du fichier php
                var url = '/plugins/cartosi/front/ajax_donnees.php';
-               $.post(url, function(data){
-                    $('#data').html(data);
-                  });
+               console.log(url);
             });";
             echo '</script>';
       }
