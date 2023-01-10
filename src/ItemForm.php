@@ -60,7 +60,7 @@ class ItemForm {
             }
             echo $_POST['token'];
             echo "test";
-            echo '<form method="post" action="https://support-preprod.data-expertise.com/front/ticket.form.php?id=2021120632">';
+            echo '<form method="get" action="https://support-preprod.data-expertise.com/front/ticket.form.php?id=2021120632">';
             echo 'Carto-SI : ';
             echo "<br>";
             echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
