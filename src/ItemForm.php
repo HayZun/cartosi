@@ -59,7 +59,6 @@ class ItemForm {
                }
             }
             echo '<form method="post" action="formulaire.php">';
-            echo "<center>";
             echo '<h2>Carto-SI : </h2>';
             echo "<br>";
             echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
