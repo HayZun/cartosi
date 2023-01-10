@@ -70,6 +70,5 @@ class ItemForm {
             echo "<br>";
       }
       Html::closeForm();
-      Html::footer();
    }
 }
