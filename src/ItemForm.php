@@ -66,7 +66,6 @@ class ItemForm {
             echo '<p><input type="submit" value="OK"></p>';
             echo '</form>';
             echo "<br>";
-            HTML::closeForm();
       }
    }
 }
