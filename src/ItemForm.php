@@ -53,9 +53,7 @@ class ItemForm {
          case "Ticket":
             foreach($item as $key => $element) {
                foreach($element as $keys => $elements) {
-                  if(strcmp($keys,"id")) {
-                     echo $keys . " - " . $elements."<br />";
-                  }
+                  echo $keys . " - " . $elements."<br />";
                }
             }
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
