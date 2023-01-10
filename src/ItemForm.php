@@ -54,7 +54,7 @@ class ItemForm {
             foreach($item as $key => $element) {
                foreach($element as $keys => $elements) {
                   if($keys == "id") {
-                     echo $key. $keys . " - " . $elements."<br />";
+                     $id = $elements;
                   }
                }
             }
