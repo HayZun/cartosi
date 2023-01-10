@@ -58,15 +58,10 @@ class ItemForm {
                   }
                }
             }
-            echo '<form method="post" action="formulaire.php">';
             echo 'Carto-SI : ';
             echo "<br>";
             echo '<input type="nombre" id="token" name="token" value="'.$token.'"  size="50">';
-            echo '<p><input type="submit" value="OK"></p>';
-            echo '</form>';
-            
-            echo "<br>";
+            echo '<p><input type="submit" value="Update"></p>';
       }
-      Html::closeForm();
    }
 }
