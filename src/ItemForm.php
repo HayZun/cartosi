@@ -60,6 +60,7 @@ class ItemForm {
             }
             echo $id;
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
+            echo Html::submit(_sx('button', 'Sauvegarder'), ['name'  => 'add','class' => 'btn btn-primary']);
       }
    }
 }
