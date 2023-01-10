@@ -58,6 +58,7 @@ class ItemForm {
                   }
                }
             }
+            echo $id;
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
       }
    }
