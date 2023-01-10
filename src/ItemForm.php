@@ -54,7 +54,6 @@ class ItemForm {
          case "Ticket":
             foreach($item as $row) {
                foreach($row as $data) {
-                  echo $item;
                   echo $row;
                   echo $data;
                   echo "<br>";
