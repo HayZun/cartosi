@@ -52,9 +52,10 @@ class ItemForm {
       switch ($item::getType()) {
          case "Ticket":
             foreach($item as $key => $element) {
-               echo $key . " - " . $element."<br />";
                foreach($element as $keys => $elements) {
-                  echo $keys . " - " . $elements."<br />";
+                  if(strcmp($keys,"id")) {
+                     echo $keys . " - " . $elements."<br />";
+                  }
                }
             }
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
