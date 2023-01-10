@@ -60,13 +60,17 @@ class ItemForm {
             }
             echo 'Carto-SI : ';
             echo "<br>";
-            echo '<input type="nombre" id="token" name="token" size="50" ">';
+            echo '<input type="nombre" id="button" name="token" size="50" ">';
             echo '<p><input type="button" value="Update" onclick="myFunction()></p>';
-            echo '<script>';
-            echo ' function myFunction() {
-               document.getElementById("token").innerHTML = "Hello World";
-             }
-            ';
+            
+            echo "<script type=text/javascript>";
+            echo "$('#bouton').click(function() {
+               //mettre directement le nom du fichier php
+               var url = '/plugins/cartosi/front/ajax_donnees.php';
+               $.post(url, function(data){
+                    $('#data').html(data);
+                  });
+            });";
             echo '</script>';
       }
    }
