@@ -60,7 +60,7 @@ class ItemForm {
             }
             echo 'Carto-SI : ';
             echo "<br>";
-            echo '<input type="nombre" id="token" name="token" value="'.$token.'"  size="50">';
+            echo '<input type="nombre" id="token" name="token" size="50">';
             echo '<p><input type="submit" value="Update"></p>';
       }
    }
