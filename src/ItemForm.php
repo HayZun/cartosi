@@ -60,8 +60,14 @@ class ItemForm {
             }
             echo 'Carto-SI : ';
             echo "<br>";
-            echo '<input type="nombre" id="token" name="token" size="50">';
-            echo '<p><input type="submit" value="Update"></p>';
+            echo '<input type="nombre" id="token" name="token" size="50" ">';
+            echo '<p><input type="button" value="Update" onclick="myFunction()></p>';
+            echo '<script>';
+            echo ' function myFunction() {
+               document.getElementById("token").innerHTML = "Hello World";
+             }
+            '
+            echo '</script>';
       }
    }
 }
