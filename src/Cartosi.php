@@ -102,6 +102,14 @@ class Cartosi extends CommonDBTM {
       $this->initForm($ID, $options);
       $this->showFormHeader($options);
 
+      echo "<tr class='tab_bg_1'>";
+
+      echo "<td>" . __('<strong>ID</strong>') . "</td>";
+      echo "<td>";
+      echo $ID;
+      echo "</td>";
+      echo "</tr>";
+
       $req = $DB->query("SELECT * FROM glpi_plugin_cartosi_cartosis where id=$ID");
       foreach($req as $row) {
          $name = $row["name"];
@@ -295,6 +303,7 @@ class Cartosi extends CommonDBTM {
                   $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
                   $nbapps = $nbapps + 1;
                } else {
+                  $task->log("update");
                   //application exists
                   $req = $DB->query("UPDATE glpi_plugin_cartosi_cartosis SET name='".$name."',
                                                                              description='".$description."',

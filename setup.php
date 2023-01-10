@@ -30,6 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Cartosi\ItemForm;
 
 define('PLUGIN_CARTOSI_VERSION', '0.0.1');
 
@@ -58,6 +59,8 @@ function plugin_init_cartosi() {
       $PLUGIN_HOOKS['menu_toadd']['cartosi'] = ['plugins' => Cartosi::class,
                                                 'tools'   => Cartosi::class];
    }
+
+   Plugin::registerClass('PluginCartosiTicket',['addtabon' => ['Ticket']]);
    // Config page
    $PLUGIN_HOOKS['config_page']['cartosi'] = 'front/config.php';
    // CSRF compliance : All actions must be done via POST and forms closed by Html::closeForm();
@@ -66,6 +69,9 @@ function plugin_init_cartosi() {
    // Add specific files to add to the header : javascript or css
    $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['cartosi'] = 'cartosi.js';
    $PLUGIN_HOOKS[Hooks::ADD_CSS]['cartosi']        = 'cartosi.css';
+
+   //add field Carto-SI
+   $PLUGIN_HOOKS[Hooks::POST_ITEM_FORM]['cartosi']   = [ItemForm::class, 'postItemForm'];
 }
 
 /**
