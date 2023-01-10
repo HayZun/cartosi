@@ -52,7 +52,8 @@ class ItemForm {
 
       switch ($item::getType()) {
          case "Ticket":
-            var_dump($item);
+
+            var_dump($item["users":protected]);
             foreach($item as $row) {
                echo $row;
             }
