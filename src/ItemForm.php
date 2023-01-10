@@ -61,7 +61,7 @@ class ItemForm {
             echo 'Carto-SI : ';
             echo "<br>";
             echo '<input type="nombre" id="button" name="token" size="50" ">';
-            echo '<button id="bouton" >POST</button>';
+            echo '<button id="bouton type="button" >POST</button>';
             
             echo "<script type=text/javascript>";
             echo "$('#bouton').click(function() {
