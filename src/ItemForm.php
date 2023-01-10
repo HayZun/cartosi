@@ -60,15 +60,11 @@ class ItemForm {
             }
             echo 'Carto-SI : ';
             echo "<br>";
-            echo '<input type="nombre" id="button" name="token" size="50" ">';
+            echo '<input type="nombre" id="name" name="token" size="50" ">';
             echo '<button id="bouton type="button" >POST</button>';
             
             echo "<script type=text/javascript>";
-            echo "$('#bouton').click(function() {
-               //mettre directement le nom du fichier php
-               var url = '/plugins/cartosi/front/ajax_donnees.php';
-               console.log(url);
-            });";
+            echo "console.log(document.getElementById('name').value)";
             echo '</script>';
       }
    }
