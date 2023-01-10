@@ -52,7 +52,6 @@ class ItemForm {
 
       switch ($item::getType()) {
          case "Ticket":
-            var_dump($item);
             foreach($item as $row) {
                echo $row;
             }
