@@ -49,7 +49,7 @@ class ItemForm {
    static public function postItemForm($params) {
       $item = $params['item'];
       $options = $params['options'];
-
+      echo "$ID";
       switch ($item::getType()) {
          case "Ticket":
             foreach($item as $row) {
