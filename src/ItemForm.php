@@ -51,7 +51,6 @@ class ItemForm {
       $options = $params['options'];
 
       $firstelt = ($item::getType() == Ticket::class ? 'th' : 'td');
-      echo 'Carto-SI';
-      echo '<input type="text" name="example_post_form_hook" id="example_post_form_hook"/>';
+      echo 'Carto-SI <input type="text" name="example_post_form_hook" id="example_post_form_hook"/>';
    }
 }
