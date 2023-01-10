@@ -30,6 +30,7 @@
 
 use Glpi\Plugin\Hooks;
 use GlpiPlugin\Cartosi\Cartosi;
+use GlpiPlugin\Cartosi\ItemForm;
 
 define('PLUGIN_CARTOSI_VERSION', '0.0.1');
 
@@ -68,6 +69,9 @@ function plugin_init_cartosi() {
    // Add specific files to add to the header : javascript or css
    $PLUGIN_HOOKS[Hooks::ADD_JAVASCRIPT]['cartosi'] = 'cartosi.js';
    $PLUGIN_HOOKS[Hooks::ADD_CSS]['cartosi']        = 'cartosi.css';
+
+   //add field Carto-SI
+   $PLUGIN_HOOKS[Hooks::POST_ITEM_FORM]['cartosi']   = [ItemForm::class, 'postItemForm'];
 }
 
 /**
