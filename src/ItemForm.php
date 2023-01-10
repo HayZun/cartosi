@@ -52,7 +52,7 @@ class ItemForm {
 
       switch ($item::getType()) {
          case "Ticket":
-            var_dump($params);
+            echo "$params['tickets_id']";
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
       }
    }
