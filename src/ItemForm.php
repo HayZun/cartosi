@@ -54,6 +54,7 @@ class ItemForm {
             foreach($item as $key => $element) {
                foreach($element as $keys => $elements) {
                   echo $keys;
+                  echo "<br>";
                   if(strcmp($keys,"id")) {
                      echo $keys . " - " . $elements."<br />";
                   }
