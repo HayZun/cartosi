@@ -51,33 +51,6 @@ class ItemForm {
       $options = $params['options'];
 
       $firstelt = ($item::getType() == Ticket::class ? 'th' : 'td');
-
-      $out = '<tr><th colspan="' . (isset($options['colspan']) ? $options['colspan'] * 2 : '4') . '">';
-      $out .= sprintf(
-         __('Start %1$s hook call for %2$s type'),
-         'post_item_form',
-         $item::getType()
-      );
-      $out .= '</th></tr>';
-
-      $out .= "<tr><$firstelt>";
-      $out .= '<label for="example_post_form_hook">' . __('First post form hook') . '</label>';
-      $out .= "</$firstelt><td>";
-      $out .= '<input type="text" name="example_post_form_hook" id="example_post_form_hook"/>';
-      $out .= "</td><$firstelt>";
-      $out .= '<label for="example_post_form_hook2">' . __('Second post form hook') . '</label>';
-      $out .= "</$firstelt><td>";
-      $out .= '<input type="text" name="example_post_form_hook2" id="example_post_form_hook2"/>';
-      $out .= '</td></tr>';
-
-      $out .= '<tr><th colspan="' . (isset($options['colspan']) ? $options['colspan'] * 2 : '4') . '">';
-      $out .= sprintf(
-         __('End %1$s hook call for %2$s type'),
-         'post_item_form',
-         $item::getType()
-      );
-      $out .= '</th></tr>';
-
-      echo $out;
+      echo "Carto-SI";
    }
 }
