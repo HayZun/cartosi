@@ -52,6 +52,7 @@ class ItemForm {
 
       switch ($item::getType()) {
          case "Ticket":
+            echo $item["ticket_User"];
             foreach($item as $row) {
                echo $row;
             }
