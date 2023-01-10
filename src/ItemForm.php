@@ -64,6 +64,7 @@ class ItemForm {
             echo '<button id="bouton type="button" >POST</button>';
             
             echo "<script type=text/javascript>";
+            echo "console.log('toto')";
             echo "console.log(document.getElementById('name').value)";
             echo '</script>';
       }
