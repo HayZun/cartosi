@@ -66,7 +66,7 @@ class ItemForm {
             echo ' function myFunction() {
                document.getElementById("token").innerHTML = "Hello World";
              }
-            '
+            ';
             echo '</script>';
       }
    }
