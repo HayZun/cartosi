@@ -58,6 +58,7 @@ class ItemForm {
                   }
                }
             }
+            echo $_POST['token'];
             echo '<form method="post" action="formulaire.php">';
             echo '<h2>Carto-SI : </h2>';
             echo "<br>";
