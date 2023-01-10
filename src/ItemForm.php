@@ -60,13 +60,16 @@ class ItemForm {
             }
             echo $_POST['token'];
             echo "test";
-            echo '<form method="post" action="formulaire.php">';
+            echo '<form method="post" action="./formulaire.php">';
             echo 'Carto-SI : ';
             echo "<br>";
             echo '<input type="nombre" id="token" name="token" placeholder="Entrer le token de API carto-si" value="'.$token.'"  size="50">';
             echo '<p><input type="submit" value="OK"></p>';
             echo '</form>';
+            
             echo "<br>";
       }
+      Html::closeForm();
+      Html::footer();
    }
 }
