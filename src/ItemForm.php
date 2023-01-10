@@ -53,9 +53,8 @@ class ItemForm {
       switch ($item::getType()) {
          case "Ticket":
 
-            var_dump($item["users":protected]);
             foreach($item as $row) {
-               echo $row;
+               echo $item["$row"];
             }
             echo 'Carto-SI <input type="text" value="toto" size=2/>';
       }
