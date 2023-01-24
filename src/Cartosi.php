@@ -309,7 +309,7 @@ class Cartosi extends CommonDBTM {
                   "fields":[
                   {
                      "name":"to",
-                     "value": '.$idapp.'
+                     "value": '.json_encode($idapp).'
                   },
                   {"name":"type",
                   "value":"process2application"
