@@ -254,7 +254,7 @@ class Cartosi extends CommonDBTM {
             ),
             ));
             $response = curl_exec($curl);
-
+            $task->log($response)
             curl_close($curl);
             $data = json_decode($response, true);
             //retrievas datas (name,description,domain,leader and check)
@@ -360,7 +360,7 @@ class Cartosi extends CommonDBTM {
       ));
 
       $response = curl_exec($curl);
-      $task->log(json_decode($response)["elements"]);
+      $task->log($response);
       curl_close($curl);
       return 1;
    }
