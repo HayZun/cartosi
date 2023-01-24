@@ -293,7 +293,8 @@ class Cartosi extends CommonDBTM {
                         $datecheck = date('Y-m-d', $quotient);
                         }
                }
-               fwrite($myfile, $name.'\n');
+
+               fwrite($myfile, $name);
                $task->log($name);
                $task->log($idapp);
 
@@ -362,71 +363,6 @@ class Cartosi extends CommonDBTM {
                foreach( $business_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
-               $task->log("business");
-
-               $curl = curl_init();
-               curl_setopt_array($curl, array(
-               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
-               CURLOPT_RETURNTRANSFER => true,
-               CURLOPT_ENCODING => '',
-               CURLOPT_MAXREDIRS => 10,
-               CURLOPT_TIMEOUT => 0,
-               CURLOPT_FOLLOWLOCATION => true,
-               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-               CURLOPT_CUSTOMREQUEST => 'POST',
-               CURLOPT_POSTFIELDS =>'{
-                  "fields":[
-                  {
-                     "name":"from",
-                     "value": '.json_encode($idapp).'
-                  },
-                  {"name":"type",
-                  "value":"process2application"
-                  }
-                  ],
-                  "pageSize":1000000,
-                  "pagination":1
-               }',
-               CURLOPT_HTTPHEADER => array(
-                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
-                  'Content-Type: application/json'
-               ),
-               ));
-               
-               $response = curl_exec($curl);
-               curl_close($curl);
-               $data = json_decode($response, true);
-
-               $notadd = true;
-               foreach( $data as $key => $value ) {
-                  if ($key == "elements") {
-                     foreach( $value as $valeur => $value1 ) {
-                        foreach( $value1 as $valeur1 => $value2 ) {
-                           if ($valeur1 == "to") {
-                              foreach( $value2 as $valeur2 => $value3 ) {
-                                 if ($valeur2 == "label") {
-                                    //delete occurences
-                                    foreach( $business_impact as $label) {
-                                       if ($value3 == $label) {
-                                          $notadd = false;
-                                       }
-                                    }
-                                    if ($notadd) {
-                                       array_push($business_impact, $value3);
-                                    }
-                                 }
-                              }
-                              $notadd = true;
-                           }
-                        }
-                     }
-                  }
-               }
-               foreach( $business_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
-               }
-               $task->log("business");
-               $task->log($str_display);
                
                //retrieve applications impact
 
@@ -620,75 +556,11 @@ class Cartosi extends CommonDBTM {
                      }
                   }
                }
+
                $str_display = "";
                foreach( $technical_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
-
-               $curl = curl_init();
-               curl_setopt_array($curl, array(
-               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
-               CURLOPT_RETURNTRANSFER => true,
-               CURLOPT_ENCODING => '',
-               CURLOPT_MAXREDIRS => 10,
-               CURLOPT_TIMEOUT => 0,
-               CURLOPT_FOLLOWLOCATION => true,
-               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-               CURLOPT_CUSTOMREQUEST => 'POST',
-               CURLOPT_POSTFIELDS =>'{
-                  "fields":[
-                  {
-                     "name":"from",
-                     "value": '.json_encode($idapp).'
-                  },
-                  {"name":"type",
-                  "value":"application2technical"
-                  }
-                  ],
-                  "pageSize":1000000,
-                  "pagination":1
-               }',
-               CURLOPT_HTTPHEADER => array(
-                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
-                  'Content-Type: application/json'
-               ),
-               ));
-
-               $response = curl_exec($curl);
-               curl_close($curl);
-
-               $technical_impact = array();
-               $data = json_decode($response, true);
-               $notadd = true;
-               foreach( $data as $key => $value ) {
-                  if ($key == "elements") {
-                     foreach( $value as $valeur => $value1 ) {
-                        foreach( $value1 as $valeur1 => $value2 ) {
-                           if ($valeur1 == "to") {
-                              foreach( $value2 as $valeur2 => $value3 ) {
-                                 if ($valeur2 == "label") {
-                                    //delete occurences
-                                    foreach( $technical_impact as $label) {
-                                       if ($value3 == $label) {
-                                          $notadd = false;
-                                       }
-                                    }
-                                    if ($notadd) {
-                                       array_push($technical_impact, $value3);
-                                    }
-                                 }
-                              }
-                              $notadd = true;
-                           }
-                        }
-                     }
-                  }
-               }
-               foreach( $technical_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
-               }
-               $task->log("technical impact");
-               $task->log($str_display);
 
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
