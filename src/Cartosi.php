@@ -184,11 +184,6 @@ class Cartosi extends CommonDBTM {
       return [];
    }
 
-   //retrieve business app
-   static function business( string $id) {
-      return $id;
-   }
-
    /**
     * Execute 1 task manage by the plugin
     *
@@ -339,5 +334,10 @@ class Cartosi extends CommonDBTM {
          $task->log("Token/tenant invalide");
       }
       return 1;
+   }
+
+   //retrieve business app
+   static function business( string $id) {
+      return $id;
    }
 }
