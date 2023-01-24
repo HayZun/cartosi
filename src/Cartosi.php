@@ -295,7 +295,7 @@ class Cartosi extends CommonDBTM {
 
                //retrieve business
                $curl = curl_init();
-               $task->log(.$idapp.);
+               $task->log($idapp);
                curl_setopt_array($curl, array(
                CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
                CURLOPT_RETURNTRANSFER => true,
