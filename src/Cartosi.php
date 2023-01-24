@@ -294,8 +294,40 @@ class Cartosi extends CommonDBTM {
                }
 
                //retrieve business
-               $data = $this->business($idapp);
-               $task->log($data);
+               $curl = curl_init();
+
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"to",
+                     "value": '.$idapp.'
+                  },
+                  {"name":"type",
+                  "value":"process2application"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+
+               $response = curl_exec($curl);
+               $task->log($response);
+
+               curl_close($curl);
 
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
@@ -334,10 +366,5 @@ class Cartosi extends CommonDBTM {
          $task->log("Token/tenant invalide");
       }
       return 1;
-   }
-
-   //retrieve business app
-   function business( string $id) {
-      return $id;
    }
 }
