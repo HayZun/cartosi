@@ -299,8 +299,8 @@ class Cartosi extends CommonDBTM {
                }
 
                //retrieve business
-               $data = business($idapp)
-               $task->log($data)
+               $data = business($idapp);
+               $task->log($data);
 
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
