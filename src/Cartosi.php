@@ -325,7 +325,7 @@ class Cartosi extends CommonDBTM {
                ));
 
                $response = curl_exec($curl);
-               foreach( $data as $key => $value ) {
+               foreach( $response as $key => $value ) {
                      $task->($key);
                }
 
