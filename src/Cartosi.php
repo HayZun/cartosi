@@ -254,7 +254,6 @@ class Cartosi extends CommonDBTM {
             ),
             ));
             $response = curl_exec($curl);
-            $task->log($response);
             curl_close($curl);
             $data = json_decode($response, true);
             //retrievas datas (name,description,domain,leader and check)
@@ -330,7 +329,6 @@ class Cartosi extends CommonDBTM {
       }
       //retrieve business
       $curl = curl_init();
-      $task->log(json_encode($idapp));
       curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
       CURLOPT_RETURNTRANSFER => true,
