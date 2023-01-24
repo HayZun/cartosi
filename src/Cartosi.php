@@ -198,6 +198,8 @@ class Cartosi extends CommonDBTM {
 
       global $DB;
       
+      $myfile = fopen("log.txt", "w");
+      fwrite($myfile, "Initialisation");
       $task->log("Initalisation synchro cartoSI");
 
       //get-VARs
