@@ -481,7 +481,7 @@ class Cartosi extends CommonDBTM {
             "value":"e639db72-3b2a-f40d-9688-e6e4a5f5ae4a"
          },
          {"name":"type",
-         "value":"application2application"
+         "value":"application2technical"
          }
          ],
          "pageSize":1000000,
