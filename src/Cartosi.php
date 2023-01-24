@@ -381,9 +381,9 @@ class Cartosi extends CommonDBTM {
                      }
                   }
                }
+               $notadd = true;
             }
          }
-         $notadd = true;
       }
       $task->log("tab");
       foreach( $business as $value ) {
