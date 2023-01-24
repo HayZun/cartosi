@@ -327,7 +327,9 @@ class Cartosi extends CommonDBTM {
       } else {
          $task->log("Token/tenant invalide");
       }
-      //retrieve business
+
+      //retrieve business impact
+
       $curl = curl_init();
       curl_setopt_array($curl, array(
       CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
@@ -357,9 +359,11 @@ class Cartosi extends CommonDBTM {
       ),
       ));
       
-      $business = array();
       $response = curl_exec($curl);
+      curl_close($curl);
       $data = json_decode($response, true);
+
+      $business = array();
       $notadd = true;
       foreach( $data as $key => $value ) {
          if ($key == "elements") {
@@ -391,7 +395,74 @@ class Cartosi extends CommonDBTM {
          $str_display =  $str_display . $value . ", ";
       }
       $task->log($str_display);
+      
+      //retrieve applications impact
+      $curl = curl_init();
+      curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+         "fields":[
+         {
+            "name":"from",
+            "value":"e639db72-3b2a-f40d-9688-e6e4a5f5ae4a"
+         },
+         {"name":"type",
+         "value":"application2application"
+         }
+         ],
+         "pageSize":1000000,
+         "pagination":1
+      }',
+      CURLOPT_HTTPHEADER => array(
+         'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+         'Content-Type: application/json'
+      ),
+      ));
+
+      $response = curl_exec($curl);
       curl_close($curl);
+
+      $applications_impact = array();
+      $data = json_decode($response, true);
+      $notadd = true;
+      foreach( $data as $key => $value ) {
+         if ($key == "elements") {
+            foreach( $value as $valeur => $value1 ) {
+               foreach( $value1 as $valeur1 => $value2 ) {
+                  if ($valeur1 == "from") {
+                     foreach( $value2 as $valeur2 => $value3 ) {
+                        if ($valeur2 == "label") {
+                           //delete occurences
+                           foreach( $business as $label) {
+                              if ($value3 == $label) {
+                                 $notadd = false;
+                              }
+                           }
+                           if ($notadd) {
+                              array_push($applications_impact, $value3);
+                           }
+                        }
+                     }
+                     $notadd = true;
+                  }
+               }
+            }
+         }
+      }
+      $task->log("tab");
+      $str_display = "";
+      foreach( $applications_impact as $value ) {
+         $str_display =  $str_display . $value . ", ";
+      }
+      $task->log($str_display);
+
       return 1;
    }
 }
