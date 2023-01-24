@@ -292,6 +292,7 @@ class Cartosi extends CommonDBTM {
                         }
                }
                $task->log($name);
+               $task->log($idapp);
                //retrieve business impact
 
                $curl = curl_init();
@@ -404,7 +405,6 @@ class Cartosi extends CommonDBTM {
                               foreach( $value2 as $valeur2 => $value3 ) {
                                  if ($valeur2 == "label") {
                                     //delete occurences
-                                    $task->log($value3);
                                     foreach( $applications_impact as $label) {
                                        if ($value3 == $label) {
                                           $notadd = false;
