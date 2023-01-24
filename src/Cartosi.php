@@ -381,7 +381,6 @@ class Cartosi extends CommonDBTM {
                      }
                   }
                }
-               $notadd = true;
             }
          }
       }
