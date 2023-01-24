@@ -184,11 +184,6 @@ class Cartosi extends CommonDBTM {
       return [];
    }
 
-   //retrieve business app
-   static function business( string $id) {
-      return $id;
-   }
-
    /**
     * Execute 1 task manage by the plugin
     *
@@ -200,6 +195,12 @@ class Cartosi extends CommonDBTM {
     *     0 : nothing to do
     */
    static function cronCartoSI($task) {
+
+      //retrieve business app
+      static function business( string $id) {
+         return $id;
+      }
+
 
       global $DB;
       
