@@ -360,6 +360,7 @@ class Cartosi extends CommonDBTM {
       $business = array();
       $response = curl_exec($curl);
       $data = json_decode($response, true);
+      $notadd = true;
       foreach( $data as $key => $value ) {
          if ($key == "elements") {
             foreach( $value as $valeur => $value1 ) {
@@ -367,8 +368,15 @@ class Cartosi extends CommonDBTM {
                   if ($valeur1 == "from") {
                      foreach( $value2 as $valeur2 => $value3 ) {
                         if ($valeur2 == "label") {
-                           $task->log($value3);
-                           array_push($business, $value3);
+                           //delete occurences
+                           foreach( $business as $label) {
+                              if ($value3 == $label) {
+                                 $notadd = false;
+                              }
+                           }
+                           if ($notadd) {
+                              array_push($business, $value3);
+                           }
                         }
                      }
                   }
