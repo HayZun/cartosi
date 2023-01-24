@@ -291,7 +291,7 @@ class Cartosi extends CommonDBTM {
                         $datecheck = date('Y-m-d', $quotient);
                         }
                }
-
+               $task->log($name);
                //retrieve business impact
 
                $curl = curl_init();
@@ -357,6 +357,7 @@ class Cartosi extends CommonDBTM {
                foreach( $business_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
+               $task->log("business");
                $task->log($str_display);
                
                //retrieve applications impact
@@ -423,6 +424,7 @@ class Cartosi extends CommonDBTM {
                foreach( $applications_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
+               $task->log("applications");
                $task->log($str_display);
 
                //retrieve technical impact
@@ -490,6 +492,7 @@ class Cartosi extends CommonDBTM {
                foreach( $technical_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
+               $task->log("technical impact");
                $task->log($str_display);
 
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
