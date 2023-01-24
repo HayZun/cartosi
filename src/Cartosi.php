@@ -363,6 +363,7 @@ class Cartosi extends CommonDBTM {
                foreach( $business_impact as $value ) {
                   $str_display =  $str_display . $value . ", ";
                }
+               $task->log($str_display);
                
                //retrieve applications impact
 
