@@ -376,6 +376,7 @@ class Cartosi extends CommonDBTM {
             }
          }
       }
+      $task->log("tab");
       foreach( $business as $value ) {
          $task->log($value);
       }
