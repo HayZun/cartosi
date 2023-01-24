@@ -198,10 +198,531 @@ class Cartosi extends CommonDBTM {
 
       global $DB;
       
-      $myfile = fopen("/var/www/html/glpi/plugins/cartosi/newfile.txt", "w") or die("Unable to open file!");
       $task->log("Initalisation synchro cartoSI");
-      $txt = "John Doe\n";
-      fwrite($myfile, $txt);
+      $myfile = fopen("/var/www/html/glpi/plugins/cartosi/newfile.txt", "w") or die("Unable to open file!");
+      //get-VARs
+      $req = $DB->query('SELECT COUNT(*) FROM glpi_plugin_cartosi_credentials');
+      foreach($req as $row) {
+         $count = $row["COUNT(*)"];
+      }
+
+      //
+      if (1 == $count) {
+         $req = $DB->query('SELECT * FROM glpi_plugin_cartosi_credentials');
+        foreach($req as $row) {
+          $token = $row["token"];
+          $tenant = $row["tenant"];
+        }
+         //test connexion
+         $curl = curl_init();
+         curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://app.carto-si.com/api/v2/activity/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_HTTPHEADER => array(
+               'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
+            ),
+            ));
+   
+         $response = curl_exec($curl);
+         curl_close($curl);
+         if (strlen($response) == 71) {
+            $task->log("Arrêt de la synchronisation");
+            $task->log("Tenant ou token invalide");
+         } else {
+            $task->log("Token/tenant valide");
+            //import appplication from cartoSI to GLPI
+
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/application',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'GET',
+               CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}'
+            ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $data = json_decode($response, true);
+            //retrievas datas (name,description,domain,leader and check)
+            $nbapps = 0;
+            foreach( $data as $key => $value ) {
+               $count = 0;
+               foreach( $value as $valeur => $value1 ) {
+                  if (strpos($valeur, "id") !== false) {
+                     $idapp = $value1;
+                  }
+                  if (strpos($valeur, "label") !== false) {
+                     $name = str_replace("'", " ","$value1");
+                  }
+                  if (strpos($valeur, "description") !== false) {
+                     $description = str_replace("'", " ","$value1");
+                  }
+                  if (strpos($valeur, "businesses") !== false) {
+                     foreach($value1 as $valeur2 => $value2) {
+                        foreach($value2 as $valeur3 => $value3) {
+                           if (strpos($valeur3, "label") !== false) {
+                              $domain = $value3;
+                           }
+                        }
+                     }
+                  }
+                  if (strpos($valeur, "teamleader") !== false) {
+                           foreach($value1 as $valeur2 => $value2) {
+                              if (strpos($valeur2, "label") !== false) {
+                                    $teamleader = $value2;
+                              }
+                           }
+                        }
+                  if (strpos($valeur, "dateMaj") !== false) {
+                        $quotient = $value1 / 1000 + 1000;    
+                        $datecheck = date('Y-m-d', $quotient);
+                        }
+               }
+               fwrite($myfile, $name);
+               $task->log($name);
+               $task->log($idapp);
+
+               //retrieve business impact
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"to",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"process2application"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+               
+               $response = curl_exec($curl);
+               curl_close($curl);
+               $data = json_decode($response, true);
+
+               $business_impact = array();
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "from") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $business_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($business_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               $str_display = "";
+               foreach( $business_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+               $task->log("business");
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"from",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"process2application"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+               
+               $response = curl_exec($curl);
+               curl_close($curl);
+               $data = json_decode($response, true);
+
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "to") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $business_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($business_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               foreach( $business_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+               $task->log("business");
+               $task->log($str_display);
+               
+               //retrieve applications impact
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"from",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"application2application"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+
+               $response = curl_exec($curl);
+               curl_close($curl);
+
+               $applications_impact = array();
+               $data = json_decode($response, true);
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "to") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $applications_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($applications_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               $str_display = "";
+               foreach( $applications_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"to",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"application2application"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+
+               $response = curl_exec($curl);
+               curl_close($curl);
+
+               $applications_impact = array();
+               $data = json_decode($response, true);
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "from") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $applications_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($applications_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               foreach( $applications_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+               $task->log("applications");
+               $task->log($str_display);
+
+               //retrieve technical impact
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"from",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"application2technical"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+
+               $response = curl_exec($curl);
+               curl_close($curl);
+
+               $technical_impact = array();
+               $data = json_decode($response, true);
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "to") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $technical_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($technical_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               $str_display = "";
+               foreach( $technical_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+
+               $curl = curl_init();
+               curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS =>'{
+                  "fields":[
+                  {
+                     "name":"from",
+                     "value": '.json_encode($idapp).'
+                  },
+                  {"name":"type",
+                  "value":"application2technical"
+                  }
+                  ],
+                  "pageSize":1000000,
+                  "pagination":1
+               }',
+               CURLOPT_HTTPHEADER => array(
+                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+                  'Content-Type: application/json'
+               ),
+               ));
+
+               $response = curl_exec($curl);
+               curl_close($curl);
+
+               $technical_impact = array();
+               $data = json_decode($response, true);
+               $notadd = true;
+               foreach( $data as $key => $value ) {
+                  if ($key == "elements") {
+                     foreach( $value as $valeur => $value1 ) {
+                        foreach( $value1 as $valeur1 => $value2 ) {
+                           if ($valeur1 == "to") {
+                              foreach( $value2 as $valeur2 => $value3 ) {
+                                 if ($valeur2 == "label") {
+                                    //delete occurences
+                                    foreach( $technical_impact as $label) {
+                                       if ($value3 == $label) {
+                                          $notadd = false;
+                                       }
+                                    }
+                                    if ($notadd) {
+                                       array_push($technical_impact, $value3);
+                                    }
+                                 }
+                              }
+                              $notadd = true;
+                           }
+                        }
+                     }
+                  }
+               }
+               foreach( $technical_impact as $value ) {
+                  $str_display =  $str_display . $value . ", ";
+               }
+               $task->log("technical impact");
+               $task->log($str_display);
+
+               $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
+               foreach($req as $row) {
+                  $count = $row["COUNT(*)"];
+               }
+
+               if (0 == $count) {
+                  $task->log("création de la table $name");
+                  //application doesn't exist in db of glpi
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
+                  $nbapps = $nbapps + 1;
+               } else {
+                  //application exists
+                  $req = $DB->query("UPDATE glpi_plugin_cartosi_cartosis SET name='".$name."',
+                                                                             description='".$description."',
+                                                                             domain='".$domain."',
+                                                                             leader='".$teamleader."',
+                                                                             glpi_plugin_cartosi_cartosis.check='".$datecheck."'
+                                                                        WHERE id_app='".$idapp."'");
+               }
+               $name = "";
+               $description = "";
+               $domain = "";
+               $teamleader = "";
+               $datecheck = "";
+
+            }  
+            if ($nbapps > 0) {
+               $task->log("$nbapps applications ajoutées");
+            } else {
+               $task->log("Pas d'applications ajoutées");
+            }
+         } 
+      } else {
+         $task->log("Token/tenant invalide");
+      }
       return 1;
    }
 }
