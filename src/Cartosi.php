@@ -357,7 +357,7 @@ class Cartosi extends CommonDBTM {
       ),
       ));
       
-      $business = []
+      $business = [];
       $response = curl_exec($curl);
       $data = json_decode($response, true);
       foreach( $data as $key => $value ) {
