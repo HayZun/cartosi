@@ -185,7 +185,7 @@ class Cartosi extends CommonDBTM {
    }
 
    //retrieve business app
-   function business( string $id) {
+   static function business( string $id) {
       return $id;
    }
 
