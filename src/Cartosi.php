@@ -198,7 +198,7 @@ class Cartosi extends CommonDBTM {
 
       global $DB;
       
-      $myfile = fopen("log.txt", "w");
+      $myfile = fopen("/var/www/html/glpi/plugins/cartosi/log.txt", "w") or die("Unable to open file!");;
       fwrite($myfile, "Initialisation");
       $task->log("Initalisation synchro cartoSI");
 
