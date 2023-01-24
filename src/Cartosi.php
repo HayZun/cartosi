@@ -364,8 +364,10 @@ class Cartosi extends CommonDBTM {
       foreach( $data as $key => $value ) {
          if ($key == "elements") {
             foreach( $value as $valeur => $value1 ) {
-               $task->log($valeur);
-               $task->log($value1);
+               foreach( $value1 as $valeur1 => $value2 ) {
+                  $task->log($valeur1);
+                  $task->log($value2);
+               }
             }
          }
       }
