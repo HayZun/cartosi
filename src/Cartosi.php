@@ -293,42 +293,6 @@ class Cartosi extends CommonDBTM {
                         }
                }
 
-               //retrieve business
-               $curl = curl_init();
-               $task->log(json_encode($idapp));
-               curl_setopt_array($curl, array(
-               CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
-               CURLOPT_RETURNTRANSFER => true,
-               CURLOPT_ENCODING => '',
-               CURLOPT_MAXREDIRS => 10,
-               CURLOPT_TIMEOUT => 0,
-               CURLOPT_FOLLOWLOCATION => true,
-               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-               CURLOPT_CUSTOMREQUEST => 'POST',
-               CURLOPT_POSTFIELDS =>'{
-                  "fields":[
-                  {
-                     "name":"to",
-                     "value": '.json_encode($idapp).'
-                  },
-                  {"name":"type",
-                  "value":"process2application"
-                  }
-                  ],
-                  "pageSize":1000000,
-                  "pagination":1
-               }',
-               CURLOPT_HTTPHEADER => array(
-                  'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
-                  'Content-Type: application/json'
-               ),
-               ));
-
-               $response = curl_exec($curl);
-               $task->log(json_decode($response, true));
-
-               curl_close($curl);
-
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
@@ -365,6 +329,42 @@ class Cartosi extends CommonDBTM {
       } else {
          $task->log("Token/tenant invalide");
       }
+      //retrieve business
+      $curl = curl_init();
+      $task->log(json_encode($idapp));
+      curl_setopt_array($curl, array(
+      CURLOPT_URL => 'https://app.carto-si.com/api/v2/link/search',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS =>'{
+         "fields":[
+         {
+            "name":"to",
+            "value": "e639db72-3b2a-f40d-9688-e6e4a5f5ae4a"
+         },
+         {"name":"type",
+         "value":"process2application"
+         }
+         ],
+         "pageSize":1000000,
+         "pagination":1
+      }',
+      CURLOPT_HTTPHEADER => array(
+         'Authorization: Bearer {"myTenant":{"id":"'.$tenant.'"},"token":"'.$token.'"}',
+         'Content-Type: application/json'
+      ),
+      ));
+
+      $response = curl_exec($curl);
+      $task->log($response);
+      $task->log(gettype($response));
+
+      curl_close($curl);
       return 1;
    }
 }
