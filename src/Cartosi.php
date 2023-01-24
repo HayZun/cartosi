@@ -184,6 +184,11 @@ class Cartosi extends CommonDBTM {
       return [];
    }
 
+   //retrieve business app
+   function business( string $id) {
+      return $id;
+   }
+
    /**
     * Execute 1 task manage by the plugin
     *
@@ -293,10 +298,15 @@ class Cartosi extends CommonDBTM {
                         }
                }
 
+               //retrieve business
+               $data = business($idapp)
+               $task->log($data)
+
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
                   $count = $row["COUNT(*)"];
                }
+
                if (0 == $count) {
                   $task->log("création de la table $name");
                   //application doesn't exist in db of glpi
@@ -317,6 +327,7 @@ class Cartosi extends CommonDBTM {
                $domain = "";
                $teamleader = "";
                $datecheck = "";
+
             }  
             if ($nbapps > 0) {
                $task->log("$nbapps applications ajoutées");
