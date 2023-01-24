@@ -197,6 +197,8 @@ class Cartosi extends CommonDBTM {
    static function cronCartoSI($task) {
 
       global $DB;
+
+      set_time_limit(0);
       
       $task->log("Initalisation synchro cartoSI");
       $myfile = fopen("/var/www/html/glpi/plugins/cartosi/newfile.txt", "w") or die("Unable to open file!");
@@ -291,7 +293,7 @@ class Cartosi extends CommonDBTM {
                         $datecheck = date('Y-m-d', $quotient);
                         }
                }
-               fwrite($myfile, $name);
+               fwrite($myfile, $name.'\n');
                $task->log($name);
                $task->log($idapp);
 
