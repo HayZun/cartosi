@@ -367,7 +367,7 @@ class Cartosi extends CommonDBTM {
                   if ($valeur1 == "from") {
                      foreach( $value2 as $valeur2 => $value3 ) {
                         if ($valeur2 == "label") {
-                           array_push($business, $value3)
+                           array_push($business, $value3);
                            $task->log($business);
                         }
                      }
