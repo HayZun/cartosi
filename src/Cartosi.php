@@ -360,11 +360,7 @@ class Cartosi extends CommonDBTM {
       ));
 
       $response = curl_exec($curl);
-      $task->log(json_decode($response));
-      $task->log(gettype($response));
-      $data = json_decode($response, true);
-      $task->log(var_dump($data));
-
+      $task->log($response);
       curl_close($curl);
       return 1;
    }
