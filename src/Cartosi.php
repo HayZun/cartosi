@@ -356,7 +356,8 @@ class Cartosi extends CommonDBTM {
          'Content-Type: application/json'
       ),
       ));
-
+      
+      $business = []
       $response = curl_exec($curl);
       $data = json_decode($response, true);
       foreach( $data as $key => $value ) {
@@ -366,7 +367,8 @@ class Cartosi extends CommonDBTM {
                   if ($valeur1 == "from") {
                      foreach( $value2 as $valeur2 => $value3 ) {
                         if ($valeur2 == "label") {
-                           $task->log($value3);
+                           array_push($business, $value3)
+                           $task->log($business);
                         }
                      }
                   }
