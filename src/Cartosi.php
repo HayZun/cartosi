@@ -404,6 +404,9 @@ class Cartosi extends CommonDBTM {
                               foreach( $value2 as $valeur2 => $value3 ) {
                                  if ($valeur2 == "label") {
                                     //delete occurences
+                                    if ($name == "Mail Jet") {
+                                       $task->log($value3);
+                                    }
                                     foreach( $applications_impact as $label) {
                                        if ($value3 == $label) {
                                           $notadd = false;
