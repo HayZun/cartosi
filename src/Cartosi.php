@@ -360,7 +360,7 @@ class Cartosi extends CommonDBTM {
                }
                $result_business = "";
                foreach( $business_impact as $value ) {
-                  $result_business =  $result_business . $value . ", ";
+                  $result_business =  $result_business . str_replace("'", " ","$value") . ", ";
                }
                $task->log("business");
                $task->log($result_business);
