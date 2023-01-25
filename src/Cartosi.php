@@ -117,6 +117,9 @@ class Cartosi extends CommonDBTM {
          $description = $row["description"];
          $leader = $row["leader"];
          $check = $row["check"];
+         $business = $row["business"];
+         $applications = $row["applications"];
+         $technical = $row["technical"];
       }
 
       echo "<tr class='tab_bg_2'>";
@@ -161,6 +164,31 @@ class Cartosi extends CommonDBTM {
       echo $check;
       echo "</td>";
       echo "</tr>";
+
+      echo "<tr class='tab_bg_6'>";
+      echo "<br>";
+      echo "<td>" . __('<strong>Business Impact</strong>') . "</td>";
+      echo "<td>";
+      echo $business;
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr class='tab_bg_7'>";
+      echo "<br>";
+      echo "<td>" . __('<strong>Applications Impact</strong>') . "</td>";
+      echo "<td>";
+      echo $applications;
+      echo "</td>";
+      echo "</tr>";
+
+      echo "<tr class='tab_bg_8'>";
+      echo "<br>";
+      echo "<td>" . __('<strong>Infrastructure Impact</strong>') . "</td>";
+      echo "<td>";
+      echo $technical;
+      echo "</td>";
+      echo "</tr>";
+
 
 
       $this->showFormButtons($options);
