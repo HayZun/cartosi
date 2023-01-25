@@ -348,7 +348,7 @@ class Cartosi extends CommonDBTM {
                                        }
                                     }
                                     if ($notadd) {
-                                       array_push($business_impact, str_replace("'", " ","$value3"););
+                                       array_push($business_impact, $value3);
                                     }
                                  }
                               }
@@ -416,7 +416,7 @@ class Cartosi extends CommonDBTM {
                                        }
                                     }
                                     if ($notadd) {
-                                       array_push($applications_impact, str_replace("'", " ","$value3"));
+                                       array_push($applications_impact, $value3);
                                     }
                                  }
                               }
@@ -480,7 +480,7 @@ class Cartosi extends CommonDBTM {
                                        }
                                     }
                                     if ($notadd) {
-                                       array_push($applications_impact, str_replace("'", " ","$value3"));
+                                       array_push($applications_impact, $value3);
                                     }
                                  }
                               }
@@ -547,7 +547,7 @@ class Cartosi extends CommonDBTM {
                                        }
                                     }
                                     if ($notadd) {
-                                       array_push($technical_impact, str_replace("'", " ","$value3"));
+                                       array_push($technical_impact, $value3);
                                     }
                                  }
                               }
