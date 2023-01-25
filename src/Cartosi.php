@@ -294,7 +294,6 @@ class Cartosi extends CommonDBTM {
                         }
                }
 
-               fwrite($myfile, $name);
                $task->log($name);
                $task->log($idapp);
 
@@ -359,12 +358,12 @@ class Cartosi extends CommonDBTM {
                      }
                   }
                }
-               $str_display = "";
+               $result_business = "";
                foreach( $business_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
+                  $result_business =  $result_business . $value . ", ";
                }
                $task->log("business");
-               $task->log($str_display);
+               $task->log($result_business);
                
                //retrieve applications impact
 
@@ -427,9 +426,9 @@ class Cartosi extends CommonDBTM {
                      }
                   }
                }
-               $str_display = "";
+               $result_applications = "";
                foreach( $applications_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
+                  $result_applications =  $result_applications . $value . ", ";
                }
 
                $curl = curl_init();
@@ -492,10 +491,10 @@ class Cartosi extends CommonDBTM {
                   }
                }
                foreach( $applications_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
+                  $result_applications=  $result_applications. $value . ", ";
                }
                $task->log("applications");
-               $task->log($str_display);
+               $task->log($result_applications);
 
                //retrieve technical impact
 
@@ -559,13 +558,13 @@ class Cartosi extends CommonDBTM {
                   }
                }
 
-               $str_display = "";
+               $result_technical = "";
                foreach( $technical_impact as $value ) {
-                  $str_display =  $str_display . $value . ", ";
+                  $result_technical =  $str_display . $value . ", ";
                }
 
                $task->log("technical");
-               $task->log($str_display);
+               $task->log($result_technical);
 
                $req = $DB->query("SELECT COUNT(*) FROM glpi_plugin_cartosi_cartosis WHERE id_app='".$idapp."'");
                foreach($req as $row) {
@@ -575,7 +574,7 @@ class Cartosi extends CommonDBTM {
                if (0 == $count) {
                   $task->log("création de la table $name");
                   //application doesn't exist in db of glpi
-                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck')");
+                  $req = $DB->query("INSERT INTO `glpi_plugin_cartosi_cartosis` (`name`,`id_app`,`description`,`domain`,`leader`,`check`, `business`, `applications`, `technical`) VALUES ('$name','$idapp','$description','$domain','$teamleader','$datecheck','$result_business','$result_applications','$result_technical')");
                   $nbapps = $nbapps + 1;
                } else {
                   //application exists
@@ -583,7 +582,10 @@ class Cartosi extends CommonDBTM {
                                                                              description='".$description."',
                                                                              domain='".$domain."',
                                                                              leader='".$teamleader."',
-                                                                             glpi_plugin_cartosi_cartosis.check='".$datecheck."'
+                                                                             glpi_plugin_cartosi_cartosis.check='".$datecheck."',
+                                                                             business='".$result_business."',
+                                                                             applications='".$result_applications."',
+                                                                             technical='".$result_technical."'
                                                                         WHERE id_app='".$idapp."'");
                }
                $name = "";

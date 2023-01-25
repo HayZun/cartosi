@@ -58,6 +58,9 @@ function plugin_cartosi_install() {
                   `domain` TEXT NOT NULL,
                   `leader` TEXT NOT NULL,
                   `check` date NOT NULL,
+                  `business` TEXT NOT NULL,
+                  `applications` TEXT NOT NULL,
+                  `technical` TEXT NOT NULL,
                 PRIMARY KEY (`id`)
                ) ENGINE=InnoDB DEFAULT CHARSET={$default_charset} COLLATE={$default_collation} ROW_FORMAT=DYNAMIC;";
 
