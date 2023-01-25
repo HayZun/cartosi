@@ -428,7 +428,7 @@ class Cartosi extends CommonDBTM {
                }
                $result_applications = "";
                foreach( $applications_impact as $value ) {
-                  $result_applications =  $result_applications . $value . ", ";
+                  $result_applications =  $result_applications . str_replace("'", " ","$value") . ", ";
                }
 
                $curl = curl_init();
@@ -491,7 +491,7 @@ class Cartosi extends CommonDBTM {
                   }
                }
                foreach( $applications_impact as $value ) {
-                  $result_applications=  $result_applications. $value . ", ";
+                  $result_applications=  $result_applications. str_replace("'", " ","$value") . ", ";
                }
                $task->log("applications");
                $task->log($result_applications);
@@ -560,7 +560,7 @@ class Cartosi extends CommonDBTM {
 
                $result_technical = "";
                foreach( $technical_impact as $value ) {
-                  $result_technical =  $str_display . $value . ", ";
+                  $result_technical =  $str_display . str_replace("'", " ","$value") . ", ";
                }
 
                $task->log("technical");
