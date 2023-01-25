@@ -156,7 +156,6 @@ class Cartosi extends CommonDBTM {
       echo "</td>";
       echo "</tr>";
 
-
       echo "<tr class='tab_bg_5'>";
       echo "<br>";
       echo "<td>" . __('<strong>Last check</strong>') . "</td>";
@@ -588,7 +587,7 @@ class Cartosi extends CommonDBTM {
 
                $result_technical = "";
                foreach( $technical_impact as $value ) {
-                  $result_technical =  $str_display . str_replace("'", " ","$value") . ", ";
+                  $result_technical =  $result_technical . str_replace("'", " ","$value") . ", ";
                }
 
                $task->log("technical");
